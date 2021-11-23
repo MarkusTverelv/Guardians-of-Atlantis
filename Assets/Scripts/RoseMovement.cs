@@ -15,16 +15,11 @@ public class RoseMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void FixedUpdate()
     {
         Move();
     }
+
     Vector2 NormalizedDirectionalMovement()
     {
         return new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized;

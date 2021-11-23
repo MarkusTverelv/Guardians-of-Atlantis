@@ -4,42 +4,29 @@ using UnityEngine;
 
 public class JellowMovement : MonoBehaviour
 {
-    public Rigidbody2D parentRigidbody;
+    private Rigidbody2D parentRigidbody;
     public float speed;
     //public float maxSpeed;
     private Vector2 velocity;
     private Rigidbody2D rb;
-    private bool canMove = false;
-    private float dist;
-    private float maxDist = 4.2f;
+    public float dashForce;
 
     // Start is called before the first frame update
     void Start()
     {
-        //parentRigidbody = transform.parent.GetComponent<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
-
+        parentRigidbody = transform.parent.Find("Rose").GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        dist = (parentRigidbody.position - rb.position).magnitude;
+        Move();
 
-        if (canMove)
-            Move();
-
-        if (dist <= maxDist)
-            canMove = true;
-
-        else if (dist > maxDist)
-            canMove = false;
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //maxDist = 15;
+            rb.mass = 100;
             Dash();
-
         }
     }
 
@@ -62,7 +49,6 @@ public class JellowMovement : MonoBehaviour
     }
     private void Dash()
     {
-        rb.AddForce(NormalizedDirectionalMovement() * 10 * Time.deltaTime, ForceMode2D.Impulse);
-
+        rb.AddForce(NormalizedDirectionalMovement() * dashForce, ForceMode2D.Impulse);
     }
 }
