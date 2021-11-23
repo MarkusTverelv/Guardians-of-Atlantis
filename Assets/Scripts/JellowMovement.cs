@@ -11,7 +11,7 @@ public class JellowMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool canMove = false;
     private float dist;
-    private float maxDist = 5;
+    private float maxDist = 4.2f;
 
     // Start is called before the first frame update
     void Start()

@@ -11,6 +11,7 @@ public class DrawBond : MonoBehaviour
     void Start()
     {
         lr = GetComponent<LineRenderer>();
+        
     }
 
     // Update is called once per frame
