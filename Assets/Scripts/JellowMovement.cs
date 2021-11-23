@@ -6,7 +6,7 @@ public class JellowMovement : MonoBehaviour
 {
     public Rigidbody2D parentRigidbody;
     public float speed;
-    public float maxSpeed;
+    //public float maxSpeed;
     private Vector2 velocity;
     private Rigidbody2D rb;
     private bool canMove = false;
@@ -52,10 +52,10 @@ public class JellowMovement : MonoBehaviour
     {
         velocity += NormalizedDirectionalMovement() * speed * Time.fixedDeltaTime;
 
-        if (velocity.magnitude > maxSpeed)
-            velocity = velocity.normalized * maxSpeed;
+        //if (velocity.magnitude > maxSpeed)
+          //  velocity = velocity.normalized * maxSpeed;
 
-        else if (NormalizedDirectionalMovement() == Vector2.zero)
+        if (NormalizedDirectionalMovement() == Vector2.zero)
             velocity *= 0.94f;
 
         rb.velocity = velocity;

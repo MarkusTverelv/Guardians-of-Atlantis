@@ -6,7 +6,7 @@ public class RoseMovement : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rb;
-    public float maxSpeed;
+    //public float maxSpeed;
 
     Vector2 velocity = Vector2.zero;
 
@@ -34,10 +34,10 @@ public class RoseMovement : MonoBehaviour
     {
         velocity += NormalizedDirectionalMovement() * speed * Time.fixedDeltaTime;
 
-        if (velocity.magnitude > maxSpeed)
-            velocity = velocity.normalized * maxSpeed;
+        //if (velocity.magnitude > maxSpeed)
+          //  velocity = velocity.normalized * maxSpeed;
 
-        else if (NormalizedDirectionalMovement() == Vector2.zero)
+        if (NormalizedDirectionalMovement() == Vector2.zero)
             velocity *= 0.94f;
 
         rb.velocity = velocity;
