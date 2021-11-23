@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class JellowMovement : MonoBehaviour
 {
-    public Transform parentTransform;
+    public Rigidbody2D parentRigidbody;
     public float speed;
     public float maxSpeed;
     private Vector2 velocity;
     private Rigidbody2D rb;
-    private Vector2 dist;
+    private bool canMove = false;
+    private float dist;
+    private float maxDist = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -22,18 +24,25 @@ public class JellowMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dist = parentTransform.position - transform.position;
+        dist = (parentRigidbody.position - rb.position).magnitude;
 
-        if (dist.magnitude <= 5)
-        {
+        if (canMove)
             Move();
-        }
-        else if (dist.magnitude > 5)
-        {
-            transform.RotateAround(parentTransform.position, parentTransform.forward, 50 * Time.deltaTime);
-        }
 
+        if (dist <= maxDist)
+            canMove = true;
+
+        else if (dist > maxDist)
+            canMove = false;
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            //maxDist = 15;
+            Dash();
+
+        }
     }
+
     Vector2 NormalizedDirectionalMovement()
     {
         return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
@@ -50,5 +59,10 @@ public class JellowMovement : MonoBehaviour
             velocity *= 0.94f;
 
         rb.velocity = velocity;
+    }
+    private void Dash()
+    {
+        rb.AddForce(NormalizedDirectionalMovement() * 10 * Time.deltaTime, ForceMode2D.Impulse);
+
     }
 }
