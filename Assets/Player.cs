@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int maxHealth = 5;
+    [HideInInspector] public int currentHealth;
     Vector3 movement;
     Rigidbody2D body;
     public float speed;
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         body = GetComponent<Rigidbody2D>();
     }
 
@@ -23,5 +26,14 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         body.AddForce(movement * speed);
+    }
+   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Damaging"))
+        {
+            currentHealth--;
+            Debug.Log("health: " + currentHealth);
+        }
     }
 }
