@@ -55,11 +55,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7117930116532709017}
-  - component: {fileID: 7117930116532709016}
   - component: {fileID: 7833956910229912508}
+  - component: {fileID: 7327606895687972275}
+  - component: {fileID: 7117930116532709016}
   - component: {fileID: 7117930116532709023}
   - component: {fileID: 7117930116532709020}
-  - component: {fileID: 7327606895687972275}
   - component: {fileID: 277286129124944772}
   m_Layer: 0
   m_Name: Jellow
@@ -82,6 +82,34 @@ Transform:
   m_Father: {fileID: 6892008807671904976}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7833956910229912508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117930116532709011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb68926ed23d44439a415214dd04772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn: 0
+  move: 0
+  moveSpeed: 250
+  turnSpeed: 5
+--- !u!114 &7327606895687972275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117930116532709011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35b08eefe8a83664d9bbdaf1a0c404ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &7117930116532709016
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -133,22 +161,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7833956910229912508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117930116532709011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb68926ed23d44439a415214dd04772, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turn: 0
-  move: 0
-  moveSpeed: 250
-  turnSpeed: 5
 --- !u!50 &7117930116532709023
 Rigidbody2D:
   serializedVersion: 4
@@ -194,18 +206,6 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!114 &7327606895687972275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117930116532709011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b08eefe8a83664d9bbdaf1a0c404ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &277286129124944772
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -465,10 +465,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7117930116948669623}
+  - component: {fileID: 1863236514026605176}
+  - component: {fileID: 6504409275832669214}
   - component: {fileID: 7117930116948669622}
   - component: {fileID: 7117930116948669579}
   - component: {fileID: 8000666199423053646}
-  - component: {fileID: 1863236514026605176}
   - component: {fileID: 1534472725563681026}
   m_Layer: 0
   m_Name: Pinko
@@ -491,6 +492,34 @@ Transform:
   m_Father: {fileID: 6892008807671904976}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1863236514026605176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117930116948669578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb68926ed23d44439a415214dd04772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn: 0
+  move: 0
+  moveSpeed: 250
+  turnSpeed: 5
+--- !u!114 &6504409275832669214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117930116948669578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a35b1bb48b784641a7dacaa5a592421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &7117930116948669622
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -587,22 +616,6 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!114 &1863236514026605176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117930116948669578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb68926ed23d44439a415214dd04772, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turn: 0
-  move: 0
-  moveSpeed: 250
-  turnSpeed: 5
 --- !u!70 &1534472725563681026
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

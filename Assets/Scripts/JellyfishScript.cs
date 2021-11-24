@@ -82,5 +82,10 @@ public class JellyfishScript : MonoBehaviour
             currentState = state.returning;
         }
     }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            collision.gameObject.GetComponent<PlayerScript>().hurt();
+    }
 
 }

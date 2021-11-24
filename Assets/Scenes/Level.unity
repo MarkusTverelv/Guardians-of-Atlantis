@@ -441,6 +441,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &947494008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9195211425412326909, guid: 33a8affead356ae468fe1d036ca42ecf, type: 3}
+  m_PrefabInstance: {fileID: 983193243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &947494014
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947494008}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4375
 --- !u!1001 &983193243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -450,7 +471,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9195211425412326896, guid: 33a8affead356ae468fe1d036ca42ecf, type: 3}
       propertyPath: speed
-      value: 5
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195211425412326897, guid: 33a8affead356ae468fe1d036ca42ecf, type: 3}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9195211425412326898, guid: 33a8affead356ae468fe1d036ca42ecf, type: 3}
       propertyPath: m_RootOrder
@@ -466,11 +491,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9195211425412326898, guid: 33a8affead356ae468fe1d036ca42ecf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3611
+      value: 4.3659997
       objectReference: {fileID: 0}
     - target: {fileID: 9195211425412326898, guid: 33a8affead356ae468fe1d036ca42ecf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.9216
+      value: 7.6481
       objectReference: {fileID: 0}
     - target: {fileID: 9195211425412326898, guid: 33a8affead356ae468fe1d036ca42ecf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -78244,6 +78269,14 @@ PrefabInstance:
       propertyPath: speed
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 1863236514026605176, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: invTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863236514026605176, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: maxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5724268645614066452, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_Name
       value: Players
@@ -78335,6 +78368,14 @@ PrefabInstance:
     - target: {fileID: 7833956910229912508, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: yello
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833956910229912508, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: invTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833956910229912508, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: maxHealth
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8042648873772802737, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: speed

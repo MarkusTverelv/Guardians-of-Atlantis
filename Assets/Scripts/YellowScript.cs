@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class YellowScript : MonoBehaviour
 {
-    MoveScript moveScript;
+    PlayerScript moveScript;
     private void Start()
     {
-        moveScript = GetComponent<MoveScript>();
+        moveScript = GetComponent<PlayerScript>();
     }
     private void Update()
     {
