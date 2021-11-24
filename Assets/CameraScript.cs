@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     GameObject player;
+    public bool miniMap;
 
     private void Start()
     {
@@ -14,5 +15,9 @@ public class CameraScript : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.transform.position.z);
+        if(miniMap)
+        {
+
+        }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestMovement2 : MonoBehaviour
+public class TankMovePinko : MonoBehaviour
 {
     Rigidbody2D body;
     float turn;
@@ -18,8 +18,8 @@ public class TestMovement2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        turn = Input.GetAxis("Horizontal");
-        move = Input.GetAxis("Vertical");
+        turn = Input.GetAxis("Horizontal2");
+        move = Input.GetAxis("Vertical2");
 
     }
     private void FixedUpdate()

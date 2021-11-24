@@ -229,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512876539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 0, z: 0}
+  m_LocalPosition: {x: 3.21, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -314,9 +314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a097c72a75f7f7a488915bdf58706356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentRigidbody: {fileID: 1185733951}
   speed: 10
-  maxSpeed: 8
+  dashForce: 0
 --- !u!50 &512876544
 Rigidbody2D:
   serializedVersion: 4
@@ -353,7 +352,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -7.79, y: 0.4}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -952,7 +951,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 14
-  maxSpeed: 10
 --- !u!212 &1185733954
 SpriteRenderer:
   m_ObjectHideFlags: 0
