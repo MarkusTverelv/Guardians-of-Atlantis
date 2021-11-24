@@ -6,7 +6,7 @@ public class RoseMovement : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rb;
-    //public float maxSpeed;
+    public float maxSpeed;
 
     Vector2 velocity = Vector2.zero;
 
@@ -15,11 +15,17 @@ public class RoseMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    private void FixedUpdate()
+
+    private void Update()
     {
         Move();
-    }
 
+        if(NormalizedDirectionalMovement() == new Vector2(0,0))
+        {
+            //rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+    
     Vector2 NormalizedDirectionalMovement()
     {
         return new Vector2(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2")).normalized;
@@ -29,8 +35,8 @@ public class RoseMovement : MonoBehaviour
     {
         velocity += NormalizedDirectionalMovement() * speed * Time.fixedDeltaTime;
 
-        //if (velocity.magnitude > maxSpeed)
-          //  velocity = velocity.normalized * maxSpeed;
+        if (velocity.magnitude > maxSpeed)
+           velocity = velocity.normalized * maxSpeed;
 
         if (NormalizedDirectionalMovement() == Vector2.zero)
             velocity *= 0.94f;

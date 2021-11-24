@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class JellowMovement : MonoBehaviour
 {
-    private Rigidbody2D parentRigidbody;
     public float speed;
-    //public float maxSpeed;
+    public float maxSpeed;
     private Vector2 velocity;
     private Rigidbody2D rb;
     public float dashForce;
+    private bool canDash;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        parentRigidbody = transform.parent.Find("Rose").GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
@@ -23,12 +23,23 @@ public class JellowMovement : MonoBehaviour
     {
         Move();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            rb.mass = 100;
+            canDash = true;
+            
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (canDash)
+        {
             Dash();
+            canDash = false;
         }
     }
+
 
     Vector2 NormalizedDirectionalMovement()
     {
@@ -39,8 +50,8 @@ public class JellowMovement : MonoBehaviour
     {
         velocity += NormalizedDirectionalMovement() * speed * Time.fixedDeltaTime;
 
-        //if (velocity.magnitude > maxSpeed)
-          //  velocity = velocity.normalized * maxSpeed;
+        if (velocity.magnitude > maxSpeed)
+           velocity = velocity.normalized * maxSpeed;
 
         if (NormalizedDirectionalMovement() == Vector2.zero)
             velocity *= 0.94f;
