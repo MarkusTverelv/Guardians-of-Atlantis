@@ -5,12 +5,11 @@ using UnityEngine;
 public class MoveScript : MonoBehaviour
 {
     Rigidbody2D body;
-    float turn;
-    float move;
-    public float speed;
+    [HideInInspector] public float turn;
+    [HideInInspector] public float move;
+    public float moveSpeed;
     public float turnSpeed;
-    public bool hold;
-    public bool yello;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,25 +17,12 @@ public class MoveScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(yello)
-        {
-            turn = Input.GetAxis("Horizontal");
-            move = Input.GetAxis("Vertical");
-        }
-        else
-        {
-            turn = Input.GetAxis("Horizontal2");
-            move = Input.GetAxis("Vertical2");
-        }
-        
-
-    }
+    
+    
     private void FixedUpdate()
     {
         
         body.AddTorque(turn * -turnSpeed);
-        body.AddRelativeForce(new Vector3(0, move * speed));
+        body.AddRelativeForce(new Vector3(0, move * moveSpeed));
     }
 }

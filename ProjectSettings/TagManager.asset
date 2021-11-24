@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Damaging
   - Center
+  - P1
+  - P2
   layers:
   - Default
   - TransparentFX

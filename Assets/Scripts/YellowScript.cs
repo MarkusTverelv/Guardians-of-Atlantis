@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PinkoScript : MonoBehaviour
+public class YellowScript : MonoBehaviour
 {
     MoveScript moveScript;
     private void Start()
@@ -11,7 +11,7 @@ public class PinkoScript : MonoBehaviour
     }
     private void Update()
     {
-        moveScript.turn = Input.GetAxis("Horizontal2");
-        moveScript.move = Input.GetAxis("Vertical2");
+        moveScript.turn = Input.GetAxis("Horizontal");
+        moveScript.move = Input.GetAxis("Vertical");
     }
 }

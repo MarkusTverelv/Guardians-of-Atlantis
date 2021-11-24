@@ -5,22 +5,25 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    Image healthbar;
-    GameObject player;
+    public GameObject healthbar;
+    GameObject pinko, yello, pinkoHealthbar, yelloHealthbar;
     Player playerScript;
     // Start is called before the first frame update
     void Start()
     {
-        healthbar = GetComponent<Image>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<Player>();
+        pinko = GameObject.Find("Pinko");
+        yello = GameObject.Find("Yello");
+        pinkoHealthbar = Instantiate(healthbar, pinko.transform.position, Quaternion.identity);
+        pinkoHealthbar.transform.parent = transform;
+        yelloHealthbar = Instantiate(healthbar, pinko.transform.position, Quaternion.identity);
+        yelloHealthbar.transform.parent = transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position;
-        healthbar.fillAmount = (float)playerScript.currentHealth / playerScript.maxHealth;
+        yelloHealthbar.transform.position = yello.transform.position;
+        pinkoHealthbar.transform.position = pinko.transform.position;
         
     }
     

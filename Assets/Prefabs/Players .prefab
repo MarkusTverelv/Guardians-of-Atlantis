@@ -58,8 +58,9 @@ GameObject:
   - component: {fileID: 7117930116532709016}
   - component: {fileID: 7833956910229912508}
   - component: {fileID: 7117930116532709023}
-  - component: {fileID: 7117930116532709022}
   - component: {fileID: 7117930116532709020}
+  - component: {fileID: 7327606895687972275}
+  - component: {fileID: 277286129124944772}
   m_Layer: 0
   m_Name: Jellow
   m_TagString: Player
@@ -144,9 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb68926ed23d44439a415214dd04772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  turnSpeed: 1
-  hold: 0
+  turn: 0
+  move: 0
+  moveSpeed: 250
+  turnSpeed: 5
 --- !u!50 &7117930116532709023
 Rigidbody2D:
   serializedVersion: 4
@@ -161,29 +163,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 2
   m_LinearDrag: 10
-  m_AngularDrag: 1
+  m_AngularDrag: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
---- !u!58 &7117930116532709022
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117930116532709011}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Constraints: 0
 --- !u!233 &7117930116532709020
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -208,6 +194,34 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!114 &7327606895687972275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117930116532709011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35b08eefe8a83664d9bbdaf1a0c404ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!70 &277286129124944772
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117930116532709011}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.73, y: 2.3}
+  m_Direction: 0
 --- !u!1 &7117930116866337432
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,9 +467,9 @@ GameObject:
   - component: {fileID: 7117930116948669623}
   - component: {fileID: 7117930116948669622}
   - component: {fileID: 7117930116948669579}
-  - component: {fileID: 7117930116948669620}
   - component: {fileID: 8000666199423053646}
   - component: {fileID: 1863236514026605176}
+  - component: {fileID: 1534472725563681026}
   m_Layer: 0
   m_Name: Pinko
   m_TagString: Player
@@ -542,29 +556,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 2
   m_LinearDrag: 10
-  m_AngularDrag: 1
+  m_AngularDrag: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!58 &7117930116948669620
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117930116948669578}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Constraints: 0
 --- !u!233 &8000666199423053646
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -601,6 +599,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feb68926ed23d44439a415214dd04772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  turnSpeed: 1
-  hold: 0
+  turn: 0
+  move: 0
+  moveSpeed: 250
+  turnSpeed: 5
+--- !u!70 &1534472725563681026
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117930116948669578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.73, y: 2.3}
+  m_Direction: 0
