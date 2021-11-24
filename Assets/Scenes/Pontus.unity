@@ -2797,6 +2797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (Tank movement)
       objectReference: {fileID: 0}
+    - target: {fileID: 5724268645614066452, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6892008807671904976, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3900,7 +3904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7911492749612202943, guid: f35416b54482880488fd0aa0c68be457, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9015821362147138171, guid: f35416b54482880488fd0aa0c68be457, type: 3}
       propertyPath: m_RootOrder
