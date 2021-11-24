@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JellowScript : MonoBehaviour
+public class PinkoScript : MonoBehaviour
 {
     Rigidbody2D body;
     float turn;
@@ -24,7 +24,7 @@ public class JellowScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        body.AddTorque(turn*turnSpeed);
-        body.AddRelativeForce(new Vector3 (0, move * speed));
+        body.AddTorque(turn * -turnSpeed);
+        body.AddRelativeForce(new Vector3(0, move * speed));
     }
 }

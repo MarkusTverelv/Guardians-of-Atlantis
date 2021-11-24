@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6892008807671904976}
+  - component: {fileID: 8527359543577967033}
   m_Layer: 0
-  m_Name: Players (Tank movement)
+  m_Name: 'Players '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,6 +34,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8527359543577967033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724268645614066452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90b99f1ea22d72540a02972da4d4677b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7117930116532709011
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,12 +59,10 @@ GameObject:
   - component: {fileID: 7833956910229912508}
   - component: {fileID: 7117930116532709023}
   - component: {fileID: 7117930116532709022}
-  - component: {fileID: 7117930116532709021}
   - component: {fileID: 7117930116532709020}
-  - component: {fileID: 681397512568764362}
   m_Layer: 0
   m_Name: Jellow
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   turnSpeed: 1
+  hold: 0
 --- !u!50 &7117930116532709023
 Rigidbody2D:
   serializedVersion: 4
@@ -172,21 +184,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7117930116532709021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117930116532709011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a097c72a75f7f7a488915bdf58706356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  maxSpeed: 12
-  dashForce: 2000
 --- !u!233 &7117930116532709020
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -202,7 +199,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 1, y: 1}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -211,20 +208,6 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
---- !u!114 &681397512568764362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117930116532709011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb68926ed23d44439a415214dd04772, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  turnSpeed: 0
 --- !u!1 &7117930116866337432
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1a51b245b4ea14c992655c88b2b1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visiable: 0
   lineLenght: 0
   lineSegment: {fileID: 8212056670583758928, guid: 5e460e6b3302977478b8e4e345a839dc, type: 3}
 --- !u!120 &7117930116866337433
@@ -468,14 +452,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7117930116948669623}
   - component: {fileID: 7117930116948669622}
-  - component: {fileID: 8042648873772802737}
   - component: {fileID: 7117930116948669579}
   - component: {fileID: 7117930116948669620}
-  - component: {fileID: 7362321595126084052}
   - component: {fileID: 8000666199423053646}
+  - component: {fileID: 1863236514026605176}
   m_Layer: 0
   m_Name: Pinko
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,20 +528,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8042648873772802737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117930116948669578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a35b1bb48b784641a7dacaa5a592421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  turnSpeed: 1
 --- !u!50 &7117930116948669579
 Rigidbody2D:
   serializedVersion: 4
@@ -596,20 +565,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7362321595126084052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7117930116948669578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a35b1bb48b784641a7dacaa5a592421, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  turnSpeed: 0
 --- !u!233 &8000666199423053646
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -634,3 +589,18 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!114 &1863236514026605176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117930116948669578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb68926ed23d44439a415214dd04772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  turnSpeed: 1
+  hold: 0

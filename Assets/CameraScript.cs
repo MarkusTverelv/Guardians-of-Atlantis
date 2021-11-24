@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    GameObject player;
+    GameObject center;
     public bool miniMap;
 
     private void Start()
     {
-        
-        player = GameObject.FindGameObjectWithTag("Player");
+
+        center = GameObject.FindGameObjectWithTag("Center");
     }
     private void FixedUpdate()
     {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.transform.position.z);
+        transform.position = new Vector3(center.transform.position.x, center.transform.position.y, transform.transform.position.z);
         if(miniMap)
         {
 

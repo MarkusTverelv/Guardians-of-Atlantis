@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TankMovePinko : MonoBehaviour
+public class YellowScript : MonoBehaviour
 {
     Rigidbody2D body;
     float turn;
     float move;
     public float speed;
     public float turnSpeed;
+    [HideInInspector] public bool hold;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,11 @@ public class TankMovePinko : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        body.AddTorque(turn * -turnSpeed);
-        body.AddRelativeForce(new Vector3(0, move * speed));
+        if (hold)
+            body.constraints = RigidbodyConstraints2D.FreezeAll;
+        else
+            body.constraints = RigidbodyConstraints2D.None;
+        body.AddTorque(turn*turnSpeed);
+        body.AddRelativeForce(new Vector3 (0, move * speed));
     }
 }
