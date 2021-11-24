@@ -10,9 +10,12 @@ public class PlayerScript : MonoBehaviour
     public int maxHealth;
     public float moveSpeed, turnSpeed, invTime;
     SpriteRenderer spriteRenderer;
+    AudioSource audioSource;
+    public AudioClip hurtClip;
     bool inv, blink;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         body = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -47,6 +50,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(!inv)
         {
+            audioSource.PlayOneShot(hurtClip);
             currentHealth--;
             StartCoroutine(invTimer());
             Debug.Log(gameObject.name + " health: " + currentHealth);
