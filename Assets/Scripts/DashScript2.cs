@@ -95,5 +95,6 @@ public class DashScript2 : MonoBehaviour
         bodies[1].AddForce(bodies[0].velocity, ForceMode2D.Impulse);
         foreach(Rigidbody2D body in line)
             body.AddForce(bodies[0].velocity/150, ForceMode2D.Impulse);
+        player.MakeInv(1);
     }
 }

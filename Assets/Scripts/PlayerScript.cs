@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -81,11 +82,15 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         blink = false;
     }
-    IEnumerator invTimer()
+    IEnumerator invTimer(float time)
     {
         inv = true;
-        yield return new WaitForSeconds(invTime);
+        yield return new WaitForSeconds(time);
         inv = false;
+    }
+    public void MakeInv(float time)
+    {
+        StartCoroutine(invTimer(time));
     }
     public bool hurt()
     {
@@ -93,9 +98,11 @@ public class PlayerScript : MonoBehaviour
         {
             regenCounter = 0;
             audioSource.PlayOneShot(hurtClip);
-            if(currentHealth>0)
+            if (currentHealth > 1)
                 currentHealth--;
-            StartCoroutine(invTimer());
+            else
+                SceneManager.LoadScene("GameOver");
+            StartCoroutine(invTimer(invTime));
             Debug.Log(gameObject.name + " health: " + currentHealth);
         }
         return !inv;
