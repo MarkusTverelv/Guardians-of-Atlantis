@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 7367669499685079538}
   - component: {fileID: 7367669499685079537}
   - component: {fileID: 870104471868690468}
+  - component: {fileID: 4698247000814170104}
+  - component: {fileID: 1287545297696254600}
   m_Layer: 0
   m_Name: PlayerProjectile
   m_TagString: Untagged
@@ -26,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7367669499685079536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.7788992, y: 0.8959298, z: 0}
+  m_LocalPosition: {x: 3.8528953, y: 0.86831087, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,3 +97,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9774845a8d7030844beb2aa2935866b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoot: 0
+  currentState: 0
+--- !u!58 &4698247000814170104
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367669499685079536}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &1287545297696254600
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367669499685079536}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
