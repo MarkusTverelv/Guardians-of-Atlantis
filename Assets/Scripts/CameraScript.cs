@@ -14,10 +14,9 @@ public class CameraScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        transform.position = new Vector3(center.transform.position.x, center.transform.position.y, transform.transform.position.z);
-        if(miniMap)
-        {
-
-        }
+        float distance = Vector2.Distance(transform.position, center.transform.position);
+        Vector2 newPos = Vector2.MoveTowards(transform.position, center.transform.position, distance / 50);
+        transform.position = (Vector3)newPos + new Vector3(0, 0, transform.position.z); ;
+        
     }
 }

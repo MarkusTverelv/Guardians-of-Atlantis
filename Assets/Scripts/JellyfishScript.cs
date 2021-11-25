@@ -36,15 +36,11 @@ public class JellyfishScript : MonoBehaviour
     private void FixedUpdate()
     {
         if(currentState == state.aggro)
-        {
             body.AddForce((player.transform.position - transform.position).normalized * speed);
-        }
         else 
         {
             if(Vector3.Distance(startPos , transform.position)>1 && currentState == state.returning)
-            {
                 body.AddForce((startPos - transform.position).normalized * speed);
-            }
             else 
             {
                 currentState = state.patrolling;
@@ -58,12 +54,7 @@ public class JellyfishScript : MonoBehaviour
                 {
                     body.AddForce(new Vector3(0, -0.5f * speed));
                     if (transform.position.y < startPos.y - 2)
-                    {
                         turn = true;
-                        Debug.Log(turn);
-                    }
-                        
-                    
                 }
             }
             
