@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    TrailRenderer trailRenderer;
     Rigidbody2D body;
     [HideInInspector] public float turn, move;
     [HideInInspector] public int currentHealth;
@@ -18,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     int regenCounter;
     void Start()
     {
+        trailRenderer = GetComponent<TrailRenderer>();
         audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         body = GetComponent<Rigidbody2D>();
@@ -27,6 +29,10 @@ public class PlayerScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        //if (body.velocity.magnitude > 1)
+        //    trailRenderer.time = 1;
+        //else
+        //    trailRenderer.time = 0.5f;
         
         body.AddTorque(turn * -turnSpeed);
         body.AddRelativeForce(new Vector3(0, move * moveSpeed));
