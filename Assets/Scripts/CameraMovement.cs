@@ -38,10 +38,10 @@ public class CameraMovement : MonoBehaviour
         if ((cameraDestination - cam.transform.position).magnitude <= 0.05f)
             cam.transform.position = cameraDestination;
 
-        if (cam.orthographicSize < 3.5f)
-            cam.orthographicSize = 3.5f;
+        if (cam.orthographicSize < 6f)
+            cam.orthographicSize = 6f;
 
-        if (cam.orthographicSize > 6.5f)
-            cam.orthographicSize = 6.5f;
+        if (cam.orthographicSize > 10f)
+            cam.orthographicSize = 10f;
     }
 }
