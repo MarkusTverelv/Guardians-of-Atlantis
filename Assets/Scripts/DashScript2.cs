@@ -14,14 +14,30 @@ public class DashScript2 : MonoBehaviour
     private float dashTimer = 5;
     int doubleTap;
     bool dashReady;
+    bool isYello;
+    KeyCode dashKey;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        isYello = gameObject.name == "Yello";
         spriteRenderer = GetComponent<SpriteRenderer>();
-        bodies.Add(GetComponent<Rigidbody2D>());
-        bodies.Add(GameObject.Find("Pinko").GetComponent<Rigidbody2D>());
+        if(isYello)
+        {
+            bodies.Add(GetComponent<Rigidbody2D>());
+            bodies.Add(GameObject.Find("Pinko").GetComponent<Rigidbody2D>());
+            dashKey = KeyCode.UpArrow;
+        }
+        else
+        {
+            dashKey = KeyCode.W;
+            bodies.Add(GetComponent<Rigidbody2D>());
+            bodies.Add(GameObject.Find("Yello").GetComponent<Rigidbody2D>());
+        }
+
+
+        
         player = GetComponent<PlayerScript>();
         foreach (Transform child in GameObject.Find("Line").transform)
             line.Add(child.gameObject.GetComponent<Rigidbody2D>());
@@ -44,7 +60,8 @@ public class DashScript2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        
+        if(Input.GetKeyDown(dashKey))
         {
             
             if (doubleTap > 0)
