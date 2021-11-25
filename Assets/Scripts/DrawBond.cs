@@ -28,7 +28,7 @@ public class DrawBond : MonoBehaviour
             if (i == lineLenght / 2)
                 lineSegments[i].tag = "Center";
         }
-        GameObject jellow = GameObject.Find("Yello");
+        GameObject jellow = GameObject.Find("Jellow");
         GameObject pinko  = GameObject.Find("Pinko");
         jellow.GetComponent<HingeJoint2D>().connectedBody = lineSegments[0].GetComponent<Rigidbody2D>();
         lineSegments[0].GetComponent<HingeJoint2D>().connectedBody = jellow.GetComponent<Rigidbody2D>();

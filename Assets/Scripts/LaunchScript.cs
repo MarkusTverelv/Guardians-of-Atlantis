@@ -5,16 +5,16 @@ using UnityEngine;
 public class LaunchScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    GameObject yellow, pinko;
+    GameObject jellow, pinko;
     Rigidbody2D yelloBody, pinkoBody;
     //YelloScript yelloScript;
     PinkoScript pinkoScript;
     bool hold;
     void Start()
     {
-        yellow = GameObject.Find("Yello");
+        jellow = GameObject.Find("Jellow");
         //yelloScript = yellow.GetComponent<YelloScript>();
-        yelloBody = yellow.GetComponent<Rigidbody2D>();
+        yelloBody = jellow.GetComponent<Rigidbody2D>();
         
         pinko = GameObject.Find("Pinko");
         pinkoScript = pinko.GetComponent<PinkoScript>();
@@ -27,7 +27,7 @@ public class LaunchScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E))
         {
             yelloBody.constraints = RigidbodyConstraints2D.FreezeAll;
-            yellow.transform.parent = pinko.transform;
+            jellow.transform.parent = pinko.transform;
 
         }
     }
