@@ -8,6 +8,7 @@ TagManager:
   - Center
   - P1
   - P2
+  - Jellyfish
   layers:
   - Default
   - TransparentFX

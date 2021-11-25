@@ -7,8 +7,10 @@ public class JellyfishScript : MonoBehaviour
     Rigidbody2D body;
     bool aggro, turn, patrolling;
     CircleCollider2D aggroRange;
-    public float speed;
+    public float speed, agrroRange;
     GameObject player;
+    public AudioClip electricity;
+    AudioSource audioSource;
     
     Vector3 startPos;
     enum state 
@@ -23,9 +25,9 @@ public class JellyfishScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
         startPos = transform.position;
-        
+        transform.GetChild(0).GetComponent<CircleCollider2D>().radius = agrroRange;
         body = GetComponent<Rigidbody2D>();
         aggroRange = GetComponentInChildren<CircleCollider2D>();
     }
@@ -85,7 +87,11 @@ public class JellyfishScript : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
+        {
             collision.gameObject.GetComponent<PlayerScript>().hurt();
+               
+        }
+            
     }
 
 }

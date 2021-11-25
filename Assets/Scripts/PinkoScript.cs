@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class PinkoScript : MonoBehaviour
 {
+    Light2D light;
     PlayerScript moveScript;
     private void Start()
     {
+        
         moveScript = GetComponent<PlayerScript>();
     }
     private void Update()

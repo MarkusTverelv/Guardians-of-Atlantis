@@ -8,20 +8,26 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector] public float turn, move;
     [HideInInspector] public int currentHealth;
     public int maxHealth;
-    public float moveSpeed, turnSpeed, invTime;
+    public float moveSpeed, turnSpeed, invTime, regenTime;
     SpriteRenderer spriteRenderer;
     AudioSource audioSource;
-    public AudioClip hurtClip;
-    bool inv, blink;
+    public AudioClip hurtClip, healClip;
+    public AudioClip[] spalshClips;
+    bool blink;
+    [HideInInspector] public bool inv;
+    int regenCounter;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         body = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine(regenTimer());
+        StartCoroutine(Splash());
     }
     private void FixedUpdate()
     {
+        
         body.AddTorque(turn * -turnSpeed);
         body.AddRelativeForce(new Vector3(0, move * moveSpeed));
         if (inv)
@@ -31,7 +37,36 @@ public class PlayerScript : MonoBehaviour
         }
         else
             spriteRenderer.enabled = true;
+
+        
             
+    }
+    IEnumerator Splash() 
+    {
+        if (turn != 0 || move != 0)
+        {
+            AudioClip splash = spalshClips[Random.Range(0, spalshClips.Length - 1)];
+            float pitch = audioSource.pitch;
+            audioSource.pitch += Random.Range(2f, 3);
+            audioSource.PlayOneShot(splash, 0.05f);
+            audioSource.pitch = pitch;
+            yield return new WaitForSeconds(1.5f);
+        }
+        yield return new WaitForFixedUpdate();
+        StartCoroutine(Splash());
+            
+    }
+    IEnumerator regenTimer()
+    {
+        yield return new WaitForSeconds(regenTime/10);
+        regenCounter++;
+        if(regenCounter>9 && currentHealth<maxHealth)
+        {
+            currentHealth++;
+            regenCounter = 0;
+            audioSource.PlayOneShot(healClip);
+        }
+        StartCoroutine(regenTimer());
     }
     IEnumerator blinkTimer() 
     {
@@ -46,15 +81,18 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(invTime);
         inv = false;
     }
-    public void hurt()
+    public bool hurt()
     {
         if(!inv)
         {
+            regenCounter = 0;
             audioSource.PlayOneShot(hurtClip);
-            currentHealth--;
+            if(currentHealth>0)
+                currentHealth--;
             StartCoroutine(invTimer());
             Debug.Log(gameObject.name + " health: " + currentHealth);
         }
+        return !inv;
     }
     
 }
