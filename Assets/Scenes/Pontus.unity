@@ -269,8 +269,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75700d87702491c4fba58a7baa144609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jellowTransform: {fileID: 0}
-  roseTransform: {fileID: 0}
+  jellowTransform: {fileID: 333597853}
+  roseTransform: {fileID: 1119144190}
+--- !u!4 &333597853 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1292241649667649131, guid: 2f6a54fd92b5e7b4ba01582f4236365a, type: 3}
+  m_PrefabInstance: {fileID: 1292241649792896270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &751637498
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +348,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1119144190 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1292241650840507854, guid: 2f6a54fd92b5e7b4ba01582f4236365a, type: 3}
+  m_PrefabInstance: {fileID: 1292241649792896270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1446392127
 GameObject:
   m_ObjectHideFlags: 0
