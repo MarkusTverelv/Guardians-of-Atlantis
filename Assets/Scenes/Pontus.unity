@@ -882,8 +882,8 @@ GameObject:
   - component: {fileID: 532243302}
   - component: {fileID: 532243306}
   m_Layer: 0
-  m_Name: Jellow
-  m_TagString: Untagged
+  m_Name: Yello
+  m_TagString: P2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2391,7 +2391,7 @@ GameObject:
   - component: {fileID: 1099880647}
   m_Layer: 0
   m_Name: Pinko
-  m_TagString: Untagged
+  m_TagString: P1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2590,6 +2590,7 @@ MonoBehaviour:
   jellow: {fileID: 532243299}
   line: {fileID: 896573369}
   jellowProjectile: {fileID: 7367669499685079536, guid: ac56e938af7a0984c99ecae52b96b1ef, type: 3}
+  arrowDirection: {fileID: 3538970070485858368, guid: 1e93d7509506b534687a695e77ac68f7, type: 3}
   lr: {fileID: 896573372}
 --- !u!1 &1135982227
 GameObject:
