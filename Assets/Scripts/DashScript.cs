@@ -20,6 +20,7 @@ public class DashScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         dashTimer += Time.deltaTime;
         if (Input.GetKeyDown(KeyCode.L) && dashTimer >= dashRate)
         {
@@ -32,7 +33,7 @@ public class DashScript : MonoBehaviour
     private void Dash()
     {
         
-        rb.AddRelativeForce(new Vector3(0, player.move, 0) * dashForce, ForceMode2D.Impulse);
+        rb.AddRelativeForce(new Vector3(0, player.move, 0) * dashForce);
 
         
     }
