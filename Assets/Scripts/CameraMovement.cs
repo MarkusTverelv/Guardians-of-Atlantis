@@ -16,32 +16,32 @@ public class CameraMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        FixedCameraFollowSmooth(mainCamera, roseTransform, jellowTransform);
+        CameraFollow(mainCamera, roseTransform, jellowTransform);
     }
 
-    public void FixedCameraFollowSmooth(Camera cam, Transform t1, Transform t2)
+    public void CameraFollow(Camera mainCam, Transform player1, Transform player2)
     {
-        float zoomFactor = 1.5f;
-        float followTimeDelta = 0.8f;
+        float zoomSpeed = 1.5f;
+        float smoothAmount = 0.8f;
 
-        Vector3 midpoint = (t1.position + t2.position) / 2f;
+        Vector3 midpoint = (player1.position + player2.position) / 2f;
 
-        float distance = (t1.position - t2.position).magnitude;
+        float distance = (player1.position - player2.position).magnitude;
 
-        Vector3 cameraDestination = midpoint - cam.transform.forward * distance * zoomFactor;
+        Vector3 newCameraPosition = midpoint - mainCam.transform.forward * distance * zoomSpeed;
 
-        if (cam.orthographic)
-            cam.orthographicSize = distance;
+        if (mainCam.orthographic)
+            mainCam.orthographicSize = distance;
 
-        cam.transform.position = Vector3.Slerp(cam.transform.position, cameraDestination, followTimeDelta);
+        mainCam.transform.position = Vector3.Slerp(mainCam.transform.position, newCameraPosition, smoothAmount);
 
-        if ((cameraDestination - cam.transform.position).magnitude <= 0.05f)
-            cam.transform.position = cameraDestination;
+        if ((newCameraPosition - mainCam.transform.position).magnitude <= 0.05f)
+            mainCam.transform.position = newCameraPosition;
 
-        if (cam.orthographicSize < 6f)
-            cam.orthographicSize = 6f;
+        if (mainCam.orthographicSize < 10f)
+            mainCam.orthographicSize = 10f;
 
-        if (cam.orthographicSize > 10f)
-            cam.orthographicSize = 10f;
+        if (mainCam.orthographicSize > 18f)
+            mainCam.orthographicSize = 18f;
     }
 }
