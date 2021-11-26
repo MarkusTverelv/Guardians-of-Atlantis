@@ -40,6 +40,7 @@ public class JellowProjectileScript : MonoBehaviour
         currentState = ProjectileState.follow;
         GetComponent<CircleCollider2D>().enabled = false;
         lineSegment = GameObject.Find("Linesegment 0");
+
     }
 
     // Update is called once per frame
@@ -49,14 +50,17 @@ public class JellowProjectileScript : MonoBehaviour
         switch (currentState)
         {
             case ProjectileState.follow:
-                transform.position = Vector2.MoveTowards(transform.position, attachPoint.position, 5 * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, attachPoint.position, 10 * Time.deltaTime);
                 break;
             case ProjectileState.idle:
                 transform.position = attachPoint.position;
                 break;
             case ProjectileState.fire:
-                arrowAim = GameObject.Find("ArrowAim(Clone)").transform;
-                rb.AddForce(arrowAim.right * 1);
+                arrowAim = GameObject.Find("ArrowAim").transform;
+                rb.AddForce(arrowAim.right * 10); 
+                yello.GetComponent<Rigidbody2D>().position = Vector2.MoveTowards(yello.GetComponent<Rigidbody2D>().position, this.transform.position, 30 * Time.deltaTime);
+                arrowAim.GetComponent<SpriteRenderer>().enabled = false;
+                
                 break;
             default:
                 break;
@@ -69,9 +73,12 @@ public class JellowProjectileScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Jellyfish"))
         {
-            yello.SetActive(true);
+
+            yello.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+            yello.GetComponent<CapsuleCollider2D>().enabled = true;
             yello.transform.position = lineSegment.transform.position;
             line.GetComponent<LineRenderer>().enabled = true;
+            Destroy(gameObject);
         }
     }
 

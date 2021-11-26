@@ -13,21 +13,18 @@ public class ShootScript : MonoBehaviour
     public LineRenderer lr;
     GameObject jellowProjectile2;
     private bool canShoot;
-    JellowProjectileScript jellowScript = new JellowProjectileScript();
 
     // Start is called before the first frame update
     void Start()
     {
         attachPoint = transform.Find("JellowAttach");
-
-        
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        
+        if(Input.GetKeyDown(KeyCode.R) && jellow.GetComponent<CapsuleCollider2D>().enabled)
         {
             StartCoroutine(AttachTimer());
             
@@ -37,8 +34,7 @@ public class ShootScript : MonoBehaviour
         {
             jellowProjectile2.GetComponent<JellowProjectileScript>().currentState = JellowProjectileScript.ProjectileState.fire;
             canShoot = false;
-            jellowProjectile2.GetComponent<CircleCollider2D>().enabled = true;
-
+            Invoke("ActivateCollider", 0.25f);
         }
         
 
@@ -47,15 +43,20 @@ public class ShootScript : MonoBehaviour
     
     IEnumerator AttachTimer()
     {
-        jellow.SetActive(false);
+        jellow.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
+        jellow.GetComponent<CapsuleCollider2D>().enabled = false;
         line.GetComponent<LineRenderer>().enabled = false;
         jellowProjectile2 = Instantiate(jellowProjectile, jellow.transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         jellowProjectile2.GetComponent<JellowProjectileScript>().currentState = JellowProjectileScript.ProjectileState.idle;
         canShoot = true;
-        Instantiate(arrowDirection, transform.position, Quaternion.identity, this.transform);
+        arrowDirection.GetComponent<SpriteRenderer>().enabled = true;
 
     }
 
+    private void ActivateCollider()
+    {
+        jellowProjectile2.GetComponent<CircleCollider2D>().enabled = true;
+    }
     
 }
