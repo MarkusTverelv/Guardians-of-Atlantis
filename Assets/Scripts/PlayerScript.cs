@@ -9,14 +9,15 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D body;
     [HideInInspector] public float turn, move;
     [HideInInspector] public int currentHealth;
+    [HideInInspector] public bool inv;
+    [SerializeField] float moveSpeed, turnSpeed, invTime, regenTime;
+    [SerializeField] AudioClip hurtClip, healClip;
+    [SerializeField] AudioClip[] spalshClips;
     public int maxHealth;
-    public float moveSpeed, turnSpeed, invTime, regenTime;
+    bool blink;
+    bool blikning;
     SpriteRenderer spriteRenderer;
     AudioSource audioSource;
-    public AudioClip hurtClip, healClip;
-    public AudioClip[] spalshClips;
-    bool blink;
-    [HideInInspector] public bool inv;
     int regenCounter;
     void Start()
     {
@@ -37,13 +38,7 @@ public class PlayerScript : MonoBehaviour
         
         body.AddTorque(turn * -turnSpeed);
         body.AddRelativeForce(new Vector3(0, move * moveSpeed));
-        if (inv)
-        {
-            if (!blink)
-                StartCoroutine(blinkTimer());
-        }
-        else
-            spriteRenderer.enabled = true;
+        
 
         
             
@@ -75,12 +70,13 @@ public class PlayerScript : MonoBehaviour
         }
         StartCoroutine(regenTimer());
     }
-    IEnumerator blinkTimer() 
+    IEnumerator blinkInterval(int blinktimes) 
     {
-        spriteRenderer.enabled = !spriteRenderer.enabled;
-        blink = true;
-        yield return new WaitForSeconds(0.1f);
-        blink = false;
+        for(int i = 0; i<blinktimes; i++)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
     IEnumerator invTimer(float time)
     {
@@ -96,6 +92,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(!inv)
         {
+            StartCoroutine(blinkInterval((int)(invTime * 10)));
             regenCounter = 0;
             audioSource.PlayOneShot(hurtClip);
             if (currentHealth > 1)

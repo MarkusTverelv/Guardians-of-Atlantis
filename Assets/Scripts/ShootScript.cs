@@ -7,21 +7,22 @@ public class ShootScript : MonoBehaviour
 {
     GameObject yello, line, arrowDirection, jellowProjectile2;
     [SerializeField] GameObject jellowProjectile;
-    Transform attachPoint;
+    SpriteRenderer yelloSpriteRenderer, arrowSpriteRenderer;
+    CapsuleCollider2D capsuleCollider2D;
     LineRenderer lr;
     SpriteRenderer yelloSprite;
     CapsuleCollider2D yelloCapsule;
     LineRenderer lineRenderer;
+    JellowProjectileScript jellowProjectileScript;
     bool canShoot;
 
     // Start is called before the first frame update
     void Start()
     {
         arrowDirection = GameObject.Find("ArrowAim");
-
+        
         yello = GameObject.Find("Yello");
         line = GameObject.Find("Line");
-        attachPoint = transform.Find("JellowAttach");
         lr = line.GetComponent<LineRenderer>();
     }
 
