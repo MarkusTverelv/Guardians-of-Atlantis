@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ShootScript : MonoBehaviour
 {
-    public GameObject pinko;
-    public GameObject jellow;
-    public GameObject line;
+    private GameObject pinko;
+    private GameObject jellow;
+    private GameObject line;
     private Transform attachPoint;
     public GameObject jellowProjectile;
-    public GameObject arrowDirection;
-    public LineRenderer lr;
+    private GameObject arrowDirection;
+    private LineRenderer lr;
     GameObject jellowProjectile2;
     private bool canShoot;
 
@@ -18,6 +18,11 @@ public class ShootScript : MonoBehaviour
     void Start()
     {
         attachPoint = transform.Find("JellowAttach");
+        pinko = GameObject.Find("Pinko");
+        jellow = GameObject.Find("Yello");
+        line = GameObject.Find("Line");
+        arrowDirection = GameObject.Find("ArrowAim");
+        lr = line.GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
