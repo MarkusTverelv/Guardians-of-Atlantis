@@ -12,7 +12,7 @@ public class CameraScript : MonoBehaviour
 
         center = GameObject.FindGameObjectWithTag("Center");
     }
-    private void Update()
+    private void LateUpdate()
     {
         float distance = Mathf.Pow(Vector2.Distance(transform.position, center.transform.position),5);
         Vector2 newPos = Vector2.MoveTowards(transform.position, center.transform.position, distance *10);
