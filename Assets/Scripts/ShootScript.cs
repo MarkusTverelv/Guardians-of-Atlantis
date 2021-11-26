@@ -1,27 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class ShootScript : MonoBehaviour
 {
-    private GameObject pinko;
-    private GameObject jellow;
-    private GameObject line;
-    private Transform attachPoint;
-    public GameObject jellowProjectile;
-    private GameObject arrowDirection;
-    private LineRenderer lr;
-    GameObject jellowProjectile2;
-    private bool canShoot;
+    GameObject yello, line, arrowDirection, jellowProjectile2;
+    [SerializeField] GameObject jellowProjectile;
+    Transform attachPoint;
+    LineRenderer lr;
+    SpriteRenderer yelloSprite;
+    CapsuleCollider2D yelloCapsule;
+    LineRenderer lineRenderer;
+    bool canShoot;
 
     // Start is called before the first frame update
     void Start()
     {
-        attachPoint = transform.Find("JellowAttach");
-        pinko = GameObject.Find("Pinko");
-        jellow = GameObject.Find("Yello");
-        line = GameObject.Find("Line");
         arrowDirection = GameObject.Find("ArrowAim");
+
+        yello = GameObject.Find("Yello");
+        line = GameObject.Find("Line");
+        attachPoint = transform.Find("JellowAttach");
         lr = line.GetComponent<LineRenderer>();
     }
 
@@ -29,7 +29,7 @@ public class ShootScript : MonoBehaviour
     void Update()
     {
         
-        if(Input.GetKeyDown(KeyCode.R) && jellow.GetComponent<CapsuleCollider2D>().enabled)
+        if(Input.GetKeyDown(KeyCode.R) && yello.GetComponent<CapsuleCollider2D>().enabled)
         {
             StartCoroutine(AttachTimer());
             
@@ -48,10 +48,10 @@ public class ShootScript : MonoBehaviour
     
     IEnumerator AttachTimer()
     {
-        jellow.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
-        jellow.GetComponent<CapsuleCollider2D>().enabled = false;
+        yello.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
+        yello.GetComponent<CapsuleCollider2D>().enabled = false;
         line.GetComponent<LineRenderer>().enabled = false;
-        jellowProjectile2 = Instantiate(jellowProjectile, jellow.transform.position, Quaternion.identity);
+        jellowProjectile2 = Instantiate(jellowProjectile, yello.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2);
         jellowProjectile2.GetComponent<JellowProjectileScript>().currentState = JellowProjectileScript.ProjectileState.idle;
         canShoot = true;
