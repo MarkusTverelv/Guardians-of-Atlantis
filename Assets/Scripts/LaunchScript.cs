@@ -28,7 +28,6 @@ public class LaunchScript : MonoBehaviour
         {
             yelloBody.constraints = RigidbodyConstraints2D.FreezeAll;
             jellow.transform.parent = pinko.transform;
-
         }
     }
 }
