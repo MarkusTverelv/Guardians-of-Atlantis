@@ -2,35 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class ShootScript : MonoBehaviour
 {
     GameObject yello, line, arrowDirection, jellowProjectile2;
+    Image yelloHB;
     [SerializeField] GameObject jellowProjectile;
     SpriteRenderer yelloSpriteRenderer, arrowSpriteRenderer;
-    CapsuleCollider2D capsuleCollider2D;
-    LineRenderer lr;
-    SpriteRenderer yelloSprite;
-    CapsuleCollider2D yelloCapsule;
+    Light2D yelloLs;
+    TrailRenderer yelloTr;
+    PolygonCollider2D yelloCollider;
     LineRenderer lineRenderer;
-    JellowProjectileScript jellowProjectileScript;
     bool canShoot;
 
     // Start is called before the first frame update
     void Start()
     {
         arrowDirection = GameObject.Find("ArrowAim");
-        
+        arrowSpriteRenderer = arrowDirection.GetComponent<SpriteRenderer>();
         yello = GameObject.Find("Yello");
+        yelloCollider = yello.GetComponent<PolygonCollider2D>();
+        yelloSpriteRenderer = yello.GetComponent<SpriteRenderer>();
+        yelloLs = yello.GetComponent<Light2D>();
+        yelloTr = yello.GetComponent<TrailRenderer>();
         line = GameObject.Find("Line");
-        lr = line.GetComponent<LineRenderer>();
+        lineRenderer = line.GetComponent<LineRenderer>();
+        
+        
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if(Input.GetKeyDown(KeyCode.R) && yello.GetComponent<CapsuleCollider2D>().enabled)
+        if(Input.GetKeyDown(KeyCode.R) && yello.GetComponent<PolygonCollider2D>().enabled)
         {
             StartCoroutine(AttachTimer());
             
@@ -49,14 +58,18 @@ public class ShootScript : MonoBehaviour
     
     IEnumerator AttachTimer()
     {
-        yello.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
-        yello.GetComponent<CapsuleCollider2D>().enabled = false;
-        line.GetComponent<LineRenderer>().enabled = false;
+        yelloSpriteRenderer.color = new Color(255, 255, 255, 0);
+        yelloCollider.enabled = false;
+        lineRenderer.enabled = false;
         jellowProjectile2 = Instantiate(jellowProjectile, yello.transform.position, Quaternion.identity);
+        yelloHB = GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>();
+        yelloHB.enabled = false;
+        yelloTr.enabled = false;
+        yelloLs.enabled = false;
         yield return new WaitForSeconds(2);
         jellowProjectile2.GetComponent<JellowProjectileScript>().currentState = JellowProjectileScript.ProjectileState.idle;
         canShoot = true;
-        arrowDirection.GetComponent<SpriteRenderer>().enabled = true;
+        arrowSpriteRenderer.enabled = true;
 
     }
 

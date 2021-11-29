@@ -10,6 +10,8 @@ TagManager:
   - P2
   - Jellyfish
   - Gem
+  - Wall
+  - YelloHB
   layers:
   - Default
   - TransparentFX

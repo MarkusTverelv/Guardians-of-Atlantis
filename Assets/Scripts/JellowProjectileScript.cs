@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
 
 
 
 
 public class JellowProjectileScript : MonoBehaviour
 {
-    
-    private Transform attachPoint;
-    private GameObject player;
-    private GameObject line;
-    private GameObject yello;
-    private Transform arrowAim;
-    private Rigidbody2D rb;
-    private GameObject lineSegment;
-    private bool iArrived = false;
+    private GameObject player, line, yello, lineSegment;
+    private Transform attachPoint, arrowAim;
+    private LineRenderer lineRenderer;
+    private SpriteRenderer yelloSpriteRenderer, arrowAimSpriteRenderer;
+    private PolygonCollider2D yelloCollider;
+    private Rigidbody2D rb, yellorb;
+    private Light2D yelloLs;
+    private TrailRenderer yelloTr;
     public bool shoot = false;
     public ProjectileState currentState;
 
@@ -34,12 +35,19 @@ public class JellowProjectileScript : MonoBehaviour
     void Start()
     {
         attachPoint = GameObject.Find("JellowAttach").transform;
-        line = FindInActiveObjectByName("Line");
-        yello = FindInActiveObjectByName("Yello"); 
+        line = GameObject.Find("Line");
+        lineRenderer = line.GetComponent<LineRenderer>();
+        yello = GameObject.Find("Yello");
+        yelloCollider = yello.GetComponent<PolygonCollider2D>();
+        yelloSpriteRenderer = yello.GetComponent<SpriteRenderer>();
+        yellorb = yello.GetComponent<Rigidbody2D>();
+        yelloLs = yello.GetComponent<Light2D>();
+        yelloTr = yello.GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
         currentState = ProjectileState.follow;
         GetComponent<CircleCollider2D>().enabled = false;
-        lineSegment = GameObject.Find("Linesegment 0");
+        arrowAim = GameObject.Find("ArrowAim").transform;
+        arrowAimSpriteRenderer = arrowAim.GetComponent<SpriteRenderer>();
 
     }
 
@@ -56,10 +64,9 @@ public class JellowProjectileScript : MonoBehaviour
                 transform.position = attachPoint.position;
                 break;
             case ProjectileState.fire:
-                arrowAim = GameObject.Find("ArrowAim").transform;
-                rb.AddForce(arrowAim.right * 10); 
-                yello.GetComponent<Rigidbody2D>().position = Vector2.MoveTowards(yello.GetComponent<Rigidbody2D>().position, this.transform.position, 30 * Time.deltaTime);
-                arrowAim.GetComponent<SpriteRenderer>().enabled = false;
+                rb.AddForce(arrowAim.right * 20); 
+                yellorb.position = Vector2.MoveTowards(yellorb.position, this.transform.position, 30 * Time.deltaTime);
+                arrowAimSpriteRenderer.enabled = false;
                 
                 break;
             default:
@@ -71,30 +78,17 @@ public class JellowProjectileScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Jellyfish"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
-
-            yello.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-            yello.GetComponent<CapsuleCollider2D>().enabled = true;
-            yello.transform.position = lineSegment.transform.position;
-            line.GetComponent<LineRenderer>().enabled = true;
+            yelloSpriteRenderer.color = new Color(255, 255, 255, 255);
+            yelloCollider.enabled = true;
+            lineRenderer.enabled = true;
+            yelloLs.enabled = true;
+            yelloTr.enabled = true;
+            GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>().enabled = true;
             Destroy(gameObject);
         }
     }
 
-    GameObject FindInActiveObjectByName(string name)
-    {
-        GameObject[] objs = Resources.FindObjectsOfTypeAll<GameObject>() as GameObject[];
-        for (int i = 0; i < objs.Length; i++)
-        {
-            if (objs[i].hideFlags == HideFlags.None)
-            {
-                if (objs[i].name == name)
-                {
-                    return objs[i].gameObject;
-                }
-            }
-        }
-        return null;
-    }
+
 }
