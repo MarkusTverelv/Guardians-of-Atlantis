@@ -71,11 +71,11 @@ public class JellowProjectileScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Jellyfish"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
 
             yello.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-            yello.GetComponent<CapsuleCollider2D>().enabled = true;
+            yello.GetComponent<PolygonCollider2D>().enabled = true;
             yello.transform.position = lineSegment.transform.position;
             line.GetComponent<LineRenderer>().enabled = true;
             Destroy(gameObject);

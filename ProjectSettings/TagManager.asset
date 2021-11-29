@@ -10,6 +10,7 @@ TagManager:
   - P2
   - Jellyfish
   - Gem
+  - Wall
   layers:
   - Default
   - TransparentFX

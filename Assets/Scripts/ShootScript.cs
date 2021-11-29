@@ -30,7 +30,7 @@ public class ShootScript : MonoBehaviour
     void Update()
     {
         
-        if(Input.GetKeyDown(KeyCode.R) && yello.GetComponent<CapsuleCollider2D>().enabled)
+        if(Input.GetKeyDown(KeyCode.R) && yello.GetComponent<PolygonCollider2D>().enabled)
         {
             StartCoroutine(AttachTimer());
             
@@ -50,7 +50,7 @@ public class ShootScript : MonoBehaviour
     IEnumerator AttachTimer()
     {
         yello.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
-        yello.GetComponent<CapsuleCollider2D>().enabled = false;
+        yello.GetComponent<PolygonCollider2D>().enabled = false;
         line.GetComponent<LineRenderer>().enabled = false;
         jellowProjectile2 = Instantiate(jellowProjectile, yello.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2);

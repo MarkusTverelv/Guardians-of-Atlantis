@@ -85,7 +85,7 @@ public class DashScript2 : MonoBehaviour
     private void FixedUpdate()
     {
         float f = 255 / dashCooldown;
-        spriteRenderer.color += new Color(f, f, f);
+        
     }
 
     private void Dash()
