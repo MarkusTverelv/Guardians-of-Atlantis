@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    GameObject center;
-    public bool miniMap;
+    [HideInInspector] public GameObject center;
 
-    private void Start()
-    {
-
-        center = GameObject.FindGameObjectWithTag("Center");
-    }
+    
     private void LateUpdate()
     {
         float distance = Mathf.Pow(Vector2.Distance(transform.position, center.transform.position),5);
