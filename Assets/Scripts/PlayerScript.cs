@@ -114,7 +114,7 @@ public class PlayerScript : MonoBehaviour
         player.GetComponent<SpriteRenderer>().enabled = onOff;
         player.GetComponent<Light2D>().enabled = onOff;
         player.GetComponent<TrailRenderer>().enabled = onOff;
-        player.GetComponent<PolygonCollider2D>().enabled = onOff;
+        player.GetComponent<CircleCollider2D>().enabled = onOff;
         line.GetComponent<LineRenderer>().enabled = onOff;
     }
 }

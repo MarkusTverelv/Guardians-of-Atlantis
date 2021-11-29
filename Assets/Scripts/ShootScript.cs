@@ -24,7 +24,7 @@ public class ShootScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && yello.GetComponent<PolygonCollider2D>().enabled)
+        if (Input.GetKeyDown(KeyCode.R) && yello.GetComponent<CircleCollider2D>().enabled)
             StartCoroutine(AttachTimer());
 
         if (Input.GetKeyDown(KeyCode.Return) && canShoot)
