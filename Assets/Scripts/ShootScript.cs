@@ -8,22 +8,20 @@ public class ShootScript : MonoBehaviour
     GameObject yello, line, arrowDirection, jellowProjectile2;
     [SerializeField] GameObject jellowProjectile;
     SpriteRenderer yelloSpriteRenderer, arrowSpriteRenderer;
-    CapsuleCollider2D capsuleCollider2D;
-    LineRenderer lr;
-    SpriteRenderer yelloSprite;
-    CapsuleCollider2D yelloCapsule;
+    PolygonCollider2D yelloCollider;
     LineRenderer lineRenderer;
-    JellowProjectileScript jellowProjectileScript;
     bool canShoot;
 
     // Start is called before the first frame update
     void Start()
     {
         arrowDirection = GameObject.Find("ArrowAim");
-        
+        arrowSpriteRenderer = arrowDirection.GetComponent<SpriteRenderer>();
         yello = GameObject.Find("Yello");
+        yelloCollider = yello.GetComponent<PolygonCollider2D>();
+        yelloSpriteRenderer = yello.GetComponent<SpriteRenderer>();
         line = GameObject.Find("Line");
-        lr = line.GetComponent<LineRenderer>();
+        lineRenderer = line.GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -49,14 +47,14 @@ public class ShootScript : MonoBehaviour
     
     IEnumerator AttachTimer()
     {
-        yello.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
-        yello.GetComponent<PolygonCollider2D>().enabled = false;
-        line.GetComponent<LineRenderer>().enabled = false;
+        yelloSpriteRenderer.color = new Color(255, 255, 255, 0);
+        yelloCollider.enabled = false;
+        lineRenderer.enabled = false;
         jellowProjectile2 = Instantiate(jellowProjectile, yello.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2);
         jellowProjectile2.GetComponent<JellowProjectileScript>().currentState = JellowProjectileScript.ProjectileState.idle;
         canShoot = true;
-        arrowDirection.GetComponent<SpriteRenderer>().enabled = true;
+        arrowSpriteRenderer.enabled = true;
 
     }
 
