@@ -26,14 +26,14 @@ public class DashScript2 : MonoBehaviour
         if(isYello)
         {
             bodies.Add(GetComponent<Rigidbody2D>());
-            bodies.Add(GameObject.Find("Pinko").GetComponent<Rigidbody2D>());
+            bodies.Add(transform.parent.transform.Find("Pinko").GetComponent<Rigidbody2D>());
             dashKey = KeyCode.UpArrow;
         }
         else
         {
             dashKey = KeyCode.W;
             bodies.Add(GetComponent<Rigidbody2D>());
-            bodies.Add(GameObject.Find("Yello").GetComponent<Rigidbody2D>());
+            bodies.Add(transform.parent.transform.Find("Jellow").GetComponent<Rigidbody2D>());
         }
 
 
