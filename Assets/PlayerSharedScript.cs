@@ -18,15 +18,15 @@ public class PlayerSharedScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            spawn.position = checkpoint.transform.position;
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
     public void SetCheckPoint(GameObject gameObject)
     {
-        
+        spawn.position = gameObject.transform.position;  
         onCheckpointSet.Invoke();
         checkpoint = gameObject;
         Debug.Log("checkpoint set: " + gameObject);
