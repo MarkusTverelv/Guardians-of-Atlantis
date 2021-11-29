@@ -11,6 +11,7 @@ public class JellyfishScript : MonoBehaviour
     GameObject player;
     public AudioClip electricity;
     AudioSource audioSource;
+    SpriteRenderer spriteRenderer;
     
     Vector3 startPos;
     enum state 
@@ -25,6 +26,7 @@ public class JellyfishScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         startPos = transform.position;
         transform.GetChild(0).GetComponent<CircleCollider2D>().radius = agrroRange;
@@ -59,6 +61,9 @@ public class JellyfishScript : MonoBehaviour
             }
             
         }
+        spriteRenderer.flipX = body.velocity.x < 0;
+        
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
