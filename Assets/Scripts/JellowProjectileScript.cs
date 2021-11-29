@@ -11,12 +11,8 @@ public class JellowProjectileScript : MonoBehaviour
 {
     private GameObject player, line, yello, lineSegment;
     private Transform attachPoint, arrowAim;
-    private LineRenderer lineRenderer;
     private SpriteRenderer yelloSpriteRenderer, arrowAimSpriteRenderer;
-    private PolygonCollider2D yelloCollider;
     private Rigidbody2D rb, yellorb;
-    private Light2D yelloLs;
-    private TrailRenderer yelloTr;
     public bool shoot = false;
     public ProjectileState currentState;
 
@@ -36,13 +32,8 @@ public class JellowProjectileScript : MonoBehaviour
     {
         attachPoint = GameObject.Find("JellowAttach").transform;
         line = GameObject.Find("Line");
-        lineRenderer = line.GetComponent<LineRenderer>();
         yello = GameObject.Find("Yello");
-        yelloCollider = yello.GetComponent<PolygonCollider2D>();
-        yelloSpriteRenderer = yello.GetComponent<SpriteRenderer>();
         yellorb = yello.GetComponent<Rigidbody2D>();
-        yelloLs = yello.GetComponent<Light2D>();
-        yelloTr = yello.GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
         currentState = ProjectileState.follow;
         GetComponent<CircleCollider2D>().enabled = false;
@@ -80,11 +71,7 @@ public class JellowProjectileScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            yelloSpriteRenderer.color = new Color(255, 255, 255, 255);
-            yelloCollider.enabled = true;
-            lineRenderer.enabled = true;
-            yelloLs.enabled = true;
-            yelloTr.enabled = true;
+            yello.GetComponent<PlayerScript>().TurnOffOnComponents(yello, line, true);
             GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>().enabled = true;
             Destroy(gameObject);
         }

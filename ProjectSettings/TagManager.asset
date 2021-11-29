@@ -12,6 +12,7 @@ TagManager:
   - Gem
   - Wall
   - YelloHB
+  - PinkoHB
   layers:
   - Default
   - TransparentFX

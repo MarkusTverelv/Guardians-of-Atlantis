@@ -14,7 +14,7 @@ public class PlayerSharedScript : MonoBehaviour
     {
         spawn = GameObject.Find("SpawnPoint").GetComponent<SpawnPointScript>();
         if (spawn.position != null)
-            transform.position = spawn.position;
+            transform.position = spawn.position+=new Vector3(-30,0);
     }
     private void Update()
     {

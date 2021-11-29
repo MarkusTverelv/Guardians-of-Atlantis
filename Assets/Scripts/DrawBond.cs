@@ -33,7 +33,7 @@ public class DrawBond : MonoBehaviour
             }
                 
         }
-        GameObject jellow = gameObject.transform.parent.transform.Find("Jellow").gameObject;
+        GameObject jellow = gameObject.transform.parent.transform.Find("Yello").gameObject;
         GameObject pinko = gameObject.transform.parent.transform.Find("Pinko").gameObject;
         jellow.GetComponent<HingeJoint2D>().connectedBody = lineSegments[0].GetComponent<Rigidbody2D>();
         lineSegments[0].GetComponent<HingeJoint2D>().connectedBody = jellow.GetComponent<Rigidbody2D>();
