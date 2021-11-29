@@ -9,6 +9,7 @@ public class Eel : MonoBehaviour
     public float speed;
     int currentPoint = 0;
     Rigidbody2D body;
+    CapsuleCollider2D capsule;
     bool turn;
 
     
@@ -49,6 +50,14 @@ public class Eel : MonoBehaviour
                 currentPoint--;
             else
                 currentPoint++;
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerScript>().hurt();
+
         }
     }
 }
