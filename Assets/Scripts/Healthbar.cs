@@ -24,6 +24,7 @@ public class Healthbar : MonoBehaviour
         yelloHealthbar.transform.parent = transform;
         yelloHealthbarImage = yelloHealthbar.GetComponent<Image>();
         yelloPlayerScript = yello.GetComponent<PlayerScript>();
+        yelloHealthbar.gameObject.tag = "YelloHB";
     }
 
     // Update is called once per frame

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
 
 
 
@@ -13,6 +15,8 @@ public class JellowProjectileScript : MonoBehaviour
     private SpriteRenderer yelloSpriteRenderer, arrowAimSpriteRenderer;
     private PolygonCollider2D yelloCollider;
     private Rigidbody2D rb, yellorb;
+    private Light2D yelloLs;
+    private TrailRenderer yelloTr;
     public bool shoot = false;
     public ProjectileState currentState;
 
@@ -31,12 +35,14 @@ public class JellowProjectileScript : MonoBehaviour
     void Start()
     {
         attachPoint = GameObject.Find("JellowAttach").transform;
-        line = FindInActiveObjectByName("Line");
+        line = GameObject.Find("Line");
         lineRenderer = line.GetComponent<LineRenderer>();
-        yello = FindInActiveObjectByName("Yello");
+        yello = GameObject.Find("Yello");
         yelloCollider = yello.GetComponent<PolygonCollider2D>();
         yelloSpriteRenderer = yello.GetComponent<SpriteRenderer>();
         yellorb = yello.GetComponent<Rigidbody2D>();
+        yelloLs = yello.GetComponent<Light2D>();
+        yelloTr = yello.GetComponent<TrailRenderer>();
         rb = GetComponent<Rigidbody2D>();
         currentState = ProjectileState.follow;
         GetComponent<CircleCollider2D>().enabled = false;
@@ -77,23 +83,12 @@ public class JellowProjectileScript : MonoBehaviour
             yelloSpriteRenderer.color = new Color(255, 255, 255, 255);
             yelloCollider.enabled = true;
             lineRenderer.enabled = true;
+            yelloLs.enabled = true;
+            yelloTr.enabled = true;
+            GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>().enabled = true;
             Destroy(gameObject);
         }
     }
 
-    GameObject FindInActiveObjectByName(string name)
-    {
-        GameObject[] objs = Resources.FindObjectsOfTypeAll<GameObject>() as GameObject[];
-        for (int i = 0; i < objs.Length; i++)
-        {
-            if (objs[i].hideFlags == HideFlags.None)
-            {
-                if (objs[i].name == name)
-                {
-                    return objs[i].gameObject;
-                }
-            }
-        }
-        return null;
-    }
+
 }
