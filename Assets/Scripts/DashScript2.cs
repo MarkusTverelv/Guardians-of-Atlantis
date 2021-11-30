@@ -65,7 +65,7 @@ public class DashScript2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(dashKey))
+        if (Input.GetKeyDown(dashKey)&&!dashReady)
         {
             if (doubleTap > 0)
             {
@@ -90,8 +90,6 @@ public class DashScript2 : MonoBehaviour
 
     private void Dash()
     {
-        if (!dashReady)
-            return;
 
         bodies[0].AddRelativeForce(Vector2.up * dashForce, ForceMode2D.Impulse);
         bodies[1].AddForce(bodies[0].velocity, ForceMode2D.Impulse);
