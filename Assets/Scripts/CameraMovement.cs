@@ -33,7 +33,7 @@ public class CameraMovement : MonoBehaviour
         if (mainCam.orthographic)
             mainCam.orthographicSize = distance;
 
-        mainCam.transform.position = Vector3.Slerp(mainCam.transform.position, newCameraPosition, smoothAmount);
+        mainCam.transform.position = Vector3.Slerp(new Vector3(mainCam.transform.position.x, mainCam.transform.position.y, -15), newCameraPosition, smoothAmount);
 
         if ((newCameraPosition - mainCam.transform.position).magnitude <= 0.05f)
             mainCam.transform.position = newCameraPosition;

@@ -30,7 +30,7 @@ public class ShieldScript : MonoBehaviour
             pinkoProjectile2.transform.position = Vector2.MoveTowards(pinkoProjectile2.transform.position, this.transform.position, 10 * Time.deltaTime);
         }
 
-        else
+        else if(!canMove && pinkoProjectile2 != null)
         {
             pinkoProjectile2.transform.position = Vector2.MoveTowards(pinkoProjectile2.transform.position, pinko.transform.position, 30 * Time.deltaTime);
         }

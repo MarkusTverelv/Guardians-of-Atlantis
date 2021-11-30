@@ -13,6 +13,7 @@ public class PlayerSharedScript : MonoBehaviour
     private void Awake()
     {
         spawn = GameObject.Find("SpawnPoint").GetComponent<SpawnPointScript>();
+
         if (spawn.position != null)
             transform.position = spawn.position+=new Vector3(-30,0);
     }

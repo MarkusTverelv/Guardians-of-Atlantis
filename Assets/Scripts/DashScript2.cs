@@ -38,7 +38,7 @@ public class DashScript2 : MonoBehaviour
         {
             dashKey = KeyCode.W;
             bodies.Add(GetComponent<Rigidbody2D>());
-            bodies.Add(transform.parent.transform.Find("Jellow").GetComponent<Rigidbody2D>());
+            bodies.Add(transform.parent.transform.Find("Yello").GetComponent<Rigidbody2D>());
         }
 
         player = GetComponent<PlayerScript>();
