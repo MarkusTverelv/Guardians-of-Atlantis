@@ -13,6 +13,7 @@ TagManager:
   - Wall
   - YelloHB
   - PinkoHB
+  - Enemy
   layers:
   - Default
   - TransparentFX

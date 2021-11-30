@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &623598159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 623598160}
+  - component: {fileID: 623598162}
+  - component: {fileID: 623598161}
+  m_Layer: 0
+  m_Name: PulseCircle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &623598160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623598159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7117930116948669623}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &623598162
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623598159}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1, y: 0}
+  serializedVersion: 2
+  m_Radius: 10
+--- !u!114 &623598161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623598159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf6013ee5599fb74581803d7222cb6cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &665242681
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +391,7 @@ GameObject:
   - component: {fileID: 6146650662978717410}
   - component: {fileID: 6021951852883156288}
   - component: {fileID: 245937247}
+  - component: {fileID: 534006416}
   m_Layer: 0
   m_Name: Yello
   m_TagString: Player
@@ -346,7 +407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7117930116532709011}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1849384993}
@@ -480,7 +541,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 12.9, y: 171.1}
+  m_ConnectedAnchor: {x: 1.69, y: -3.8402667}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -760,6 +821,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pinkoProjectile: {fileID: 7367669499685079536, guid: afc21d7acfe8c674bb3a9710f2f6db95, type: 3}
+  shieldPreFab: {fileID: 0}
+--- !u!58 &534006416
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117930116532709011}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.15
 --- !u!1 &7117930116866337432
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visiable: 0
-  lineLenght: 150
+  lineLenght: 100
   lineSegment: {fileID: 8212056670583758928, guid: 5e460e6b3302977478b8e4e345a839dc, type: 3}
 --- !u!120 &7117930116866337433
 LineRenderer:
@@ -1036,6 +1114,7 @@ Transform:
   - {fileID: 1344054241}
   - {fileID: 665242682}
   - {fileID: 2127958012}
+  - {fileID: 623598160}
   m_Father: {fileID: 6892008807671904976}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1166,7 +1245,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 12.9, y: 171.1}
+  m_ConnectedAnchor: {x: 4.79, y: -3.8402667}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
