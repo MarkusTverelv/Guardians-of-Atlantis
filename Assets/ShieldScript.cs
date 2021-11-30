@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ShieldScript : MonoBehaviour
+{
+    GameObject pinko, line;
+    public GameObject pinkoProjectile, shieldPreFab;
+    GameObject pinkoProjectile2;
+    GameObject shieldPreFab2;
+    bool canMove = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        pinko = GameObject.Find("Pinko");
+        line = GameObject.Find("Line");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            StartCoroutine(ActivateShield());
+        }
+
+        if(canMove)
+        {
+            pinkoProjectile2.transform.position = Vector2.MoveTowards(pinkoProjectile2.transform.position, this.transform.position, 10 * Time.deltaTime);
+        }
+
+        else
+        {
+            pinkoProjectile2.transform.position = Vector2.MoveTowards(pinkoProjectile2.transform.position, pinko.transform.position, 30 * Time.deltaTime);
+        }
+    }
+
+    IEnumerator ActivateShield()
+    {
+        GetComponent<PlayerScript>().TurnOffOnComponents(pinko, line, false);
+        pinkoProjectile2 = Instantiate(pinkoProjectile, pinko.transform.position, Quaternion.identity);
+        GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>().enabled = false;
+        canMove = true;
+        yield return new WaitForSeconds(2);
+        shieldPreFab2 = Instantiate(shieldPreFab, this.transform.position, Quaternion.identity, this.transform);
+        yield return new WaitForSeconds(5);
+        Destroy(shieldPreFab2);
+        canMove = false;
+        yield return new WaitForSeconds(1);
+        GetComponent<PlayerScript>().TurnOffOnComponents(pinko, line, true);
+        GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>().enabled = true;
+        Destroy(pinkoProjectile2);
+
+
+    }
+}

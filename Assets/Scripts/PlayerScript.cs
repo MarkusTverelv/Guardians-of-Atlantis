@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -95,14 +96,25 @@ public class PlayerScript : MonoBehaviour
             StartCoroutine(blinkInterval((int)(invTime * 10)));
             regenCounter = 0;
             audioSource.PlayOneShot(hurtClip);
+
             if (currentHealth > 1)
                 currentHealth--;
             else
                 SceneManager.LoadScene("GameOver");
+
             StartCoroutine(invTimer(invTime));
             Debug.Log(gameObject.name + " health: " + currentHealth);
         }
         return !inv;
     }
     
+
+    public void TurnOffOnComponents(GameObject player, GameObject line, bool onOff)
+    {
+        player.GetComponent<SpriteRenderer>().enabled = onOff;
+        player.GetComponent<Light2D>().enabled = onOff;
+        player.GetComponent<TrailRenderer>().enabled = onOff;
+        player.GetComponent<CircleCollider2D>().enabled = onOff;
+        line.GetComponent<LineRenderer>().enabled = onOff;
+    }
 }

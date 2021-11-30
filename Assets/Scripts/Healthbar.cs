@@ -19,6 +19,7 @@ public class Healthbar : MonoBehaviour
         pinkoHealthbar.transform.parent = transform;
         pinkoHealthbarImage = pinkoHealthbar.GetComponent<Image>();
         pinkoPlayerScript = pinko.GetComponent<PlayerScript>();
+        pinkoHealthbar.gameObject.tag = "PinkoHB";
 
         yelloHealthbar = Instantiate(healthbar, pinko.transform.position, Quaternion.identity);
         yelloHealthbar.transform.parent = transform;

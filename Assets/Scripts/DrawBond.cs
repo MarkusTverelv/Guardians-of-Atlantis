@@ -13,7 +13,7 @@ public class DrawBond : MonoBehaviour
     List<GameObject> lineSegments;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         lr = GetComponent<LineRenderer>();
         lr.positionCount = lineLenght;
@@ -27,10 +27,14 @@ public class DrawBond : MonoBehaviour
             if (i != 0)
                 lineSegments[i].GetComponent<HingeJoint2D>().connectedBody = lineSegments[i - 1].GetComponent<Rigidbody2D>();
             if (i == lineLenght / 2)
-                lineSegments[i].tag = "Center";
+            {
+                GameObject.Find("Main Camera").GetComponent<CameraScript>().center = lineSegments[i];
+                GameObject.Find("Main Camera").transform.position = lineSegments[i].transform.position += new Vector3(0, 0, -15); 
+            }
+                
         }
-        GameObject jellow = GameObject.Find("Yello");
-        GameObject pinko = GameObject.Find("Pinko");
+        GameObject jellow = gameObject.transform.parent.transform.Find("Yello").gameObject;
+        GameObject pinko = gameObject.transform.parent.transform.Find("Pinko").gameObject;
         jellow.GetComponent<HingeJoint2D>().connectedBody = lineSegments[0].GetComponent<Rigidbody2D>();
         lineSegments[0].GetComponent<HingeJoint2D>().connectedBody = jellow.GetComponent<Rigidbody2D>();
         jellow.transform.position = lineSegments[0].transform.position;
