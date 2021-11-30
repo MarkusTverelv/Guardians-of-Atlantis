@@ -7,7 +7,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class ShootScript : MonoBehaviour
 {
-    GameObject yello, line, arrowDirection, jellowProjectile2;
+    GameObject yello, line, pinko, arrowDirection, jellowProjectile2;
     [SerializeField] GameObject jellowProjectile;
     SpriteRenderer arrowSpriteRenderer;
     bool canShoot;
@@ -18,13 +18,14 @@ public class ShootScript : MonoBehaviour
         arrowDirection = GameObject.Find("ArrowAim");
         arrowSpriteRenderer = arrowDirection.GetComponent<SpriteRenderer>();
         yello = GameObject.Find("Yello");
+        pinko = GameObject.Find("Pinko");
         line = GameObject.Find("Line");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && yello.GetComponent<CircleCollider2D>().enabled)
+        if (Input.GetKeyDown(KeyCode.R) && yello.GetComponent<CircleCollider2D>().enabled && pinko.GetComponent<SpriteRenderer>().enabled)
             StartCoroutine(AttachTimer());
 
         if (Input.GetKeyDown(KeyCode.Return) && canShoot)
