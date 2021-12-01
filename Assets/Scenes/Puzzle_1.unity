@@ -12218,6 +12218,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1798265760, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1849384994, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_ForceMagnitude
       value: -20
@@ -12308,11 +12312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7117930116532709020, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -35.278534
+      value: -41.27958
       objectReference: {fileID: 0}
     - target: {fileID: 7117930116532709020, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -9.518181
+      value: -10.314208
       objectReference: {fileID: 0}
     - target: {fileID: 7117930116866337434, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: horizontal
@@ -12348,11 +12352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8000666199423053646, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -38.022106
+      value: -44.02315
       objectReference: {fileID: 0}
     - target: {fileID: 8000666199423053646, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -10.457281
+      value: -11.253308
       objectReference: {fileID: 0}
     - target: {fileID: 8386601324779532972, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: turnsSpeed
@@ -108146,6 +108150,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1570544554035328496, guid: 46d32124721be044a96b2bb951609405, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570544554035328496, guid: 46d32124721be044a96b2bb951609405, type: 3}
+      propertyPath: m_LightCookieSprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5504455154210884096, guid: 46d32124721be044a96b2bb951609405, type: 3}
       propertyPath: SceneName
       value: Level
