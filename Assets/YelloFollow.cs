@@ -13,6 +13,9 @@ public class YelloFollow : MonoBehaviour
     public float rotateSpeed;
     public float distance;
 
+    private float angle = 0.0f;
+    private float direction = 0.0f;
+
     private Rigidbody2D thisRigidbody2D;
     private Rigidbody2D parentRigidbody2D;
 
@@ -31,9 +34,7 @@ public class YelloFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float direction = Input.GetAxisRaw("Horizontal");
-        float angle = 0.0f;
-
+        direction = Input.GetAxisRaw("Horizontal");
         angle += direction * rotateSpeed * Time.deltaTime;
         offset = new Vector3(Mathf.Sin(angle) * distance, Mathf.Cos(angle) * distance);
 
