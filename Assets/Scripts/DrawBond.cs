@@ -7,10 +7,11 @@ public class DrawBond : MonoBehaviour
     LineRenderer lr;
     List<Transform> linePositions = new List<Transform>();
 
-    public bool visiable;
+    public bool visiable, horizontal;
     public int lineLenght;
     public GameObject lineSegment;
     List<GameObject> lineSegments;
+    GameObject jellow, pinko;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,11 @@ public class DrawBond : MonoBehaviour
         lr.positionCount = lineLenght;
         List<GameObject> lineSegments = new List<GameObject>();
         for (int i = 0; i < lineLenght; i++)
-        {
-            lineSegments.Add(Instantiate(lineSegment, transform.position + new Vector3(i / 10f, 0), Quaternion.identity, transform));
+        {   
+            if(horizontal)
+                lineSegments.Add(Instantiate(lineSegment, transform.position + new Vector3(0, i / 10f), Quaternion.identity, transform));
+            else
+                lineSegments.Add(Instantiate(lineSegment, transform.position + new Vector3(i / 10f, 0), Quaternion.identity, transform));
             lineSegments[i].name = "Linesegment " + i;
             lineSegments[i].GetComponent<SpriteRenderer>().enabled = visiable;
             linePositions.Add(lineSegments[i].transform);
@@ -28,21 +32,30 @@ public class DrawBond : MonoBehaviour
                 lineSegments[i].GetComponent<HingeJoint2D>().connectedBody = lineSegments[i - 1].GetComponent<Rigidbody2D>();
             if (i == lineLenght / 2)
             {
-                GameObject.Find("Main Camera").GetComponent<CameraScript>().center = lineSegments[i];
-                GameObject.Find("Main Camera").transform.position = lineSegments[i].transform.position += new Vector3(0, 0, -15); 
+                GameObject Camera = GameObject.Find("Main Camera");
+                CameraScript cameraScript = Camera.GetComponent<CameraScript>();
+                cameraScript.center = lineSegments[i];
+                if (!cameraScript.lockCam)
+                    Camera.transform.position = lineSegments[i].transform.position += new Vector3(0, 0, -15); 
             }
                 
         }
-        GameObject jellow = gameObject.transform.parent.transform.Find("Yello").gameObject;
-        GameObject pinko = gameObject.transform.parent.transform.Find("Pinko").gameObject;
+        jellow = gameObject.transform.parent.transform.Find("Yello").gameObject;
+        pinko = gameObject.transform.parent.transform.Find("Pinko").gameObject;
         jellow.GetComponent<HingeJoint2D>().connectedBody = lineSegments[0].GetComponent<Rigidbody2D>();
         lineSegments[0].GetComponent<HingeJoint2D>().connectedBody = jellow.GetComponent<Rigidbody2D>();
         jellow.transform.position = lineSegments[0].transform.position;
         pinko.GetComponent<HingeJoint2D>().connectedBody = lineSegments[lineLenght - 1].GetComponent<Rigidbody2D>();
         pinko.transform.position = lineSegments[lineLenght - 1].transform.position;
-
+        //StartCoroutine(centerPlayers());
 
     }
+
+    //IEnumerator centerPlayers()
+    //{
+    //    yield return new WaitForFixedUpdate();
+    //    pinko.GetComponent<Rigidbody2D>().AddForce(new Vector2(-80, 0), ForceMode2D.Impulse);
+    //}
 
     // Update is called once per frame
     void FixedUpdate()
