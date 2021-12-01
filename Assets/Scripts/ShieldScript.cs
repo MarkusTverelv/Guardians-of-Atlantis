@@ -18,7 +18,7 @@ public class ShieldScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pinkoHBImage = GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>();
+        playerScript = GetComponent<PlayerScript>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         pinko = GameObject.Find("Pinko");
@@ -48,6 +48,7 @@ public class ShieldScript : MonoBehaviour
     {
         playerScript.TurnOffOnComponents(pinko, line, false);
         pinkoProjectile2 = Instantiate(pinkoProjectile, pinko.transform.position, Quaternion.identity);
+        pinkoHBImage = GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>();
         pinkoHBImage.enabled = false;
         canMove = true;
 

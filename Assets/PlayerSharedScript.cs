@@ -28,7 +28,7 @@ public class PlayerSharedScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -46,7 +46,7 @@ public class PlayerSharedScript : MonoBehaviour
         foreach (Rigidbody2D body in bodies)
         {
             body.AddForce((center - (Vector2)body.transform.position) * springFactor);
-            Debug.Log((center - (Vector2)body.transform.position) * springFactor);
+            //Debug.Log((center - (Vector2)body.transform.position) * springFactor);
         }
 
             
