@@ -52,8 +52,6 @@ public class YelloFollow : MonoBehaviour
     private void RotatePlayer()
     {
         direction = Input.GetAxisRaw("Horizontal");
-        float currentAngle = Vector2.SignedAngle(parentRigidbody2D.position, thisRigidbody2D.position);
-        print(currentAngle);
 
         angle += direction * rotateSpeed * Time.deltaTime;
         offset = new Vector3(Mathf.Sin(angle) * distance, Mathf.Cos(angle) * distance);
