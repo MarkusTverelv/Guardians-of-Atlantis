@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class ShieldScript : MonoBehaviour
 {
-    GameObject pinko, yello, line;
+    GameObject pinko, yello, line, pinkoProjectile2, shieldPreFab2;
+    Image pinkoHBImage;
     public GameObject pinkoProjectile, shieldPreFab;
-    GameObject pinkoProjectile2;
-    GameObject shieldPreFab2;
+    
+    
     bool canMove = false;
+    PlayerScript playerScript;
     // Start is called before the first frame update
     void Start()
     {
+        pinkoHBImage = GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>();
+
+
         pinko = GameObject.Find("Pinko");
         yello = GameObject.Find("Yello");
         line = GameObject.Find("Line");
@@ -39,9 +44,9 @@ public class ShieldScript : MonoBehaviour
 
     IEnumerator ActivateShield()
     {
-        GetComponent<PlayerScript>().TurnOffOnComponents(pinko, line, false);
+        playerScript.TurnOffOnComponents(pinko, line, false);
         pinkoProjectile2 = Instantiate(pinkoProjectile, pinko.transform.position, Quaternion.identity);
-        GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>().enabled = false;
+        pinkoHBImage.enabled = false;
         canMove = true;
         yield return new WaitForSeconds(2);
         shieldPreFab2 = Instantiate(shieldPreFab, this.transform.position, Quaternion.identity, this.transform);
@@ -50,7 +55,7 @@ public class ShieldScript : MonoBehaviour
         canMove = false;
         yield return new WaitForSeconds(1);
         GetComponent<PlayerScript>().TurnOffOnComponents(pinko, line, true);
-        GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>().enabled = true;
+        pinkoHBImage.enabled = true;
         Destroy(pinkoProjectile2);
 
 

@@ -7,11 +7,11 @@ public class CameraScript : MonoBehaviour
     [HideInInspector] public GameObject center;
     public bool lockCam;
     GameObject yello, pinko;
-    Camera camera;
+    Camera cam;
     public float delay, zoomOut;
     private void Start()
     {
-        camera = GetComponent<Camera>();
+        cam = GetComponent<Camera>();
         yello = GameObject.Find("Yello");
         pinko = GameObject.Find("Pinko");
     }
@@ -27,7 +27,7 @@ public class CameraScript : MonoBehaviour
             float playerDist = Vector2.Distance(v1, v2);
             transform.position = Vector2.MoveTowards(transform.position, target, cameraDist / delay);
             transform.position += new Vector3(0, 0, -15);
-            camera.orthographicSize = Mathf.Max(playerDist * zoomOut, 10);
+            cam.orthographicSize = Mathf.Max(playerDist * zoomOut, 10);
         }
         
         
