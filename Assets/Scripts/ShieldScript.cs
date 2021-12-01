@@ -22,7 +22,6 @@ public class ShieldScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         pinko = GameObject.Find("Pinko");
-        
         line = GameObject.Find("Line");
     }
 
@@ -36,7 +35,7 @@ public class ShieldScript : MonoBehaviour
 
         if(canMove)
         {
-            pinkoProjectile2.transform.position = Vector2.MoveTowards(pinkoProjectile2.transform.position, this.transform.position, 10 * Time.deltaTime);
+            pinkoProjectile2.transform.position = Vector2.MoveTowards(pinkoProjectile2.transform.position, transform.position, 10 * Time.deltaTime);
         }
 
         else if (!canMove && pinkoProjectile2 != null)
@@ -51,12 +50,18 @@ public class ShieldScript : MonoBehaviour
         pinkoProjectile2 = Instantiate(pinkoProjectile, pinko.transform.position, Quaternion.identity);
         pinkoHBImage.enabled = false;
         canMove = true;
+
         yield return new WaitForSeconds(2);
+
         shieldPreFab2 = Instantiate(shieldPreFab, this.transform.position, Quaternion.identity, this.transform);
+
         yield return new WaitForSeconds(5);
+
         Destroy(shieldPreFab2);
         canMove = false;
+
         yield return new WaitForSeconds(1);
+
         GetComponent<PlayerScript>().TurnOffOnComponents(pinko, line, true);
         pinkoHBImage.enabled = true;
         Destroy(pinkoProjectile2);
