@@ -5,7 +5,8 @@ using UnityEngine;
 public enum PlayerStates
 {
     Idle,
-    Moving
+    Moving,
+    Dash
 }
 
 public class YelloFollow : MonoBehaviour
@@ -40,16 +41,26 @@ public class YelloFollow : MonoBehaviour
 
         if (direction != 0)
             currentPlayerState = PlayerStates.Moving;
+        else if (Input.GetKeyDown(KeyCode.Return))
+            currentPlayerState = PlayerStates.Dash;
         else
             currentPlayerState = PlayerStates.Idle;
 
-        switch (currentPlayerState)
+        PlayerStateManager(currentPlayerState);
+    }
+    private void PlayerStateManager(PlayerStates current)
+    {
+        switch (current)
         {
             case PlayerStates.Idle:
                 canMove = false;
                 break;
             case PlayerStates.Moving:
                 canMove = true;
+                break;
+            case PlayerStates.Dash:
+                canMove = true;
+                Dash(parentRigidbody2D.position - thisRigidbody2D.position);
                 break;
             default:
                 break;
@@ -65,5 +76,9 @@ public class YelloFollow : MonoBehaviour
     private void Move(Vector3 rotation)
     {
         thisRigidbody2D.position = parentRigidbody2D.position + (Vector2)rotation;
+    }
+    private void Dash(Vector2 direction)
+    {
+        thisRigidbody2D.AddForce(-direction.normalized * 100, ForceMode2D.Impulse);
     }
 }
