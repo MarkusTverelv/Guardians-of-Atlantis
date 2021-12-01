@@ -17,7 +17,7 @@ public class DashScript2 : MonoBehaviour
     float dashTime = 1;
 
     int doubleTap;
-    bool dashReady;
+    bool dashReady = true;
     bool isYello;
 
     KeyCode dashKey;
@@ -65,7 +65,7 @@ public class DashScript2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(dashKey)&&!dashReady)
+        if (Input.GetKeyDown(dashKey)&&dashReady)
         {
             if (doubleTap > 0)
             {
