@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class ShieldScript : MonoBehaviour
 {
-    GameObject pinko, yello, line, pinkoProjectile2, shieldPreFab2;
+    //Attached to Yello
+
+    GameObject pinko, line, pinkoProjectile2, shieldPreFab2;
     Image pinkoHBImage;
     public GameObject pinkoProjectile, shieldPreFab;
+    SpriteRenderer spriteRenderer;
     
     
     bool canMove = false;
@@ -16,17 +19,17 @@ public class ShieldScript : MonoBehaviour
     void Start()
     {
         pinkoHBImage = GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>();
-
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         pinko = GameObject.Find("Pinko");
-        yello = GameObject.Find("Yello");
+        
         line = GameObject.Find("Line");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L) && yello.GetComponent<SpriteRenderer>().enabled)
+        if(Input.GetKeyDown(KeyCode.L) && spriteRenderer.enabled)
         {
             StartCoroutine(ActivateShield());
         }
