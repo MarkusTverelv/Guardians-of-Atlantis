@@ -13,6 +13,7 @@ public class YelloFollow : MonoBehaviour
 {
     public float rotateSpeed;
     public float distance;
+    public float dashForce;
 
     private float angle = 0.0f;
     private float direction = 0.0f;
@@ -84,11 +85,11 @@ public class YelloFollow : MonoBehaviour
 
     private void Move(Vector3 rotation)
     {
-        thisRigidbody2D.position = parentRigidbody2D.position + (Vector2)rotation;
+        thisRigidbody2D.position = Vector2.MoveTowards(thisRigidbody2D.position, parentRigidbody2D.position + (Vector2)rotation, 30 * Time.deltaTime);
     }
 
     private void Dash(Vector2 direction)
     {
-        thisRigidbody2D.AddForce(direction.normalized * 100, ForceMode2D.Impulse);
+        thisRigidbody2D.AddForce(direction.normalized * dashForce, ForceMode2D.Impulse);
     }
 }
