@@ -7397,6 +7397,14 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1863236514026605176, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: moveSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1863236514026605176, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: acceleration
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 5724268645614066452, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_Name
       value: Players
@@ -7459,7 +7467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7117930116532709020, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -10.218181
+      value: -9.518181
       objectReference: {fileID: 0}
     - target: {fileID: 7117930116866337434, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: horizontal
@@ -7481,13 +7489,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7833956910229912508, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: moveSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833956910229912508, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: acceleration
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 8000666199423053646, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -38.022106
       objectReference: {fileID: 0}
     - target: {fileID: 8000666199423053646, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -11.157281
+      value: -10.457281
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
@@ -8008,7 +8024,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.29
+  m_Intensity: 0.1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -9963,6 +9979,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   center: {fileID: 0}
   lockCam: 0
+  delay: 1
+  zoomOut: 1
 --- !u!114 &1925814848
 MonoBehaviour:
   m_ObjectHideFlags: 0

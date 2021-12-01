@@ -12,6 +12,7 @@ public class DrawBond : MonoBehaviour
     public GameObject lineSegment;
     List<GameObject> lineSegments;
     GameObject jellow, pinko;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,10 @@ public class DrawBond : MonoBehaviour
         jellow.transform.position = lineSegments[0].transform.position;
         pinko.GetComponent<HingeJoint2D>().connectedBody = lineSegments[lineLenght - 1].GetComponent<Rigidbody2D>();
         pinko.transform.position = lineSegments[lineLenght - 1].transform.position;
+        //SpringJoint2D spring = jellow.AddComponent(typeof(SpringJoint2D)) as SpringJoint2D;
+        //spring.connectedBody = pinko.GetComponent<Rigidbody2D>();
+        //spring.dampingRatio = 0.5F;
+        
         //StartCoroutine(centerPlayers());
 
     }
@@ -62,7 +67,7 @@ public class DrawBond : MonoBehaviour
     {
         for (int i = 0; i < linePositions.Count; i++)
         {
-            lr.SetPosition(i, linePositions[i].position);
+            lr.SetPosition(i,  linePositions[i].position);
         }
     }
 }
