@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Seweed roof
-  m_Shader: {fileID: -6465566751694194690, guid: 687da18b58227094082b982602a8593b, type: 3}
+  m_Name: kol2
+  m_Shader: {fileID: -6465566751694194690, guid: 20c8e3f50e194ff4db72e3f380671a97, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,8 +19,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_4cd34bac377f4ccf8c306934c407f520:
+        m_Texture: {fileID: 2800000, guid: 5716b539687c67844aa68d2e2a56fc87, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_c1e8559926ef4b2da40cec34655f3987:
-        m_Texture: {fileID: 2800000, guid: 1b5979167c9f52e4992e3daed67c827d, type: 3}
+        m_Texture: {fileID: 2800000, guid: d99e47a825e1deb46a09d107347e8889, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlphaTex:
@@ -52,9 +56,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_0640fe3c0d0b4402b8ff3e45c6d66b0b: 0.7
+    - Vector1_0640fe3c0d0b4402b8ff3e45c6d66b0b: 1
     - Vector1_352016cbd79b47eb857259625f316110: 1
-    - Vector1_436ea18ebc4f49798bbc0feb8a1f606c: 0.6
+    - Vector1_436ea18ebc4f49798bbc0feb8a1f606c: 0.2
     - Vector1_9e9aed1d56ff420683b562d02e20e708: 1
     - _EnableExternalAlpha: 0
     m_Colors:
