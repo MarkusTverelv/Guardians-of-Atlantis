@@ -24,13 +24,12 @@ public class PlayerSharedScript : MonoBehaviour
         spawn = GameObject.Find("SpawnPoint").GetComponent<SpawnPointScript>();
 
         if (spawn.position != null)
-            transform.position = spawn.position+=new Vector3(-30,0);
+            transform.position = spawn.position;
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
