@@ -14,7 +14,10 @@ public class PinkoScript : MonoBehaviour
     }
     private void Update()
     {
-        moveScript.turn = Input.GetAxis("Horizontal2");
-        moveScript.move = Input.GetAxis("Vertical2");
+        if (this.GetComponent<SpriteRenderer>().enabled)
+        {
+            moveScript.turn = Input.GetAxis("Horizontal2");
+            moveScript.move = Input.GetAxis("Vertical2");
+        }
     }
 }

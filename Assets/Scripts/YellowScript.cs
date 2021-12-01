@@ -11,7 +11,10 @@ public class YellowScript : MonoBehaviour
     }
     private void Update()
     {
-        moveScript.turn = Input.GetAxis("Horizontal");
-        moveScript.move = Input.GetAxis("Vertical");
+        if (this.GetComponent<SpriteRenderer>().enabled)
+        {
+            moveScript.turn = Input.GetAxis("Horizontal");
+            moveScript.move = Input.GetAxis("Vertical");
+        }
     }
 }
