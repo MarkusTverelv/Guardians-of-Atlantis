@@ -9,7 +9,7 @@ public class PlayerSharedScript : MonoBehaviour
     public GameObject checkpoint;
     public UnityEvent onCheckpointSet = new UnityEvent();
     public GameObject playersPrefab;
-    public float bondLenght, bondForce;
+    public float bondLenght, bondForce, moveSpeed, turnSpeed;
     SpawnPointScript spawn;
     GameObject[] players;
     Rigidbody2D[] bodies;
@@ -31,8 +31,7 @@ public class PlayerSharedScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
+        }   
     private void FixedUpdate()
     {
         float distance = Vector2.Distance(players[0].transform.position, players[1].transform.position);
@@ -43,12 +42,7 @@ public class PlayerSharedScript : MonoBehaviour
         else 
             springFactor = bondLenght - distance;
         foreach (Rigidbody2D body in bodies)
-        {
-            body.AddForce((center - (Vector2)body.transform.position) * springFactor);
-            //Debug.Log((center - (Vector2)body.transform.position) * springFactor);
-        }
-
-            
+            body.AddForce((center - (Vector2)body.transform.position) * springFactor);     
     }
     public void SetCheckPoint(GameObject gameObject)
     {

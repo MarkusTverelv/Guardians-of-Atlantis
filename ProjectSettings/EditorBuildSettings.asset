@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Check Point.unity
     guid: 930abe6cbe2797b44911f1c83a65fe41
+  - enabled: 1
+    path: Assets/Scenes/Puzzle_1.unity
+    guid: 04f347869820fa0468db486b61e4f5dd
   m_configObjects: {}

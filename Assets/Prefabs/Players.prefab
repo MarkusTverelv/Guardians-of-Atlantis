@@ -662,6 +662,8 @@ MonoBehaviour:
   playersPrefab: {fileID: 5724268645614066452}
   bondLenght: 5
   bondForce: 5
+  moveSpeed: 250
+  turnSpeed: 30
 --- !u!1 &7117930116532709011
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,8 +722,6 @@ MonoBehaviour:
   move: 0
   currentHealth: 0
   inv: 0
-  moveSpeed: 250
-  turnSpeed: 15
   invTime: 1
   regenTime: 10
   hurtClip: {fileID: 8300000, guid: 3ca797018c456f242a2e45b327c79b0a, type: 3}
@@ -1190,8 +1190,6 @@ MonoBehaviour:
   move: 0
   currentHealth: 0
   inv: 0
-  moveSpeed: 250
-  turnSpeed: 15
   invTime: 1
   regenTime: 10
   hurtClip: {fileID: 8300000, guid: 3ca797018c456f242a2e45b327c79b0a, type: 3}

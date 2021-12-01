@@ -11,17 +11,23 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector] public float turn, move;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool inv;
-    [SerializeField] float moveSpeed, turnSpeed, invTime, regenTime;
+    [SerializeField] float invTime, regenTime;
     [SerializeField] AudioClip hurtClip, healClip;
     [SerializeField] AudioClip[] spalshClips;
     public int maxHealth;
     bool blink;
     bool blikning;
+    float moveSpeed, turnSpeed;
     SpriteRenderer spriteRenderer;
     AudioSource audioSource;
     int regenCounter;
+    PlayerSharedScript playerShared;
     void Start()
     {
+        
+        //Debug.Log("Movespeed = " + moveSpeed);
+        //Debug.Log("turnSpeed = " + turnSpeed);
+        playerShared = transform.parent.GetComponent<PlayerSharedScript>();
         trailRenderer = GetComponent<TrailRenderer>();
         audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
@@ -29,6 +35,8 @@ public class PlayerScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(regenTimer());
         StartCoroutine(Splash());
+        turnSpeed = playerShared.turnSpeed;
+        moveSpeed = playerShared.moveSpeed;
     }
     private void FixedUpdate()
     {
