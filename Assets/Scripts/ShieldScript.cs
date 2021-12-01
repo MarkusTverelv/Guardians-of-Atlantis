@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ShieldScript : MonoBehaviour
 {
-    GameObject pinko, line;
+    GameObject pinko, yello, line;
     public GameObject pinkoProjectile, shieldPreFab;
     GameObject pinkoProjectile2;
     GameObject shieldPreFab2;
@@ -14,13 +14,14 @@ public class ShieldScript : MonoBehaviour
     void Start()
     {
         pinko = GameObject.Find("Pinko");
+        yello = GameObject.Find("Yello");
         line = GameObject.Find("Line");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Input.GetKeyDown(KeyCode.L) && yello.GetComponent<SpriteRenderer>().enabled)
         {
             StartCoroutine(ActivateShield());
         }
@@ -30,7 +31,7 @@ public class ShieldScript : MonoBehaviour
             pinkoProjectile2.transform.position = Vector2.MoveTowards(pinkoProjectile2.transform.position, this.transform.position, 10 * Time.deltaTime);
         }
 
-        else if(!canMove && pinkoProjectile2 != null)
+        else if (!canMove && pinkoProjectile2 != null)
         {
             pinkoProjectile2.transform.position = Vector2.MoveTowards(pinkoProjectile2.transform.position, pinko.transform.position, 30 * Time.deltaTime);
         }

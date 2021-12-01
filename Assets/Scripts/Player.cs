@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     Vector3 movement;
     Rigidbody2D body;
     public float speed;
+
     // Start is called before the first frame update
     void Start()
     {
