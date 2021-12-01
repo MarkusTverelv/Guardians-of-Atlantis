@@ -312,6 +312,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   playersPrefab: {fileID: 5724268645614066452}
+  bondLenght: 5
+  bondForce: 5
 --- !u!1 &7117930116532709011
 GameObject:
   m_ObjectHideFlags: 0
