@@ -54,8 +54,10 @@ public class ShootScript : MonoBehaviour
         jellowProjectileObject = Instantiate(jellowProjectilePrefab, yello.transform.position, Quaternion.identity);
         jellowPro1jectileScript = jellowProjectileObject.GetComponent<JellowProjectileScript>();
         GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>().enabled = false;
+
         yield return new WaitForSeconds(2);
-        jellowProjectileObject.GetComponent<JellowProjectileScript>().currentState = JellowProjectileScript.ProjectileState.idle;
+
+        jellowPro1jectileScript.currentState = JellowProjectileScript.ProjectileState.idle;
         canShoot = true;
         arrowSpriteRenderer.enabled = true;
 
