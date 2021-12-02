@@ -7,6 +7,7 @@ public class YellowScript : MonoBehaviour
     PlayerScript moveScript;
     private void Start()
     {
+        transform.position += new Vector3(0, 0, -1);
         moveScript = GetComponent<PlayerScript>();
     }
     private void Update()
