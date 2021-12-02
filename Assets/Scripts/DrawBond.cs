@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class DrawBond : MonoBehaviour
 {
-    LineRenderer lr;
+    //LineRenderer lr;
     List<Transform> linePositions = new List<Transform>();
 
     public bool visiable, horizontal;
     public int lineLenght;
     public GameObject lineSegment;
-    List<GameObject> lineSegments;
+    //List<GameObject> lineSegments;
     GameObject jellow, pinko;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        lr = GetComponent<LineRenderer>();
-        lr.positionCount = lineLenght;
+        //lr = GetComponent<LineRenderer>();
+        //lr.positionCount = lineLenght;
         List<GameObject> lineSegments = new List<GameObject>();
         for (int i = 0; i < lineLenght; i++)
         {   
@@ -27,7 +27,19 @@ public class DrawBond : MonoBehaviour
             else
                 lineSegments.Add(Instantiate(lineSegment, transform.position + new Vector3(i / 10f, 0), Quaternion.identity, transform));
             lineSegments[i].name = "Linesegment " + i;
-            lineSegments[i].GetComponent<SpriteRenderer>().enabled = visiable;
+            SpriteRenderer spriteRenderer = lineSegments[i].GetComponent<SpriteRenderer>();
+            spriteRenderer.enabled = visiable;
+            Color yellow = Color.white;
+            yellow.r = 252 / 255f;
+            yellow.g = 1;
+            yellow.b = 121 / 255f;
+            Color pink = Color.white;
+            pink.r = 229 / 255f;
+            pink.g = 172 / 255f;
+            pink.b = 180 / 255f;
+            
+            spriteRenderer.color = Color.Lerp(yellow, pink, (float)i/lineLenght);
+            
             linePositions.Add(lineSegments[i].transform);
             if (i != 0)
                 lineSegments[i].GetComponent<HingeJoint2D>().connectedBody = lineSegments[i - 1].GetComponent<Rigidbody2D>();
@@ -63,11 +75,11 @@ public class DrawBond : MonoBehaviour
     //}
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        for (int i = 0; i < linePositions.Count; i++)
-        {
-            lr.SetPosition(i,  linePositions[i].position);
-        }
-    }
+    //void FixedUpdate()
+    //{
+    //    for (int i = 0; i < linePositions.Count; i++)
+    //    {
+    //        lr.SetPosition(i,  linePositions[i].position);
+    //    }
+    //}
 }
