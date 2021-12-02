@@ -25,11 +25,9 @@ public class PlayerScript : MonoBehaviour
     GameObject line;
     Light2D light2D;
     CircleCollider2D circle;
+    List<SpriteRenderer> lineSegmentSprites = new List<SpriteRenderer>();
     void Start()
     {
-        
-        //Debug.Log("Movespeed = " + moveSpeed);
-        //Debug.Log("turnSpeed = " + turnSpeed);
         playerShared = transform.parent.GetComponent<PlayerSharedScript>();
         trailRenderer = GetComponent<TrailRenderer>();
         audioSource = GetComponent<AudioSource>();
@@ -43,20 +41,13 @@ public class PlayerScript : MonoBehaviour
         line = GameObject.Find("Line");
         light2D = GetComponent<Light2D>();
         circle = GetComponent<CircleCollider2D>();
+        foreach (Transform child in line.transform)
+            lineSegmentSprites.Add(child.gameObject.GetComponent<SpriteRenderer>());
     }
     private void FixedUpdate()
     {
-        //if (body.velocity.magnitude > 1)
-        //    trailRenderer.time = 1;
-        //else
-        //    trailRenderer.time = 0.5f;
-        
         body.AddTorque(turn * -turnSpeed);
-        body.AddRelativeForce(new Vector3(0, move * moveSpeed));
-        
-
-        
-            
+        body.AddRelativeForce(new Vector3(0, move * moveSpeed));   
     }
     IEnumerator Splash() 
     {
@@ -123,12 +114,13 @@ public class PlayerScript : MonoBehaviour
     }
     
 
-    public void TurnOffOnComponents(bool onOff)
+    public void TurnOffOnComponents(bool b)
     {
-        spriteRenderer.enabled = onOff;
-        light2D.enabled = onOff;
-        trailRenderer.enabled = onOff;
-        circle.enabled = onOff;
-        line.SetActive(onOff);
+        spriteRenderer.enabled = b;
+        light2D.enabled = b;
+        trailRenderer.enabled = b;
+        circle.enabled = b;
+        foreach (SpriteRenderer sprite in lineSegmentSprites)
+            sprite.enabled = b;
     }
 }
