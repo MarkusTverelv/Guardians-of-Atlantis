@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 1552390594851963035}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 10
+  speed: 40
 --- !u!50 &1552390593440153346
 Rigidbody2D:
   serializedVersion: 4
