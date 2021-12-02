@@ -15,6 +15,7 @@ public class ShootScript : MonoBehaviour
     List<SpriteRenderer> lineSprites = new List<SpriteRenderer>();
     CircleCollider2D yelloCircleCollider2D;
     SpriteRenderer pinkoSpriteRenderer;
+    JellowProjectileScript jellowPro1jectileScript;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class ShootScript : MonoBehaviour
         line = GameObject.Find("Line");
         yelloCircleCollider2D = yello.GetComponent<CircleCollider2D>();
         pinkoSpriteRenderer = pinko.GetComponent<SpriteRenderer>();
-
+        
     }
 
     // Update is called once per frame
@@ -42,7 +43,7 @@ public class ShootScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) && canShoot)
         {
-            jellowProjectileObject.GetComponent<JellowProjectileScript>().currentState = JellowProjectileScript.ProjectileState.fire;
+            jellowPro1jectileScript.currentState = JellowProjectileScript.ProjectileState.fire;
             canShoot = false;
             Invoke("ActivateCollider", 0.25f);
         }
@@ -51,6 +52,7 @@ public class ShootScript : MonoBehaviour
     {
         playerScript.TurnOffOnComponents(yello, line, false);
         jellowProjectileObject = Instantiate(jellowProjectilePrefab, yello.transform.position, Quaternion.identity);
+        jellowPro1jectileScript = jellowProjectileObject.GetComponent<JellowProjectileScript>();
         GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>().enabled = false;
         yield return new WaitForSeconds(2);
         jellowProjectileObject.GetComponent<JellowProjectileScript>().currentState = JellowProjectileScript.ProjectileState.idle;
@@ -58,7 +60,6 @@ public class ShootScript : MonoBehaviour
         arrowSpriteRenderer.enabled = true;
 
     }
-
     private void ActivateCollider()
     {
         jellowProjectileObject.GetComponent<CircleCollider2D>().enabled = true;
