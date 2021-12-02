@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
 {
+    SpriteRenderer spriteRenderer;
     
     // Start is called before the first frame update
     void Start()
     {
-        this.GetComponent<SpriteRenderer>().enabled = false;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.GetComponent<SpriteRenderer>().enabled)
+        if (spriteRenderer.enabled)
         {
             transform.Rotate(Vector3.forward, -Input.GetAxisRaw("Horizontal") * 160 * Time.deltaTime);
         }

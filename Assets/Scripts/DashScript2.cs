@@ -14,12 +14,12 @@ public class DashScript2 : MonoBehaviour
 
     private PlayerScript player;
 
-    float dashTime = 1;
+    public float dashDuration = 1;
 
     int doubleTap;
-    bool dashReady;
+    bool dashReady = true;
     bool isYello;
-
+    bool isDashing;
     KeyCode dashKey;
 
     // Start is called before the first frame update
@@ -38,7 +38,7 @@ public class DashScript2 : MonoBehaviour
         {
             dashKey = KeyCode.W;
             bodies.Add(GetComponent<Rigidbody2D>());
-            bodies.Add(transform.parent.transform.Find("Jellow").GetComponent<Rigidbody2D>());
+            bodies.Add(transform.parent.transform.Find("Yello").GetComponent<Rigidbody2D>());
         }
 
         player = GetComponent<PlayerScript>();
@@ -65,7 +65,7 @@ public class DashScript2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(dashKey))
+        if (Input.GetKeyDown(dashKey)&&dashReady)
         {
             if (doubleTap > 0)
             {
@@ -83,16 +83,12 @@ public class DashScript2 : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        float f = 255 / dashCooldown;
-    }
+    
 
     private void Dash()
     {
-        if (!dashReady)
-            return;
-
+        //StartCoroutine(DashTimer(dashDuration));
+        //StartCoroutine(ApplyDash());
         bodies[0].AddRelativeForce(Vector2.up * dashForce, ForceMode2D.Impulse);
         bodies[1].AddForce(bodies[0].velocity, ForceMode2D.Impulse);
 
@@ -100,5 +96,25 @@ public class DashScript2 : MonoBehaviour
             body.AddForce(bodies[0].velocity / 150, ForceMode2D.Impulse);
 
         player.MakeInv(1);
+    }
+    IEnumerator DashTimer(float time)
+    {
+        isDashing = true;
+        yield return new WaitForSeconds(time);
+        isDashing = false;
+    }
+    IEnumerator ApplyDash()
+    {
+        Vector2 baseVelocity = bodies[0].velocity;
+        while(isDashing)
+        {
+            bodies[0].velocity = baseVelocity * dashForce;
+            bodies[1].velocity = bodies[0].velocity;
+            yield return new WaitForFixedUpdate();
+        }
+        bodies[0].velocity /= dashForce;
+        bodies[1].velocity /= dashForce;
+        foreach (Rigidbody2D body in line)
+            body.velocity /= dashForce;
     }
 }

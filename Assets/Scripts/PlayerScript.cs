@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -11,17 +12,25 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector] public float turn, move;
     [HideInInspector] public int currentHealth;
     [HideInInspector] public bool inv;
-    [SerializeField] float moveSpeed, turnSpeed, invTime, regenTime;
+    [SerializeField] float invTime, regenTime;
     [SerializeField] AudioClip hurtClip, healClip;
     [SerializeField] AudioClip[] spalshClips;
+    public Image healthbar;
     public int maxHealth;
     bool blink;
     bool blikning;
+    float moveSpeed, turnSpeed;
     SpriteRenderer spriteRenderer;
     AudioSource audioSource;
     int regenCounter;
+    PlayerSharedScript playerShared;
+    GameObject line;
+    Light2D light2D;
+    CircleCollider2D circle;
+    List<SpriteRenderer> lineSegmentSprites = new List<SpriteRenderer>();
     void Start()
     {
+        playerShared = transform.parent.GetComponent<PlayerSharedScript>();
         trailRenderer = GetComponent<TrailRenderer>();
         audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
@@ -29,20 +38,18 @@ public class PlayerScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(regenTimer());
         StartCoroutine(Splash());
+        turnSpeed = playerShared.turnSpeed;
+        moveSpeed = playerShared.moveSpeed;
+        line = GameObject.Find("Line");
+        light2D = GetComponent<Light2D>();
+        circle = GetComponent<CircleCollider2D>();
+        foreach (Transform child in line.transform)
+            lineSegmentSprites.Add(child.gameObject.GetComponent<SpriteRenderer>());
     }
     private void FixedUpdate()
     {
-        //if (body.velocity.magnitude > 1)
-        //    trailRenderer.time = 1;
-        //else
-        //    trailRenderer.time = 0.5f;
-        
         body.AddTorque(turn * -turnSpeed);
-        body.AddRelativeForce(new Vector3(0, move * moveSpeed));
-        
-
-        
-            
+        body.AddRelativeForce(new Vector3(0, move * moveSpeed));   
     }
     IEnumerator Splash() 
     {
@@ -109,12 +116,14 @@ public class PlayerScript : MonoBehaviour
     }
     
 
-    public void TurnOffOnComponents(GameObject player, GameObject line, bool onOff)
+    public void TurnOffOnComponents(bool b)
     {
-        player.GetComponent<SpriteRenderer>().enabled = onOff;
-        player.GetComponent<Light2D>().enabled = onOff;
-        player.GetComponent<TrailRenderer>().enabled = onOff;
-        player.GetComponent<CircleCollider2D>().enabled = onOff;
-        line.GetComponent<LineRenderer>().enabled = onOff;
+        spriteRenderer.enabled = b;
+        light2D.enabled = b;
+        trailRenderer.enabled = b;
+        circle.enabled = b;
+        healthbar.enabled = b;
+        foreach (SpriteRenderer sprite in lineSegmentSprites)
+            sprite.enabled = b;
     }
 }

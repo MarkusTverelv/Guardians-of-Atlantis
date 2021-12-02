@@ -39,7 +39,6 @@ public class Eel : MonoBehaviour
         }
         else
         {
-            Debug.Log("Current Point: " + currentPoint);
 
             if (points.Length == currentPoint + 1&& !turn)
                 turn = true;

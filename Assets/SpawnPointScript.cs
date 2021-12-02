@@ -8,6 +8,7 @@ public class SpawnPointScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        position = transform.position;
         DontDestroyOnLoad(gameObject);
     }
 

@@ -20,12 +20,14 @@ public class Healthbar : MonoBehaviour
         pinkoHealthbarImage = pinkoHealthbar.GetComponent<Image>();
         pinkoPlayerScript = pinko.GetComponent<PlayerScript>();
         pinkoHealthbar.gameObject.tag = "PinkoHB";
+        pinkoPlayerScript.healthbar = pinkoHealthbar.GetComponent<Image>();
 
         yelloHealthbar = Instantiate(healthbar, pinko.transform.position, Quaternion.identity);
         yelloHealthbar.transform.parent = transform;
         yelloHealthbarImage = yelloHealthbar.GetComponent<Image>();
         yelloPlayerScript = yello.GetComponent<PlayerScript>();
         yelloHealthbar.gameObject.tag = "YelloHB";
+        yelloPlayerScript.healthbar = yelloHealthbar.GetComponent<Image>();
     }
 
     // Update is called once per frame

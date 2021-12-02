@@ -9,12 +9,15 @@ public class PinkoScript : MonoBehaviour
     PlayerScript moveScript;
     private void Start()
     {
-        //transform.position += new Vector3(0, 0, -1);
+        transform.position += new Vector3(0, 0, -1);
         moveScript = GetComponent<PlayerScript>();
     }
     private void Update()
     {
-        moveScript.turn = Input.GetAxis("Horizontal2");
-        moveScript.move = Input.GetAxis("Vertical2");
+        if (this.GetComponent<SpriteRenderer>().enabled)
+        {
+            moveScript.turn = Input.GetAxis("Horizontal2");
+            moveScript.move = Input.GetAxis("Vertical2");
+        }
     }
 }
