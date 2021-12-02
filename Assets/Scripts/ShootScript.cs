@@ -16,10 +16,17 @@ public class ShootScript : MonoBehaviour
     CircleCollider2D yelloCircleCollider2D;
     SpriteRenderer pinkoSpriteRenderer;
     JellowProjectileScript jellowPro1jectileScript;
+    Image yelloHB;
 
     // Start is called before the first frame update
     void Start()
     {
+        try 
+        {
+            yelloHB = GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>();
+        }
+        catch{ }
+        
         playerScript = GetComponent<PlayerScript>();
         arrowDirection = GameObject.Find("ArrowAim");
         arrowSpriteRenderer = arrowDirection.GetComponent<SpriteRenderer>();
@@ -53,7 +60,8 @@ public class ShootScript : MonoBehaviour
         playerScript.TurnOffOnComponents(yello, line, false);
         jellowProjectileObject = Instantiate(jellowProjectilePrefab, yello.transform.position, Quaternion.identity);
         jellowPro1jectileScript = jellowProjectileObject.GetComponent<JellowProjectileScript>();
-        GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>().enabled = false;
+        if(yelloHB!=null)
+            yelloHB.enabled = false;
 
         yield return new WaitForSeconds(2);
 
@@ -65,7 +73,7 @@ public class ShootScript : MonoBehaviour
     private void ActivateCollider()
     {
         jellowProjectileObject.GetComponent<CircleCollider2D>().enabled = true;
-        line.SetActive(true);
+        //line.SetActive(true);
     }
 
 }

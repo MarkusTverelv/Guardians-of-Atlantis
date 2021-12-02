@@ -15,6 +15,9 @@ public class JellowProjectileScript : MonoBehaviour
     private Rigidbody2D rb, yellorb;
     public bool shoot = false;
     public ProjectileState currentState;
+    Image yelloHB;
+    PlayerScript yelloPlayerScript;
+    PlayerSharedScript sharedScript;
 
     public enum ProjectileState
     {
@@ -23,13 +26,12 @@ public class JellowProjectileScript : MonoBehaviour
         fire
     }
 
-    private void Awake()
-    {
-        player = GameObject.Find("Player");
-    }
     // Start is called before the first frame update
     void Start()
     {
+        sharedScript = transform.parent.GetComponent<PlayerSharedScript>();
+        yelloHB = GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>();
+        player = GameObject.Find("Player");
         attachPoint = GameObject.Find("JellowAttach").transform;
         line = GameObject.Find("Line");
         yello = GameObject.Find("Yello");
@@ -39,13 +41,15 @@ public class JellowProjectileScript : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
         arrowAim = GameObject.Find("ArrowAim").transform;
         arrowAimSpriteRenderer = arrowAim.GetComponent<SpriteRenderer>();
-
+        yelloPlayerScript = yello.GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(currentState);
+        //if()
+
         switch (currentState)
         {
             case ProjectileState.follow:
@@ -71,8 +75,8 @@ public class JellowProjectileScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            yello.GetComponent<PlayerScript>().TurnOffOnComponents(yello, line, true);
-            GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>().enabled = true;
+            yelloPlayerScript.TurnOffOnComponents(yello, line, true);
+            yelloHB.enabled = true;
             Destroy(gameObject);
         }
     }

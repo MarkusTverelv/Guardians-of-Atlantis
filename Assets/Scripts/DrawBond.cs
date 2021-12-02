@@ -23,9 +23,9 @@ public class DrawBond : MonoBehaviour
         for (int i = 0; i < lineLenght; i++)
         {   
             if(horizontal)
-                lineSegments.Add(Instantiate(lineSegment, transform.position + new Vector3(0, i / 10f), Quaternion.identity, transform));
+                lineSegments.Add(Instantiate(lineSegment, transform.position + new Vector3(0, i / 50f), Quaternion.identity, transform));
             else
-                lineSegments.Add(Instantiate(lineSegment, transform.position + new Vector3(i / 10f, 0), Quaternion.identity, transform));
+                lineSegments.Add(Instantiate(lineSegment, transform.position + new Vector3(i / 50f, 0), Quaternion.identity, transform));
             lineSegments[i].name = "Linesegment " + i;
             SpriteRenderer spriteRenderer = lineSegments[i].GetComponent<SpriteRenderer>();
             spriteRenderer.enabled = visiable;

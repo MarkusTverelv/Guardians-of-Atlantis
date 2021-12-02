@@ -130,9 +130,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 189497480759166842, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: jellowProjectilePrefab
+      value: 
+      objectReference: {fileID: 7367669499685079536, guid: ac56e938af7a0984c99ecae52b96b1ef, type: 3}
     - target: {fileID: 1168060028773331598, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: visiable
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168060028773331598, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: lineLenght
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5724268645614066452, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_Name
