@@ -20,6 +20,9 @@
         },
         {
             "m_Id": "352016cbd79b47eb857259625f316110"
+        },
+        {
+            "m_Id": "290efb3a725e4bfab2c90878c65a8adc"
         }
     ],
     "m_Keywords": [],
@@ -1140,6 +1143,29 @@
         "to": 0
     },
     "m_ConversionType": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "290efb3a725e4bfab2c90878c65a8adc",
+    "m_Guid": {
+        "m_GuidSerialized": "7a29b620-dbc8-459a-8ad1-f9b2e453bfcf"
+    },
+    "m_Name": "_MainTex",
+    "m_DefaultReferenceName": "Texture2D_290efb3a725e4bfab2c90878c65a8adc",
+    "m_OverrideReferenceName": "_MainTex",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "m_Modifiable": true,
+    "m_DefaultType": 0
 }
 
 {
