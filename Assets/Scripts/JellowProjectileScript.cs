@@ -18,6 +18,7 @@ public class JellowProjectileScript : MonoBehaviour
     Image yelloHB;
     PlayerScript yelloPlayerScript;
     PlayerSharedScript sharedScript;
+    
 
     public enum ProjectileState
     {
@@ -29,8 +30,8 @@ public class JellowProjectileScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sharedScript = transform.parent.GetComponent<PlayerSharedScript>();
-        yelloHB = GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>();
+        sharedScript = GameObject.Find("Players").GetComponent<PlayerSharedScript>();
+        //yelloHB = GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>();
         player = GameObject.Find("Player");
         attachPoint = GameObject.Find("JellowAttach").transform;
         line = GameObject.Find("Line");
@@ -75,8 +76,10 @@ public class JellowProjectileScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            yelloPlayerScript.TurnOffOnComponents(yello, line, true);
-            yelloHB.enabled = true;
+            Debug.Log("Collision");
+            yelloPlayerScript.TurnOffOnComponents(true);
+            if(yelloHB!=null)
+                yelloHB.enabled = true;
             Destroy(gameObject);
         }
     }

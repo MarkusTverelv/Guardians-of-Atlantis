@@ -7,8 +7,9 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class ShootScript : MonoBehaviour
 {
-    GameObject yello, line, pinko, arrowDirection, jellowProjectileObject;
-    PlayerScript playerScript;
+    GameObject yello, pinko, arrowDirection, jellowProjectileObject;
+    PlayerScript pinkoPlayerScript, yellloPlayerScript;
+    
     [SerializeField] GameObject jellowProjectilePrefab;
     SpriteRenderer arrowSpriteRenderer;
     bool canShoot;
@@ -27,14 +28,14 @@ public class ShootScript : MonoBehaviour
         }
         catch{ }
         
-        playerScript = GetComponent<PlayerScript>();
+        pinkoPlayerScript = GetComponent<PlayerScript>();
         arrowDirection = GameObject.Find("ArrowAim");
         arrowSpriteRenderer = arrowDirection.GetComponent<SpriteRenderer>();
         yello = GameObject.Find("Yello");
         pinko = GameObject.Find("Pinko");
-        line = GameObject.Find("Line");
         yelloCircleCollider2D = yello.GetComponent<CircleCollider2D>();
         pinkoSpriteRenderer = pinko.GetComponent<SpriteRenderer>();
+        yellloPlayerScript = yello.GetComponent<PlayerScript>();
         
     }
 
@@ -43,7 +44,7 @@ public class ShootScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R) && yelloCircleCollider2D.enabled && pinkoSpriteRenderer.enabled)
         {
-            line.SetActive(false);
+            //line.SetActive(false);
             StartCoroutine(AttachTimer());
         }
             
@@ -57,7 +58,8 @@ public class ShootScript : MonoBehaviour
     }
     IEnumerator AttachTimer()
     {
-        playerScript.TurnOffOnComponents(yello, line, false);
+        Debug.Log("AttachTimer");
+        yellloPlayerScript.TurnOffOnComponents(false);
         jellowProjectileObject = Instantiate(jellowProjectilePrefab, yello.transform.position, Quaternion.identity);
         jellowPro1jectileScript = jellowProjectileObject.GetComponent<JellowProjectileScript>();
         if(yelloHB!=null)

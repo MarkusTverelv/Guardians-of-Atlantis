@@ -46,7 +46,7 @@ public class ShieldScript : MonoBehaviour
 
     IEnumerator ActivateShield()
     {
-        playerScript.TurnOffOnComponents(pinko, line, false);
+        playerScript.TurnOffOnComponents(false);
         pinkoProjectile2 = Instantiate(pinkoProjectile, pinko.transform.position, Quaternion.identity);
         pinkoHBImage = GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>();
         pinkoHBImage.enabled = false;
@@ -54,7 +54,7 @@ public class ShieldScript : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        shieldPreFab2 = Instantiate(shieldPreFab, this.transform.position, Quaternion.identity, this.transform);
+        shieldPreFab2 = Instantiate(shieldPreFab, transform.position, Quaternion.identity, transform);
 
         yield return new WaitForSeconds(5);
 
@@ -63,7 +63,7 @@ public class ShieldScript : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        GetComponent<PlayerScript>().TurnOffOnComponents(pinko, line, true);
+        GetComponent<PlayerScript>().TurnOffOnComponents(true);
         pinkoHBImage.enabled = true;
         Destroy(pinkoProjectile2);
 

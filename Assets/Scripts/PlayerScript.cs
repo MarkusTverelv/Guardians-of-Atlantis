@@ -22,6 +22,9 @@ public class PlayerScript : MonoBehaviour
     AudioSource audioSource;
     int regenCounter;
     PlayerSharedScript playerShared;
+    GameObject line;
+    Light2D light2D;
+    CircleCollider2D circle;
     void Start()
     {
         
@@ -37,6 +40,9 @@ public class PlayerScript : MonoBehaviour
         StartCoroutine(Splash());
         turnSpeed = playerShared.turnSpeed;
         moveSpeed = playerShared.moveSpeed;
+        line = GameObject.Find("Line");
+        light2D = GetComponent<Light2D>();
+        circle = GetComponent<CircleCollider2D>();
     }
     private void FixedUpdate()
     {
@@ -117,12 +123,12 @@ public class PlayerScript : MonoBehaviour
     }
     
 
-    public void TurnOffOnComponents(GameObject player, GameObject line, bool onOff)
+    public void TurnOffOnComponents(bool onOff)
     {
-        player.GetComponent<SpriteRenderer>().enabled = onOff;
-        player.GetComponent<Light2D>().enabled = onOff;
-        player.GetComponent<TrailRenderer>().enabled = onOff;
-        player.GetComponent<CircleCollider2D>().enabled = onOff;
-        line.GetComponent<LineRenderer>().enabled = onOff;
+        spriteRenderer.enabled = onOff;
+        light2D.enabled = onOff;
+        trailRenderer.enabled = onOff;
+        circle.enabled = onOff;
+        line.SetActive(onOff);
     }
 }
