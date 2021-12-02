@@ -45,7 +45,7 @@ public class JellowProjectileScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
         switch (currentState)
         {
             case ProjectileState.follow:
@@ -56,7 +56,7 @@ public class JellowProjectileScript : MonoBehaviour
                 break;
             case ProjectileState.fire:
                 rb.AddForce(arrowAim.right * 20); 
-                yellorb.position = Vector2.MoveTowards(yellorb.position, this.transform.position, 30 * Time.deltaTime);
+                yellorb.position = Vector2.MoveTowards(yellorb.position, transform.position, 30 * Time.deltaTime);
                 arrowAimSpriteRenderer.enabled = false;
                 
                 break;
