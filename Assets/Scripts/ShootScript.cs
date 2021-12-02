@@ -22,6 +22,7 @@ public class ShootScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         try 
         {
             yelloHB = GameObject.FindGameObjectWithTag("YelloHB").GetComponent<Image>();
@@ -36,6 +37,7 @@ public class ShootScript : MonoBehaviour
         yelloCircleCollider2D = yello.GetComponent<CircleCollider2D>();
         pinkoSpriteRenderer = pinko.GetComponent<SpriteRenderer>();
         yellloPlayerScript = yello.GetComponent<PlayerScript>();
+        
         
     }
 
