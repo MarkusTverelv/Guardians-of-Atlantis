@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  agrroRange: 0
-  electricity: {fileID: 0}
+  agrroRange: 30
+  electricity: {fileID: 8300000, guid: c0390227b3d055a43aad950ed2c4757c, type: 3}
 --- !u!50 &9195211425412326897
 Rigidbody2D:
   serializedVersion: 4
