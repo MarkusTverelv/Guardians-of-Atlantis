@@ -42,7 +42,7 @@ public class YelloFollow : MonoBehaviour
         #region PlayerState checks
         if (direction != 0)
             currentPlayerState = PlayerStates.Moving;
-        else if (Input.GetKeyDown(KeyCode.Return))
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
             currentPlayerState = PlayerStates.Dash;
         else
             currentPlayerState = PlayerStates.Idle;
