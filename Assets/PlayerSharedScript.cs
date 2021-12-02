@@ -28,7 +28,7 @@ public class PlayerSharedScript : MonoBehaviour
         bodies = new Rigidbody2D[] { yelloBody, pinkoBody };
         try
         {
-            spawn = GameObject.Find("SpawnPoint").GetComponent<SpawnPointScript>()
+            spawn = GameObject.Find("SpawnPoint").GetComponent<SpawnPointScript>();
         }
         catch { }
         if (spawn.position != null)
