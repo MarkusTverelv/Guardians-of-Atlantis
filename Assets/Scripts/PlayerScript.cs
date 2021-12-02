@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float invTime, regenTime;
     [SerializeField] AudioClip hurtClip, healClip;
     [SerializeField] AudioClip[] spalshClips;
+    public Image healthbar;
     public int maxHealth;
     bool blink;
     bool blikning;
@@ -120,6 +122,7 @@ public class PlayerScript : MonoBehaviour
         light2D.enabled = b;
         trailRenderer.enabled = b;
         circle.enabled = b;
+        healthbar.enabled = b;
         foreach (SpriteRenderer sprite in lineSegmentSprites)
             sprite.enabled = b;
     }

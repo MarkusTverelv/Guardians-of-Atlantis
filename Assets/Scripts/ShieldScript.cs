@@ -8,19 +8,22 @@ public class ShieldScript : MonoBehaviour
     //Attached to Yello
 
     GameObject pinko, line, pinkoProjectile2, shieldPreFab2;
+
     Image pinkoHBImage;
     public GameObject pinkoProjectile, shieldPreFab;
     SpriteRenderer spriteRenderer;
     
     
     bool canMove = false;
-    PlayerScript playerScript;
+    PlayerScript yelloPlayerScript, pinkoPlayerScript;
     // Start is called before the first frame update
     void Start()
     {
-        playerScript = GetComponent<PlayerScript>();
+        yelloPlayerScript = GetComponent<PlayerScript>();
+        pinkoPlayerScript = GameObject.Find("Pinko").GetComponent<PlayerScript>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
         pinko = GameObject.Find("Pinko");
         line = GameObject.Find("Line");
     }
@@ -46,7 +49,7 @@ public class ShieldScript : MonoBehaviour
 
     IEnumerator ActivateShield()
     {
-        playerScript.TurnOffOnComponents(false);
+        pinkoPlayerScript.TurnOffOnComponents(false);
         pinkoProjectile2 = Instantiate(pinkoProjectile, pinko.transform.position, Quaternion.identity);
         pinkoHBImage = GameObject.FindGameObjectWithTag("PinkoHB").GetComponent<Image>();
         pinkoHBImage.enabled = false;
@@ -63,7 +66,7 @@ public class ShieldScript : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        GetComponent<PlayerScript>().TurnOffOnComponents(true);
+        pinkoPlayerScript.TurnOffOnComponents(true);
         pinkoHBImage.enabled = true;
         Destroy(pinkoProjectile2);
 
