@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnPointScript : MonoBehaviour
 {
-    public Vector3 position;
+    [HideInInspector] public Vector3 position;
     // Start is called before the first frame update
     void Start()
     {

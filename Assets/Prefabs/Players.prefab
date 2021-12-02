@@ -418,9 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1a51b245b4ea14c992655c88b2b1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visiable: 0
+  visiable: 1
   horizontal: 0
-  lineLenght: 100
+  lineLenght: 250
   lineSegment: {fileID: 8212056670583758928, guid: 5e460e6b3302977478b8e4e345a839dc, type: 3}
 --- !u!120 &6501178838839606546
 LineRenderer:
@@ -660,8 +660,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   playersPrefab: {fileID: 5724268645614066452}
-  bondLenght: 5
-  bondForce: 5
   moveSpeed: 250
   turnSpeed: 30
 --- !u!1 &7117930116532709011
@@ -731,6 +729,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4c90fdf2aaefa6042bdea722d7751aeb, type: 3}
   - {fileID: 8300000, guid: f52b7bcf4af1ecd47a79f4f6c65e0900, type: 3}
   - {fileID: 8300000, guid: 2960d2be96090714098b332eb066770c, type: 3}
+  healthbar: {fileID: 0}
   maxHealth: 3
 --- !u!114 &7327606895687972275
 MonoBehaviour:
@@ -1200,6 +1199,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4c90fdf2aaefa6042bdea722d7751aeb, type: 3}
   - {fileID: 8300000, guid: f52b7bcf4af1ecd47a79f4f6c65e0900, type: 3}
   - {fileID: 8300000, guid: 2960d2be96090714098b332eb066770c, type: 3}
+  healthbar: {fileID: 0}
   maxHealth: 3
 --- !u!114 &6504409275832669214
 MonoBehaviour:
