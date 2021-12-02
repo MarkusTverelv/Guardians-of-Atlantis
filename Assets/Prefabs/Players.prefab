@@ -831,7 +831,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -107.3, y: 74}
+  m_ConnectedAnchor: {x: 0, y: 0}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1098,6 +1098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashForce: 300
   dashCooldown: 5
+  dashDuration: 1
 --- !u!114 &245937247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,7 +1300,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -107.3, y: 74}
+  m_ConnectedAnchor: {x: 0, y: 0}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1537,6 +1538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dashForce: 300
   dashCooldown: 5
+  dashDuration: 1
 --- !u!114 &189497480759166842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,7 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8141c5230f98d54095e3747a384321b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jellowProjectile: {fileID: 7367669499685079536, guid: ac56e938af7a0984c99ecae52b96b1ef, type: 3}
+  jellowProjectilePrefab: {fileID: 7367669499685079536, guid: ac56e938af7a0984c99ecae52b96b1ef, type: 3}
 --- !u!114 &368873284
 MonoBehaviour:
   m_ObjectHideFlags: 0
