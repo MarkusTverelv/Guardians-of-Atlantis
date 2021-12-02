@@ -29,10 +29,11 @@ public class PlayerSharedScript : MonoBehaviour
         try
         {
             spawn = GameObject.Find("SpawnPoint").GetComponent<SpawnPointScript>();
+            if (spawn.position != null)
+                transform.position = spawn.position;
         }
         catch { }
-        if (spawn.position != null)
-            transform.position = spawn.position;
+        
 
         Physics2D.IgnoreCollision(yelloCollider, pinkoCollider);
     }
