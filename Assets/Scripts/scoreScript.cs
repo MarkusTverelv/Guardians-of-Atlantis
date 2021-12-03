@@ -13,7 +13,12 @@ public class scoreScript : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
         tmp = GetComponent<TextMeshProUGUI>();
         //tmp.enabled = SceneManager.GetActiveScene().name == "Level";
-        counterScript = GameObject.Find("ScoreCounter").GetComponent<ScoreCounterScript>();
+        try
+        {
+            counterScript = GameObject.Find("ScoreCounter").GetComponent<ScoreCounterScript>();
+        }
+        catch { }
+       
 
     }
     
