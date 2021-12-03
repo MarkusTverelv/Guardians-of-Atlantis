@@ -93,7 +93,7 @@ public class JellyfishScript : MonoBehaviour
         spriteRenderer.color = Color.white;
         inv = false;
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

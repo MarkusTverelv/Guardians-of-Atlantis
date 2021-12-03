@@ -6,6 +6,8 @@ public class MarWallScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public float wait, speed;
+    public AudioClip chaseMusic, mainMusic;
+    public AudioSource musicplayer;
     void Start()
     {
         StartCoroutine(Chase());
@@ -13,13 +15,16 @@ public class MarWallScript : MonoBehaviour
 
     IEnumerator Chase()
     {
+        
         yield return new WaitForSeconds(wait);
         while(true)
         {
+            
             transform.position += new Vector3(speed, 0);
             yield return new WaitForFixedUpdate();
         }
     }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
