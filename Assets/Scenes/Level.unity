@@ -6402,7 +6402,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: d9f041fd5ba522641bc2ece317d9fd55, type: 3}
-  m_Color: {r: 0, g: 0.99165225, b: 1, a: 1}
+  m_Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12687,7 +12687,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: d8c042203ab77ec4c98752027290bd6c, type: 3}
-  m_Color: {r: 0, g: 0.99215686, b: 1, a: 1}
+  m_Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -15309,7 +15309,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 528237f1c49eb4b48af6fb5865c9f2b6, type: 3}
-  m_Color: {r: 0, g: 0.99215686, b: 1, a: 1}
+  m_Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -29840,7 +29840,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 1792e683da917f140834a953da6cd482, type: 3}
-  m_Color: {r: 0, g: 0.99215686, b: 1, a: 1}
+  m_Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -35417,6 +35417,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 368873284, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 368873284, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 665242681, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -35456,6 +35464,14 @@ PrefabInstance:
     - target: {fileID: 5724268645614066452, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_Name
       value: Players
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146650662978717410, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146650662978717410, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6501178838839606546, guid: 54b80be49985a20458b23af098f9c2ee, type: 3}
       propertyPath: m_Enabled
