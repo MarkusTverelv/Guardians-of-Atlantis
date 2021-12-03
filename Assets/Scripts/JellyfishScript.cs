@@ -15,13 +15,13 @@ public class JellyfishScript : MonoBehaviour
     AudioSource audioSource;
     SpriteRenderer spriteRenderer;
     bool inv;
-    
+
     Vector3 startPos;
-    enum state 
+    enum state
     {
-        aggro, 
-        returning, 
-        patrolling 
+        aggro,
+        returning,
+        patrolling
     }
     state currentState = state.patrolling;
 
@@ -42,16 +42,16 @@ public class JellyfishScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(currentState == state.aggro)
+        if (currentState == state.aggro)
             body.AddForce((player.transform.position - transform.position).normalized * speed);
-        else 
+        else
         {
-            if(Vector3.Distance(startPos , transform.position)>1 && currentState == state.returning)
+            if (Vector3.Distance(startPos, transform.position) > 1 && currentState == state.returning)
                 body.AddForce((startPos - transform.position).normalized * speed);
-            else 
+            else
             {
                 currentState = state.patrolling;
-                if(turn)
+                if (turn)
                 {
                     body.AddForce(new Vector3(0, 0.5f * speed));
                     if (transform.position.y > startPos.y + 2)
@@ -64,15 +64,15 @@ public class JellyfishScript : MonoBehaviour
                         turn = true;
                 }
             }
-            
+
         }
         spriteRenderer.flipX = body.velocity.x < 0;
-        
+
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             currentState = state.aggro;
             player = collision.gameObject;
@@ -100,9 +100,9 @@ public class JellyfishScript : MonoBehaviour
             collision.gameObject.GetComponent<PlayerScript>().hurt();
 
         }
-        else if (collision.gameObject.CompareTag("Projectile")&&!inv)
-        { 
-            if(currentHealth>1)
+        else if (collision.gameObject.CompareTag("Projectile") && !inv)
+        {
+            if (currentHealth > 1)
             {
                 StartCoroutine(flashRedTimer());
                 Debug.Log(currentHealth);
@@ -117,10 +117,10 @@ public class JellyfishScript : MonoBehaviour
                 Destroy(gameObject);
                 audioSource.pitch = 1;
 
-            }    
+            }
         }
-            
-            
+
+
     }
 
 
