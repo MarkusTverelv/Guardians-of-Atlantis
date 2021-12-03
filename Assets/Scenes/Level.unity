@@ -22431,7 +22431,7 @@ GameObject:
   - component: {fileID: 985267694}
   m_Layer: 0
   m_Name: LevelCollider
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33006,7 +33006,7 @@ GameObject:
   - component: {fileID: 1860911970}
   m_Layer: 0
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35799,6 +35799,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1570544554035328496, guid: 46d32124721be044a96b2bb951609405, type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 2.7441244
+      objectReference: {fileID: 0}
     - target: {fileID: 5504455154210884097, guid: 46d32124721be044a96b2bb951609405, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 11.98
@@ -35821,11 +35825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5504455154210884099, guid: 46d32124721be044a96b2bb951609405, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -74.7828
+      value: 31.9
       objectReference: {fileID: 0}
     - target: {fileID: 5504455154210884099, guid: 46d32124721be044a96b2bb951609405, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 46.575397
+      value: 29.8
       objectReference: {fileID: 0}
     - target: {fileID: 5504455154210884099, guid: 46d32124721be044a96b2bb951609405, type: 3}
       propertyPath: m_LocalPosition.z
