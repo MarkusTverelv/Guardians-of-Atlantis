@@ -49,6 +49,8 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         body.AddTorque(turn * -turnSpeed);
+        if (move < 1)
+            move /= 2;
         body.AddRelativeForce(new Vector3(0, move * moveSpeed));   
     }
     IEnumerator Splash() 

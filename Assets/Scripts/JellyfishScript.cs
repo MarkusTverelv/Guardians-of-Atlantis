@@ -35,7 +35,7 @@ public class JellyfishScript : MonoBehaviour
         startPos = transform.position;
         transform.GetChild(0).GetComponent<CircleCollider2D>().radius = agrroRange;
         body = GetComponent<Rigidbody2D>();
-        aggroCollider = GetComponentInChildren<CircleCollider2D>();
+        aggroCollider = transform.GetChild(0).GetComponentInChildren<CircleCollider2D>();
         aggroCollider.radius = agrroRange;
     }
 
