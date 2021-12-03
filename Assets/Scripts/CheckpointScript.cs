@@ -10,8 +10,6 @@ public class CheckpointScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
-
         light2D = GetComponent<Light2D>();
         playerShared = GameObject.Find("Players").GetComponent<PlayerSharedScript>();
         playerShared.onCheckpointSet.AddListener(SetLightColor);
