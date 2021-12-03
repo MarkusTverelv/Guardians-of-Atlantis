@@ -8,7 +8,7 @@ public class JellyfishScript : MonoBehaviour
     int currentHealth;
     Rigidbody2D body;
     bool aggro, turn, patrolling;
-    CircleCollider2D aggroRange;
+    CircleCollider2D aggroCollider;
     public float speed, agrroRange;
     GameObject player;
     public AudioClip electricity, hurt, death;
@@ -35,7 +35,8 @@ public class JellyfishScript : MonoBehaviour
         startPos = transform.position;
         transform.GetChild(0).GetComponent<CircleCollider2D>().radius = agrroRange;
         body = GetComponent<Rigidbody2D>();
-        aggroRange = GetComponentInChildren<CircleCollider2D>();
+        aggroCollider = GetComponentInChildren<CircleCollider2D>();
+        aggroCollider.radius = agrroRange;
     }
 
 
