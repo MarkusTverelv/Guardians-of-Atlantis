@@ -26,12 +26,15 @@ public class AltMovement : MonoBehaviour
         yelloRigidbody = yello.GetComponent<Rigidbody2D>();
         pinkoRigidbody = pinko.GetComponent<Rigidbody2D>();
     }
+
+    //M=(2x1?+x2??,2y1?+y2??)
+
     private void FixedUpdate()
     {
         distance = (yelloRigidbody.position - pinkoRigidbody.position).magnitude;
 
-        yelloRigidbody.position = Vector3.Slerp(yelloRigidbody.position, this.transform.position, (distance / 10) * Time.deltaTime);
-        pinkoRigidbody.position = Vector3.Slerp(pinkoRigidbody.position, this.transform.position, (distance / 10) * Time.deltaTime);
+        yelloRigidbody.position = Vector3.Slerp(yelloRigidbody.position, (yelloRigidbody.position + pinkoRigidbody.position) / 2, (distance / 10) * Time.deltaTime);
+        pinkoRigidbody.position = Vector3.Slerp(pinkoRigidbody.position, (pinkoRigidbody.position + yelloRigidbody.position) / 2, (distance / 10) * Time.deltaTime);
 
         pinkoMove.Move();
         pinkoMove.Turn();
@@ -39,5 +42,4 @@ public class AltMovement : MonoBehaviour
         yelloMove.Move();
         yelloMove.Turn();
     }
-
 }
