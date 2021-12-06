@@ -26,6 +26,9 @@
         },
         {
             "m_Id": "d6d5c3ff85f24940bfb9368aae3d5f49"
+        },
+        {
+            "m_Id": "8526c75a73764ca48b31966148c9caf3"
         }
     ],
     "m_Keywords": [],
@@ -392,8 +395,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 0.0,
-            "y": 200.0
+            "x": 143.199951171875,
+            "y": 225.59999084472657
         },
         "m_Blocks": [
             {
@@ -1606,6 +1609,29 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "8526c75a73764ca48b31966148c9caf3",
+    "m_Guid": {
+        "m_GuidSerialized": "fec6ebb8-e1b3-4485-ad0b-4245b298cdaf"
+    },
+    "m_Name": "_MainTex",
+    "m_DefaultReferenceName": "Texture2D_8526c75a73764ca48b31966148c9caf3",
+    "m_OverrideReferenceName": "_MainTex",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "m_Modifiable": true,
+    "m_DefaultType": 0
 }
 
 {
