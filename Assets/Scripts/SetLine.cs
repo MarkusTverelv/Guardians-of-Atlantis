@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class SetLine : MonoBehaviour
 {
-    LineRenderer lr;
-
     public Rigidbody2D[] linePositions;
+    private LineRenderer lr;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +16,6 @@ public class SetLine : MonoBehaviour
     private void FixedUpdate()
     {
         for (int i = 0; i < linePositions.Length; i++)
-        {
             lr.SetPosition(i, linePositions[i].position);
-        }
     }
 }
