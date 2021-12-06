@@ -23,6 +23,9 @@
         },
         {
             "m_Id": "4cd34bac377f4ccf8c306934c407f520"
+        },
+        {
+            "m_Id": "e82d55e3f1a44134b5f9a2b8ccf9754a"
         }
     ],
     "m_Keywords": [],
@@ -4463,6 +4466,29 @@
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalSpriteLitSubTarget",
     "m_ObjectId": "e3ff1be2cdd144e9be5b7b21b89eb297"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "e82d55e3f1a44134b5f9a2b8ccf9754a",
+    "m_Guid": {
+        "m_GuidSerialized": "466384d4-2e1f-4bf3-a157-3dbf9cb0a226"
+    },
+    "m_Name": "Texture2D (1)",
+    "m_DefaultReferenceName": "Texture2D_e82d55e3f1a44134b5f9a2b8ccf9754a",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "m_Modifiable": true,
+    "m_DefaultType": 0
 }
 
 {
