@@ -6,6 +6,9 @@ public class NewPinkoMovement : MonoBehaviour
 {
     public float moveSpeed, turnSpeed, maxMoveSpeed;
 
+    [Range(0.0f, 1.0f)]
+    public float deacceleration;
+
     private float move, turn;
 
     private Rigidbody2D rb;
@@ -34,7 +37,7 @@ public class NewPinkoMovement : MonoBehaviour
             velocity = velocity.normalized * maxMoveSpeed;
 
         else if (NormalizedInput(move) == Vector2.zero)
-            velocity *= 0.95f;
+            velocity *= deacceleration;
 
         rb.velocity += velocity;
     }

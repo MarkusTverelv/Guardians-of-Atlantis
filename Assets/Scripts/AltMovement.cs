@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,8 +26,13 @@ public class AltMovement : MonoBehaviour
         yelloRigidbody = yello.GetComponent<Rigidbody2D>();
         pinkoRigidbody = pinko.GetComponent<Rigidbody2D>();
     }
+    private void Update()
+    {
+        yelloMove.Turn();
+        pinkoMove.Turn();
+    }
 
-    //M=(2x1?+x2??,2y1?+y2??)
+    //M=(2x1​+x2​​,2y1​+y2​​)
 
     private void FixedUpdate()
     {
@@ -36,10 +41,7 @@ public class AltMovement : MonoBehaviour
         yelloRigidbody.position = Vector3.Slerp(yelloRigidbody.position, (yelloRigidbody.position + pinkoRigidbody.position) / 2, (distance / 10) * Time.deltaTime);
         pinkoRigidbody.position = Vector3.Slerp(pinkoRigidbody.position, (pinkoRigidbody.position + yelloRigidbody.position) / 2, (distance / 10) * Time.deltaTime);
 
-        pinkoMove.Move();
-        pinkoMove.Turn();
-
         yelloMove.Move();
-        yelloMove.Turn();
+        pinkoMove.Move();
     }
 }
