@@ -14,7 +14,7 @@ public class CheckpointScript : MonoBehaviour
         playerShared = GameObject.Find("Players").GetComponent<PlayerSharedScript>();
         playerShared.onCheckpointSet.AddListener(SetLightColor);
 
-        if (playerShared.checkpoint == gameObject)
+        if (playerShared.checkPoint == gameObject)
             light2D.color = Color.green;
         else
             light2D.color = Color.blue;
@@ -31,7 +31,7 @@ public class CheckpointScript : MonoBehaviour
     }
     void SetLightColor()
     {
-        if (playerShared.checkpoint == gameObject)
+        if (playerShared.checkPoint == gameObject)
             light2D.color = Color.green;
         else
             light2D.color = Color.blue;
