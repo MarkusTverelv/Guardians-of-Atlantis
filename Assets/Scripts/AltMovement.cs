@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerStates
+{
+    Idle,
+    Moving,
+    Shield,
+    Attack,
+    Push
+}
+
 public class AltMovement : MonoBehaviour
 {
     public GameObject pinko;
@@ -14,6 +23,7 @@ public class AltMovement : MonoBehaviour
     Rigidbody2D pinkoRigidbody;
 
     private float distance = 0.0f;
+    private Vector3 midPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -37,11 +47,17 @@ public class AltMovement : MonoBehaviour
     private void FixedUpdate()
     {
         distance = (yelloRigidbody.position - pinkoRigidbody.position).magnitude;
+        midPoint = (yelloRigidbody.position + pinkoRigidbody.position) / 2;
 
-        yelloRigidbody.position = Vector3.Slerp(yelloRigidbody.position, (yelloRigidbody.position + pinkoRigidbody.position) / 2, (distance / 10) * Time.deltaTime);
-        pinkoRigidbody.position = Vector3.Slerp(pinkoRigidbody.position, (pinkoRigidbody.position + yelloRigidbody.position) / 2, (distance / 10) * Time.deltaTime);
+        Attraction();
 
         yelloMove.Move();
         pinkoMove.Move();
+    }
+
+    private void Attraction()
+    {
+        yelloRigidbody.position = Vector3.Slerp(yelloRigidbody.position, midPoint, (distance / 10) * Time.deltaTime);
+        pinkoRigidbody.position = Vector3.Slerp(pinkoRigidbody.position, midPoint, (distance / 10) * Time.deltaTime);
     }
 }
