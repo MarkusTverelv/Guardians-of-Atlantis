@@ -7,6 +7,7 @@ public class OilSpawner : MonoBehaviour
 {
     float width, height;
     public GameObject oil;
+    public GameObject oil2;
     public GameObject indicator;
     public List<Vector2> randomPos;
     
@@ -24,6 +25,13 @@ public class OilSpawner : MonoBehaviour
         {
 
             StartCoroutine(oilTimer());
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+
+            spawnOil();
 
         }
     }
@@ -49,5 +57,10 @@ public class OilSpawner : MonoBehaviour
         randomPos.Clear();
 
 
+    }
+
+    void spawnOil()
+    {
+        Instantiate(oil2, new Vector3(-width - 5, height), Quaternion.identity);
     }
 }
