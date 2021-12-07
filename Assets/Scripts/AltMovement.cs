@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerStates
+public enum NewPlayerStates
 {
     Idle,
     Moving,
