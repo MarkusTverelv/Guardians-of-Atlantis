@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NewYelloMovement : MonoBehaviour
 {
+    public GameObject shieldPrefab;
     public float moveSpeed, turnSpeed, maxMoveSpeed;
 
     [Range(0.0f, 1.0f)]
@@ -50,5 +51,35 @@ public class NewYelloMovement : MonoBehaviour
     public void Turn()
     {
         yelloGFXTransform.Rotate(Vector3.forward, -turn * turnSpeed * Time.deltaTime);
+    }
+
+    public bool Shield(float dist, Rigidbody2D pinko)
+    {
+        bool deployShield = false;
+
+        if (dist >= 1.5f)
+            pinko.position = Vector2.MoveTowards(pinko.position,
+                rb.position, 50 * Time.deltaTime);
+
+        else if (dist < 1.5f)
+            pinko.position = rb.position;
+
+        if (pinko.position == rb.position)
+        {
+            deployShield = true;
+
+            if (deployShield)
+            {
+                GameObject shield = Instantiate(shieldPrefab, rb.position, Quaternion.identity);
+                Destroy(shield, 2);
+
+                if (shield != null)
+                    deployShield = false;
+                else
+                    return true;
+            }
+        }
+
+        return false;
     }
 }

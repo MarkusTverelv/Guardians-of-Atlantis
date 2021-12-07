@@ -275,7 +275,7 @@ MonoBehaviour:
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
+  m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
   m_ShadowIntensity: 0
@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5b8264fc01f3543a797d763f3761f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shieldPrefab: {fileID: 5118410775046236669, guid: 919e23a2ba8621046aae9b7d9bed4827, type: 3}
   moveSpeed: 50
   turnSpeed: 300
   maxMoveSpeed: 2
@@ -1080,7 +1081,7 @@ MonoBehaviour:
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
+  m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
   m_ShadowIntensity: 0
@@ -1147,10 +1148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bd10ba1c71f67448ac476e24d4a29ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deacceleration: 0.9
   moveSpeed: 50
   turnSpeed: 300
   maxMoveSpeed: 2
-  deacceleration: 0.9
+  shootForce: 100
   pinkoGFXTransform: {fileID: 1543474516}
 --- !u!58 &1870594903
 CircleCollider2D:

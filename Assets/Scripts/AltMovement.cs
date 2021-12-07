@@ -27,8 +27,6 @@ public class AltMovement : MonoBehaviour
     float distance = 0.0f;
     float shootForce = 50.0f;
 
-    bool shoot = false;
-
     NewPlayerStates currentState = NewPlayerStates.Idle;
 
     // Start is called before the first frame update
@@ -47,6 +45,9 @@ public class AltMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             currentState = NewPlayerStates.Attack;
 
+        if (Input.GetKeyDown(KeyCode.L))
+            currentState = NewPlayerStates.Shield;
+
         yelloMove.Turn();
         pinkoMove.Turn();
 
@@ -62,13 +63,17 @@ public class AltMovement : MonoBehaviour
 
         yelloMove.Move();
         pinkoMove.Move();
-
     }
 
     private void Attraction()
     {
-        yelloRigidbody.position = Vector3.Slerp(yelloRigidbody.position, midPoint, (distance / 10) * Time.deltaTime);
-        pinkoRigidbody.position = Vector3.Slerp(pinkoRigidbody.position, midPoint, (distance / 10) * Time.deltaTime);
+        if (distance > 2.0f)
+        {
+            yelloRigidbody.position = Vector3.Slerp(yelloRigidbody.position, midPoint, (distance / 10) * Time.deltaTime);
+            pinkoRigidbody.position = Vector3.Slerp(pinkoRigidbody.position, midPoint, (distance / 10) * Time.deltaTime);
+        }
+        else
+            return;
     }
 
     private void StateSwitcher()
@@ -82,41 +87,17 @@ public class AltMovement : MonoBehaviour
                 Attraction();
                 break;
             case NewPlayerStates.Shield:
+                if (yelloMove.Shield(distance, pinkoRigidbody))
+                    currentState = NewPlayerStates.Idle;
                 break;
             case NewPlayerStates.Attack:
-                Shoot(shoot);
+                if (pinkoMove.Shoot(distance, yelloRigidbody))
+                    currentState = NewPlayerStates.Idle;
                 break;
             case NewPlayerStates.Push:
                 break;
             default:
                 break;
-        }
-    }
-
-    private void Shoot(bool canShoot)
-    {
-        if (distance >= 1.5f)
-            yelloRigidbody.position = Vector2.MoveTowards(yelloRigidbody.position, pinkoRigidbody.position, 50 * Time.deltaTime);
-
-        else if (distance < 1.5f)
-        {
-            if (!canShoot)
-                yelloRigidbody.position = pinkoRigidbody.position;
-        }
-
-        if (Input.GetKey(KeyCode.Return))
-        {
-            shootForce += 0.2f;
-
-            if (shootForce > 300.0f)
-                shootForce = 300.0f;
-        }
-
-        if (Input.GetKeyUp(KeyCode.Return))
-        {
-            yelloRigidbody.AddForce(pinkoMove.PinkoGFX.up * shootForce, ForceMode2D.Impulse);
-            shootForce = 50.0f;
-            currentState = NewPlayerStates.Idle;
         }
     }
 }

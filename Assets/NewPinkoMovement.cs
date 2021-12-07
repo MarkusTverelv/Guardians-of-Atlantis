@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NewPinkoMovement : MonoBehaviour
 {
-    public float moveSpeed, turnSpeed, maxMoveSpeed;
-
     [Range(0.0f, 1.0f)]
     public float deacceleration;
+    public float moveSpeed, turnSpeed, maxMoveSpeed;
+    public float shootForce;
 
     private float move, turn;
 
@@ -59,5 +59,32 @@ public class NewPinkoMovement : MonoBehaviour
     public void Turn()
     {
         pinkoGFXTransform.Rotate(Vector3.forward, -turn * turnSpeed * Time.deltaTime);
+    }
+
+    public bool Shoot(float dist, Rigidbody2D yello)
+    {
+        if (dist >= 1.5f)
+            yello.position = Vector2.MoveTowards(yello.position,
+                rb.position, 50 * Time.deltaTime);
+
+        else if (dist < 1.5f)
+            yello.position = rb.position;
+
+        if (Input.GetKey(KeyCode.Return))
+        {
+            shootForce += 0.2f;
+
+            if (shootForce > 300.0f)
+                shootForce = 300.0f;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Return))
+        {
+            yello.AddForce(pinkoGFXTransform.up * shootForce, ForceMode2D.Impulse);
+            shootForce = 50.0f;
+            return true;
+        }
+
+        return false;
     }
 }
