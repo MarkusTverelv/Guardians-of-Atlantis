@@ -7,6 +7,12 @@ public class LiquidParticleScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject[] Tentacle = GameObject.FindGameObjectsWithTag("Tentacle");
+
+        foreach(GameObject t in Tentacle)
+        {
+            Physics2D.IgnoreCollision(t.GetComponent<BoxCollider2D>(), GetComponent<CircleCollider2D>());
+        }
         
     }
 

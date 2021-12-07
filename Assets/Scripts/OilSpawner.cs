@@ -6,9 +6,14 @@ using UnityEngine;
 public class OilSpawner : MonoBehaviour
 {
     float width, height;
-    public GameObject oil;
-    public GameObject oil2;
-    public GameObject indicator;
+
+    public GameObject oil, oil2, bigOil, biggestOil;
+
+    public GameObject indicator, bigIndicator, biggestIndicator;
+    public GameObject biggestOilSpot;
+    public GameObject[] IndicatorList;
+
+
     public List<Vector2> randomPos;
     
     // Start is called before the first frame update
@@ -25,6 +30,7 @@ public class OilSpawner : MonoBehaviour
         {
 
             StartCoroutine(oilTimer());
+            
 
         }
 
@@ -34,6 +40,28 @@ public class OilSpawner : MonoBehaviour
             spawnOil();
 
         }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+
+            StartCoroutine(OilInRoom());
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+
+            StartCoroutine(BigOilInRoom());
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+
+            StartCoroutine(OilZigZag());
+
+        }
+
     }
 
     IEnumerator oilTimer()
@@ -41,17 +69,16 @@ public class OilSpawner : MonoBehaviour
         
         for (int i = 0; i < 20; i++)
         {
-            randomPos.Add(new Vector2(Random.Range(-width, width), Random.Range(-height, height)));
+            randomPos.Add(new Vector2(Random.Range(-width - 10, width - 20), Random.Range(-height - 10, height + 10)));
             Instantiate(indicator, randomPos[i], Quaternion.identity);
         }
 
-        Debug.Log(randomPos.Count);
         yield return new WaitForSeconds(2);
 
         for (int i = 0; i < randomPos.Count; i++)
         {
-            Instantiate(oil, randomPos[i], Quaternion.identity);
-            
+            var oilCopy = Instantiate(oil, randomPos[i], Quaternion.identity);
+            Destroy(oilCopy, 0.5f);
         }
 
         randomPos.Clear();
@@ -61,6 +88,56 @@ public class OilSpawner : MonoBehaviour
 
     void spawnOil()
     {
-        Instantiate(oil2, new Vector3(-width - 5, height), Quaternion.identity);
+        var oilCopy = Instantiate(oil2, new Vector3(-width - 10, height + 20), Quaternion.identity);
+        Destroy(oilCopy, 10);
+    }
+
+
+    IEnumerator OilInRoom()
+    {
+        Instantiate(bigIndicator, IndicatorList[0].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(bigOil, IndicatorList[0].transform.position, Quaternion.identity);
+        Instantiate(bigIndicator, IndicatorList[1].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(bigOil, IndicatorList[1].transform.position, Quaternion.identity);
+        Instantiate(bigIndicator, IndicatorList[2].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(bigOil, IndicatorList[2].transform.position, Quaternion.identity);
+        Instantiate(bigIndicator, IndicatorList[3].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(bigOil, IndicatorList[3].transform.position, Quaternion.identity);
+        //Go Reverse
+        Instantiate(bigIndicator, IndicatorList[2].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(bigOil, IndicatorList[2].transform.position, Quaternion.identity);
+        Instantiate(bigIndicator, IndicatorList[1].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(bigOil, IndicatorList[1].transform.position, Quaternion.identity);
+        Instantiate(bigIndicator, IndicatorList[0].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(bigOil, IndicatorList[0].transform.position, Quaternion.identity);
+
+    }
+
+    IEnumerator OilZigZag()
+    {
+        Instantiate(bigIndicator, IndicatorList[0].transform.position, Quaternion.identity);
+        Instantiate(bigIndicator, IndicatorList[2].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(bigOil, IndicatorList[0].transform.position, Quaternion.identity);
+        Instantiate(bigOil, IndicatorList[2].transform.position, Quaternion.identity);
+        Instantiate(bigIndicator, IndicatorList[1].transform.position, Quaternion.identity);
+        Instantiate(bigIndicator, IndicatorList[3].transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(bigOil, IndicatorList[1].transform.position, Quaternion.identity);
+        Instantiate(bigOil, IndicatorList[3].transform.position, Quaternion.identity);
+    }
+
+    IEnumerator BigOilInRoom()
+    {
+        Instantiate(biggestIndicator, biggestOilSpot.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(2f);
+        Instantiate(biggestOil, biggestOilSpot.transform.position, Quaternion.identity);
     }
 }
