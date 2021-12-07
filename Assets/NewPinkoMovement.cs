@@ -17,6 +17,15 @@ public class NewPinkoMovement : MonoBehaviour
     [SerializeField]
     private Transform pinkoGFXTransform;
 
+    public Transform PinkoGFX
+    {
+        get { return pinkoGFXTransform; }
+        set
+        {
+            pinkoGFXTransform = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
