@@ -12,6 +12,8 @@ public class NewYelloMovement : MonoBehaviour
 
     private float move, turn;
 
+    private bool deployShield = true;
+
     private Rigidbody2D rb;
     private Vector2 velocity = Vector2.zero;
 
@@ -51,28 +53,5 @@ public class NewYelloMovement : MonoBehaviour
     public void Turn()
     {
         yelloGFXTransform.Rotate(Vector3.forward, -turn * turnSpeed * Time.deltaTime);
-    }
-
-    public IEnumerator Shield(float dist, Rigidbody2D pinko)
-    {
-        GameObject shield = Instantiate(shieldPrefab, pinko.position, Quaternion.identity);
-        Destroy(shield, 2);
-        print(shield);
-        if (shield == null)
-            yield return null;
-    }
-    public bool Pull(float dist, Rigidbody2D pinko)
-    {
-        if (dist >= 1.5f)
-            pinko.position = Vector2.MoveTowards(pinko.position,
-                rb.position, 50 * Time.deltaTime);
-
-        else if (dist < 1.5f)
-            pinko.position = rb.position;
-
-        if (pinko.position == rb.position)
-            return true;
-
-        return false;
     }
 }

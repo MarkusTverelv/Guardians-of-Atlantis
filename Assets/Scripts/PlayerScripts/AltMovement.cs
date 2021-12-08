@@ -54,8 +54,6 @@ public class AltMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
             currentState = NewPlayerStates.Shield;
 
-
-
         yelloMove.Turn();
         pinkoMove.Turn();
     }
@@ -95,9 +93,6 @@ public class AltMovement : MonoBehaviour
                 break;
             case NewPlayerStates.Shield:
                 yelloMove.Move();
-                if (yelloMove.Pull(distance, pinkoRigidbody))
-                    if (StartCoroutine(yelloMove.Shield(distance, pinkoRigidbody)) == null)
-                        currentState = NewPlayerStates.Moving;
                 break;
             case NewPlayerStates.Attack:
                 pinkoMove.Move();
