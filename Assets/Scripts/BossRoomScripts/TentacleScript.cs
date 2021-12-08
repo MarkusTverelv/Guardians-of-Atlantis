@@ -6,9 +6,11 @@ public class TentacleScript : MonoBehaviour
 {
     float posY;
     public bool ImActive = false;
+    public BossScript boss;
     // Start is called before the first frame update
     void Start()
     {
+        boss = GameObject.Find("Boss").GetComponent<BossScript>();
         posY = this.transform.position.y;
     }
 
@@ -17,8 +19,14 @@ public class TentacleScript : MonoBehaviour
     {
         if (ImActive)
         {
+            GetComponent<BoxCollider2D>().enabled = true;
             Move();
-            Invoke("MoveDown", 4);
+            Invoke("MoveDown", 10);
+        }
+
+        if(!ImActive)
+        {
+            MoveDown();
         }
 
         this.transform.position = new Vector2(transform.position.x, posY);
@@ -37,5 +45,14 @@ public class TentacleScript : MonoBehaviour
         ImActive = false;
         if (posY > -26)
             posY -= 0.1f;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bomb"))
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            ImActive = false;
+        }
     }
 }

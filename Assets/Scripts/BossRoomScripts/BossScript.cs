@@ -8,20 +8,68 @@ public class BossScript : MonoBehaviour
     public GameObject[] SpawnPoints;
     public GameObject bomb;
     public GameObject indicator;
-    
+    private OilSpawner oilSpawner;
+    float bombTimer = 0;
+    float tentacleTimer = 0;
+    public int amountOfTentaclesKilled = 0;
+
+
+    bool phaseTwoHasStarted = false;
+    bool phaseOneHasStarted = false;
+    bool phaseThreeHasStarted = false;
+    bool shouldISpawn = true;
+    bool shouldTentacleSpawn = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        oilSpawner = GameObject.Find("OilSpawner").GetComponent<OilSpawner>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.N))
+        bombTimer += Time.deltaTime;
+        tentacleTimer += Time.deltaTime;
+
+        //Spawning bombs every 4 seconds when phase one is active.
+        if (bombTimer > 4 && shouldISpawn)
+        {
+            SpawnBomb();
+            bombTimer = 0;
+        }
+
+        if(tentacleTimer > 10 && shouldTentacleSpawn)
         {
             ActivateTentacles();
-            SpawnBomb();
+            tentacleTimer = 0;
+        }
+
+        if(phaseOneHasStarted)
+        {
+            shouldISpawn = true;
+            shouldTentacleSpawn = true;
+            StartCoroutine(BossPhaseOne());
+            phaseOneHasStarted = false;
+        }
+
+        if (phaseTwoHasStarted)
+        {
+            shouldISpawn = false;
+            StartCoroutine(BossPhaseTwo());
+            phaseTwoHasStarted = false;
+        }
+
+        if (phaseThreeHasStarted)
+        {
+            
+        }
+
+        if(amountOfTentaclesKilled == 2)
+        {
+            shouldTentacleSpawn = false;
+            phaseTwoHasStarted = true;
+            amountOfTentaclesKilled = 0;
         }
     }
 
@@ -50,9 +98,6 @@ public class BossScript : MonoBehaviour
                 Tentacles[i].GetComponent<TentacleScript>().ImActive = true;
             }
         }
-
-        Debug.Log(rndNmb1);
-        Debug.Log(rndNmb2);
     }
 
     private void SpawnBomb()
@@ -65,5 +110,36 @@ public class BossScript : MonoBehaviour
 
         
         Instantiate(bomb, SpawnPoints[rndNmb].transform.position, Quaternion.identity);
+    }
+
+    private IEnumerator BossPhaseOne()
+    {
+        yield return new WaitForSeconds(2);
+        ActivateTentacles();
+        yield return new WaitForSeconds(4);
+        
+
+    }
+
+    private IEnumerator BossPhaseTwo()
+    {
+        yield return new WaitForSeconds(4);
+        StartCoroutine(oilSpawner.oilTimer());
+        yield return new WaitForSeconds(5);
+        StartCoroutine(oilSpawner.OilInRoom());
+        yield return new WaitForSeconds(16);
+        StartCoroutine(oilSpawner.OilZigZag());
+        yield return new WaitForSeconds(6);
+        StartCoroutine(oilSpawner.BigOilInRoom());
+
+        if(amountOfTentaclesKilled < 8)
+        {
+            phaseOneHasStarted = true;
+        }
+
+        else
+        {
+            phaseThreeHasStarted = true;
+        }
     }
 }

@@ -64,7 +64,7 @@ public class OilSpawner : MonoBehaviour
 
     }
 
-    IEnumerator oilTimer()
+    public IEnumerator oilTimer()
     {
         
         for (int i = 0; i < 20; i++)
@@ -93,7 +93,7 @@ public class OilSpawner : MonoBehaviour
     }
 
 
-    IEnumerator OilInRoom()
+    public IEnumerator OilInRoom()
     {
         Instantiate(bigIndicator, IndicatorList[0].transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2f);
@@ -120,7 +120,7 @@ public class OilSpawner : MonoBehaviour
 
     }
 
-    IEnumerator OilZigZag()
+    public IEnumerator OilZigZag()
     {
         Instantiate(bigIndicator, IndicatorList[0].transform.position, Quaternion.identity);
         Instantiate(bigIndicator, IndicatorList[2].transform.position, Quaternion.identity);
@@ -134,7 +134,7 @@ public class OilSpawner : MonoBehaviour
         Instantiate(bigOil, IndicatorList[3].transform.position, Quaternion.identity);
     }
 
-    IEnumerator BigOilInRoom()
+    public IEnumerator BigOilInRoom()
     {
         Instantiate(biggestIndicator, biggestOilSpot.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2f);
