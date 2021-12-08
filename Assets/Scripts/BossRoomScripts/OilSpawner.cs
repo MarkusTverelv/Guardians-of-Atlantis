@@ -12,6 +12,7 @@ public class OilSpawner : MonoBehaviour
     public GameObject indicator, bigIndicator, biggestIndicator;
     public GameObject biggestOilSpot;
     public GameObject[] IndicatorList;
+    public GameObject indicatorWarning;
 
 
     public List<Vector2> randomPos;
@@ -88,6 +89,14 @@ public class OilSpawner : MonoBehaviour
 
     void spawnOil()
     {
+        var oilCopy = Instantiate(oil2, new Vector3(-width - 10, height + 20), Quaternion.identity);
+        Destroy(oilCopy, 10);
+    }
+    public IEnumerator fluidOil()
+    {
+        indicatorWarning.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        indicatorWarning.SetActive(false);
         var oilCopy = Instantiate(oil2, new Vector3(-width - 10, height + 20), Quaternion.identity);
         Destroy(oilCopy, 10);
     }

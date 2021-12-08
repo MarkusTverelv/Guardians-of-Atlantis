@@ -40,19 +40,15 @@ public class TentacleScript : MonoBehaviour
         posY += 0.1f;
     }
 
-    private void MoveDown()
+    public void MoveDown()
     {
         ImActive = false;
-        if (posY > -26)
+        if (posY > -30)
             posY -= 0.1f;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bomb"))
-        {
-            GetComponent<BoxCollider2D>().enabled = false;
-            ImActive = false;
-        }
+        
     }
 }

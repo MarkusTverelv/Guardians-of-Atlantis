@@ -47,11 +47,20 @@ public class BombScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Tentacle"))
         {
+            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            collision.gameObject.GetComponent<TentacleScript>().MoveDown();
             GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
             boss.amountOfTentaclesKilled++;
             Debug.Log(boss.amountOfTentaclesKilled);
             Destroy(gameObject);
             Destroy(explosion, 2);
+        }
+
+        if (collision.gameObject.CompareTag("Oil"))
+        {
+            GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            Destroy(explosion, 1);
         }
 
     }

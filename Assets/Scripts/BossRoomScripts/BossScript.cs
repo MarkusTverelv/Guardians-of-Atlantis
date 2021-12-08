@@ -15,11 +15,12 @@ public class BossScript : MonoBehaviour
 
 
     bool phaseTwoHasStarted = false;
-    bool phaseOneHasStarted = false;
+    bool phaseOneHasStarted = true;
     bool phaseThreeHasStarted = false;
-    bool shouldISpawn = true;
+    bool shouldBombSpawn = true;
     bool shouldTentacleSpawn = true;
 
+    Coroutine lastRoutine = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,30 +33,32 @@ public class BossScript : MonoBehaviour
         bombTimer += Time.deltaTime;
         tentacleTimer += Time.deltaTime;
 
+        Debug.Log(phaseOneHasStarted);
         //Spawning bombs every 4 seconds when phase one is active.
-        if (bombTimer > 4 && shouldISpawn)
+        if (bombTimer > 4 && shouldBombSpawn)
         {
             SpawnBomb();
             bombTimer = 0;
         }
 
-        if(tentacleTimer > 10 && shouldTentacleSpawn)
+        if(tentacleTimer > 12 && shouldTentacleSpawn)
         {
             ActivateTentacles();
             tentacleTimer = 0;
         }
 
-        if(phaseOneHasStarted)
+        if(phaseOneHasStarted && !phaseTwoHasStarted)
         {
-            shouldISpawn = true;
+            shouldBombSpawn = true;
             shouldTentacleSpawn = true;
-            StartCoroutine(BossPhaseOne());
+            lastRoutine = StartCoroutine(BossPhaseOne());
             phaseOneHasStarted = false;
         }
 
         if (phaseTwoHasStarted)
         {
-            shouldISpawn = false;
+            StopCoroutine(lastRoutine);
+            shouldBombSpawn = false;
             StartCoroutine(BossPhaseTwo());
             phaseTwoHasStarted = false;
         }
@@ -70,6 +73,11 @@ public class BossScript : MonoBehaviour
             shouldTentacleSpawn = false;
             phaseTwoHasStarted = true;
             amountOfTentaclesKilled = 0;
+        }
+
+        if(amountOfTentaclesKilled > 2)
+        {
+            amountOfTentaclesKilled = 2;
         }
     }
 
@@ -114,11 +122,13 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator BossPhaseOne()
     {
+        yield return new WaitForSeconds(10);
+        shouldBombSpawn = false;
+        StartCoroutine(oilSpawner.fluidOil());
+        yield return new WaitForSeconds(10);
+        shouldBombSpawn = true;
         yield return new WaitForSeconds(2);
-        ActivateTentacles();
-        yield return new WaitForSeconds(4);
-        
-
+        phaseOneHasStarted = true;
     }
 
     private IEnumerator BossPhaseTwo()
@@ -131,10 +141,13 @@ public class BossScript : MonoBehaviour
         StartCoroutine(oilSpawner.OilZigZag());
         yield return new WaitForSeconds(6);
         StartCoroutine(oilSpawner.BigOilInRoom());
+        yield return new WaitForSeconds(3);
 
-        if(amountOfTentaclesKilled < 8)
+        if (amountOfTentaclesKilled < 8)
         {
             phaseOneHasStarted = true;
+            bombTimer = 0;
+            tentacleTimer = 0;
         }
 
         else
