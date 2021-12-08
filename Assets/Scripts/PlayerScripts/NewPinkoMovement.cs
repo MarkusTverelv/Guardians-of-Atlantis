@@ -61,7 +61,7 @@ public class NewPinkoMovement : MonoBehaviour
         pinkoGFXTransform.Rotate(Vector3.forward, -turn * turnSpeed * Time.deltaTime);
     }
 
-    public bool Shoot(float dist, Rigidbody2D yello)
+    public bool Shoot(float dist, Rigidbody2D yello, bool shoot)
     {
         if (dist >= 1.5f)
             yello.position = Vector2.MoveTowards(yello.position,
@@ -70,7 +70,7 @@ public class NewPinkoMovement : MonoBehaviour
         else if (dist < 1.5f)
             yello.position = rb.position;
 
-        if (Input.GetKey(KeyCode.Return))
+        if (!shoot)
         {
             shootForce += 0.2f;
 
@@ -78,7 +78,7 @@ public class NewPinkoMovement : MonoBehaviour
                 shootForce = 300.0f;
         }
 
-        if (Input.GetKeyUp(KeyCode.Return))
+        if (shoot)
         {
             yello.AddForce(pinkoGFXTransform.up * shootForce, ForceMode2D.Impulse);
             shootForce = 50.0f;

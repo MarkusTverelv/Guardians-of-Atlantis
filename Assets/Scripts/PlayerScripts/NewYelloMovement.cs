@@ -72,5 +72,7 @@ public class NewYelloMovement : MonoBehaviour
 
         if (pinko.position == rb.position)
             return true;
+
+        return false;
     }
 }

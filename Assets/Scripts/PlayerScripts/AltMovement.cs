@@ -25,8 +25,9 @@ public class AltMovement : MonoBehaviour
     Vector3 midPoint;
 
     float distance = 0.0f;
+    bool shoot = false;
 
-    NewPlayerStates currentState = NewPlayerStates.Idle;
+    NewPlayerStates currentState = NewPlayerStates.Moving;
 
     // Start is called before the first frame update
     void Start()
@@ -44,13 +45,19 @@ public class AltMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             currentState = NewPlayerStates.Attack;
 
+        if (Input.GetKey(KeyCode.Return))
+            shoot = false;
+
+        if (Input.GetKeyUp(KeyCode.Return))
+            shoot = true;
+
         if (Input.GetKeyDown(KeyCode.L))
             currentState = NewPlayerStates.Shield;
 
+
+
         yelloMove.Turn();
         pinkoMove.Turn();
-
-        StateSwitcher();
     }
 
     //M=(2x1​+x2​​,2y1​+y2​​)
@@ -60,8 +67,7 @@ public class AltMovement : MonoBehaviour
         distance = (yelloRigidbody.position - pinkoRigidbody.position).magnitude;
         midPoint = (yelloRigidbody.position + pinkoRigidbody.position) / 2;
 
-        yelloMove.Move();
-        pinkoMove.Move();
+        StateSwitcher();
     }
 
     private void Attraction()
@@ -84,15 +90,19 @@ public class AltMovement : MonoBehaviour
                 break;
             case NewPlayerStates.Moving:
                 Attraction();
+                yelloMove.Move();
+                pinkoMove.Move();
                 break;
             case NewPlayerStates.Shield:
+                yelloMove.Move();
                 if (yelloMove.Pull(distance, pinkoRigidbody))
                     if (StartCoroutine(yelloMove.Shield(distance, pinkoRigidbody)) == null)
-                        currentState = NewPlayerStates.Idle;
+                        currentState = NewPlayerStates.Moving;
                 break;
             case NewPlayerStates.Attack:
-                if (pinkoMove.Shoot(distance, yelloRigidbody))
-                    currentState = NewPlayerStates.Idle;
+                pinkoMove.Move();
+                if (pinkoMove.Shoot(distance, yelloRigidbody, shoot))
+                    currentState = NewPlayerStates.Moving;
                 break;
             case NewPlayerStates.Push:
                 break;
