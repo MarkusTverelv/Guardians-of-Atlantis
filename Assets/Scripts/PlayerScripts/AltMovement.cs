@@ -25,7 +25,6 @@ public class AltMovement : MonoBehaviour
     Vector3 midPoint;
 
     float distance = 0.0f;
-    float shootForce = 50.0f;
 
     NewPlayerStates currentState = NewPlayerStates.Idle;
 
@@ -87,8 +86,9 @@ public class AltMovement : MonoBehaviour
                 Attraction();
                 break;
             case NewPlayerStates.Shield:
-                if (yelloMove.Shield(distance, pinkoRigidbody))
-                    currentState = NewPlayerStates.Idle;
+                if (yelloMove.Pull(distance, pinkoRigidbody))
+                    if (StartCoroutine(yelloMove.Shield(distance, pinkoRigidbody)) == null)
+                        currentState = NewPlayerStates.Idle;
                 break;
             case NewPlayerStates.Attack:
                 if (pinkoMove.Shoot(distance, yelloRigidbody))
