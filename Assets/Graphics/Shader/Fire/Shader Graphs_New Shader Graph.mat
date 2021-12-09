@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Lightning
-  m_Shader: {fileID: -6465566751694194690, guid: 686cd8439e59ca948a4834084d6194a3, type: 3}
+  m_Name: Shader Graphs_New Shader Graph
+  m_Shader: {fileID: -6465566751694194690, guid: ac52dba70305ec34d8622498dc567b3d, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Texture2DAsset_b60f7cda6ed44bda8b3ca84d7b14b4cf_Out_0:
+        m_Texture: {fileID: 2800000, guid: 8147682fcac1b7343b9151331eaf6fc9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -32,11 +36,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_b1ea2ed4df374c6bb93e19c5eb11c83f: 0
-    - Vector1_bdb8265f4b5e44cd845f1f79745f779b: 20
-    - Vector1_e3d970a036b74a3cbe05ac4580ee178c: 2
-    m_Colors:
-    - Color_3de9e35f66cb4fc987d584f329e83be6: {r: 1.6784314, g: 1.6392157, b: 1.6470588, a: 0}
-    - Vector2_55a245ebe08d4f2a89117a99522e8b02: {r: 0.1, g: -0.5, b: 0, a: 0}
-    - Vector2_a7feaed964944bad99fc4fccbc1d66a9: {r: 0, g: 0.5, b: 0, a: 0}
+    - Vector1_3bf94054df6a498b9f58ccedb28884d0: 1
+    m_Colors: []
   m_BuildTextureStacks: []
