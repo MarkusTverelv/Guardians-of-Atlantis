@@ -122,11 +122,8 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator BossPhaseOne()
     {
-        yield return new WaitForSeconds(10);
-        shouldBombSpawn = false;
+        yield return new WaitForSeconds(20);
         StartCoroutine(oilSpawner.fluidOil());
-        yield return new WaitForSeconds(10);
-        shouldBombSpawn = true;
         yield return new WaitForSeconds(2);
         phaseOneHasStarted = true;
     }

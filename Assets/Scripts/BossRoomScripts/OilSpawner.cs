@@ -27,41 +27,7 @@ public class OilSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-
-            StartCoroutine(oilTimer());
-            
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-
-            spawnOil();
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-
-            StartCoroutine(OilInRoom());
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-
-            StartCoroutine(BigOilInRoom());
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-
-            StartCoroutine(OilZigZag());
-
-        }
+     
 
     }
 
