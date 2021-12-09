@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class NewPinkoMovement : MonoBehaviour
 {
@@ -8,6 +11,10 @@ public class NewPinkoMovement : MonoBehaviour
     public float deacceleration;
     public float moveSpeed, turnSpeed, maxMoveSpeed;
     public float shootForce;
+
+    public int currentHealth, maxHealth;
+
+    public Image healthbar;
 
     private float move, turn;
 
@@ -30,6 +37,8 @@ public class NewPinkoMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+
     }
 
     private void Update()
@@ -80,11 +89,25 @@ public class NewPinkoMovement : MonoBehaviour
 
         if (shoot)
         {
+            yello.tag = "Projectile";
             yello.AddForce(pinkoGFXTransform.up * shootForce, ForceMode2D.Impulse);
             shootForce = 100;
+            Invoke("ChangeTag", 2);
             return true;
         }
 
         return false;
     }
+    public void TakeDamage()
+    {
+        if (currentHealth > 1)
+            currentHealth--;
+        else
+            SceneManager.LoadScene("GameOver");
+    }
+    private void ChangeTag()
+    {
+        transform.parent.GetChild(1).tag = "Yello";
+    }
+
 }

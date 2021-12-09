@@ -7,8 +7,10 @@ public class Healthbar : MonoBehaviour
 {
     public GameObject healthbar;
     GameObject pinko, yello, pinkoHealthbar, yelloHealthbar;
-    PlayerScript yelloPlayerScript, pinkoPlayerScript;
+    NewYelloMovement yelloPlayerScript;
+    NewPinkoMovement pinkoPlayerScript;
     Image pinkoHealthbarImage, yelloHealthbarImage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +20,14 @@ public class Healthbar : MonoBehaviour
         pinkoHealthbar = Instantiate(healthbar, pinko.transform.position, Quaternion.identity);
         pinkoHealthbar.transform.parent = transform;
         pinkoHealthbarImage = pinkoHealthbar.GetComponent<Image>();
-        pinkoPlayerScript = pinko.GetComponent<PlayerScript>();
+        pinkoPlayerScript = pinko.GetComponent<NewPinkoMovement>();
         pinkoHealthbar.gameObject.tag = "PinkoHB";
         pinkoPlayerScript.healthbar = pinkoHealthbar.GetComponent<Image>();
 
-        yelloHealthbar = Instantiate(healthbar, pinko.transform.position, Quaternion.identity);
+        yelloHealthbar = Instantiate(healthbar, yello.transform.position, Quaternion.identity);
         yelloHealthbar.transform.parent = transform;
         yelloHealthbarImage = yelloHealthbar.GetComponent<Image>();
-        yelloPlayerScript = yello.GetComponent<PlayerScript>();
+        yelloPlayerScript = yello.GetComponent<NewYelloMovement>();
         yelloHealthbar.gameObject.tag = "YelloHB";
         yelloPlayerScript.healthbar = yelloHealthbar.GetComponent<Image>();
     }
@@ -37,7 +39,7 @@ public class Healthbar : MonoBehaviour
         yelloHealthbarImage.fillAmount = (float)yelloPlayerScript.currentHealth / yelloPlayerScript.maxHealth;
         pinkoHealthbar.transform.position = pinko.transform.position;
         pinkoHealthbarImage.fillAmount = (float)pinkoPlayerScript.currentHealth / pinkoPlayerScript.maxHealth;
-        
+
     }
-    
+
 }

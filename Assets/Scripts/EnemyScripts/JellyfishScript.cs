@@ -30,12 +30,14 @@ public class JellyfishScript : MonoBehaviour
     void Start()
     {
         currentHealth = health;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        spriteRenderer = transform.GetChild(8).GetComponent<SpriteRenderer>();
+
         audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
         startPos = transform.position;
-        transform.GetChild(0).GetComponent<CircleCollider2D>().radius = agrroRange;
+        transform.GetChild(9).GetComponent<CircleCollider2D>().radius = agrroRange;
         body = GetComponent<Rigidbody2D>();
-        aggroCollider = transform.GetChild(0).GetComponentInChildren<CircleCollider2D>();
+        aggroCollider = transform.GetChild(9).GetComponentInChildren<CircleCollider2D>();
         aggroCollider.radius = agrroRange;
     }
 
@@ -66,13 +68,10 @@ public class JellyfishScript : MonoBehaviour
             }
 
         }
-        spriteRenderer.flipX = body.velocity.x < 0;
-
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
             currentState = state.aggro;
             player = collision.gameObject;
@@ -80,7 +79,7 @@ public class JellyfishScript : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
             currentState = state.returning;
         }
@@ -88,19 +87,26 @@ public class JellyfishScript : MonoBehaviour
     IEnumerator flashRedTimer()
     {
         inv = true;
-        spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(1f);
+        spriteRenderer.color = new Color(255, 255, 255, 0);
+
+        yield return new WaitForSeconds(.5f);
+
         spriteRenderer.color = Color.white;
         inv = false;
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Pinko"))
         {
-            collision.gameObject.GetComponent<PlayerScript>().hurt();
-
+            collision.gameObject.GetComponent<NewPinkoMovement>().TakeDamage();
         }
-        else if (collision.gameObject.CompareTag("Projectile") && !inv)
+
+        if (collision.gameObject.CompareTag("Yello"))
+        {
+            collision.gameObject.GetComponent<NewYelloMovement>().TakeDamage();
+        }
+
+        if (collision.gameObject.CompareTag("Projectile") && !inv)
         {
             if (currentHealth > 1)
             {
@@ -119,10 +125,5 @@ public class JellyfishScript : MonoBehaviour
 
             }
         }
-
-
     }
-
-
-
 }

@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NewYelloMovement : MonoBehaviour
 {
     public GameObject shieldPrefab;
     public float moveSpeed, turnSpeed, maxMoveSpeed;
 
+    public int currentHealth, maxHealth;
+
     [Range(0.0f, 1.0f)]
     public float deacceleration;
+
+    public Image healthbar;
 
     private float move, turn;
 
@@ -24,6 +30,8 @@ public class NewYelloMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+
     }
 
     private void Update()
@@ -71,5 +79,12 @@ public class NewYelloMovement : MonoBehaviour
     {
         rb.AddForce(yelloGFXTransform.up * 200, ForceMode2D.Impulse);
         pinko.AddForce(yelloGFXTransform.up * 100, ForceMode2D.Impulse);
+    }
+    public void TakeDamage()
+    {
+        if (currentHealth > 1)
+            currentHealth--;
+        else
+            SceneManager.LoadScene("GameOver");
     }
 }
