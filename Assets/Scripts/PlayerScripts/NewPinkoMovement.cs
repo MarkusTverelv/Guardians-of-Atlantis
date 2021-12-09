@@ -36,8 +36,6 @@ public class NewPinkoMovement : MonoBehaviour
     {
         move = Input.GetAxisRaw("Vertical2");
         turn = Input.GetAxisRaw("Horizontal2");
-
-        Debug.Log(shootForce);
     }
 
     public void Move()

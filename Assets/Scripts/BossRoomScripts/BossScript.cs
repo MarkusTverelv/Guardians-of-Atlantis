@@ -34,8 +34,8 @@ public class BossScript : MonoBehaviour
         tentacleTimer += Time.deltaTime;
 
         Debug.Log(phaseOneHasStarted);
-        //Spawning bombs every 4 seconds when phase one is active.
-        if (bombTimer > 4 && shouldBombSpawn)
+        //Spawning bombs every 2 seconds when phase one is active.
+        if (bombTimer > 2 && shouldBombSpawn)
         {
             SpawnBomb();
             bombTimer = 0;

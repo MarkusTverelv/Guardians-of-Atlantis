@@ -66,4 +66,10 @@ public class NewYelloMovement : MonoBehaviour
             pinko.position = rb.position;
         }
     }
+
+    public void Dash(Rigidbody2D pinko)
+    {
+        rb.AddForce(yelloGFXTransform.up * 200, ForceMode2D.Impulse);
+        pinko.AddForce(yelloGFXTransform.up * 100, ForceMode2D.Impulse);
+    }
 }

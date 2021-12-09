@@ -48,6 +48,11 @@ public class PulseScript : MonoBehaviour
         {
             addForce(collision);
         }
+
+        if(collision.gameObject.CompareTag("Bomb"))
+        {
+            addForce(collision);
+        }
     }
 
     private void addForce(Collider2D collision)

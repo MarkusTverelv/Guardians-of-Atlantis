@@ -13,7 +13,7 @@ public class SetLine : MonoBehaviour
         lr = GetComponent<LineRenderer>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         for (int i = 0; i < linePositions.Length; i++)
             lr.SetPosition(i, linePositions[i].position);

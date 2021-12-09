@@ -8,7 +8,7 @@ public enum NewPlayerStates
     Moving,
     Shield,
     Attack,
-    Push
+    Dash
 
 }
 
@@ -32,6 +32,9 @@ public class AltMovement : MonoBehaviour
     bool shootTimerBool = false;
 
     float shootTimer = 0;
+    float dashTimer = 0;
+
+    public int dashCharges = 3;
 
     NewPlayerStates currentState = NewPlayerStates.Moving;
     public GameObject shieldPrefab;
@@ -40,6 +43,7 @@ public class AltMovement : MonoBehaviour
     void Start()
     {
         Physics2D.IgnoreCollision(yello.GetComponent<Collider2D>(), pinko.GetComponent<Collider2D>());
+
 
         pinkoMove = pinko.GetComponent<NewPinkoMovement>();
         yelloMove = yello.GetComponent<NewYelloMovement>();
@@ -65,6 +69,12 @@ public class AltMovement : MonoBehaviour
             Shield = true;
         }
 
+        if(Input.GetKeyDown(KeyCode.J) && dashCharges != 0)
+        {
+            currentState = NewPlayerStates.Dash;
+            dashCharges -= 1;
+        }
+
         if(shootTimerBool)
         {
             shootTimer += Time.deltaTime;
@@ -76,6 +86,19 @@ public class AltMovement : MonoBehaviour
                 shootTimer = 0;
             }
         }
+
+        if(dashCharges < 3)
+        {
+            dashTimer += Time.deltaTime;
+            if(dashTimer > 4)
+            {
+                dashCharges++;
+                dashTimer = 0;
+            }
+        }
+
+        Debug.Log(dashCharges);
+        Debug.Log(dashTimer);
 
         yelloMove.Turn();
         pinkoMove.Turn();
@@ -134,7 +157,9 @@ public class AltMovement : MonoBehaviour
                     currentState = NewPlayerStates.Moving;
                 }
                 break;
-            case NewPlayerStates.Push:
+            case NewPlayerStates.Dash:
+                yelloMove.Dash(pinkoRigidbody);
+                currentState = NewPlayerStates.Moving;
                 break;
             default:
                 break;
