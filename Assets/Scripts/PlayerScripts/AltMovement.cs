@@ -9,6 +9,7 @@ public enum NewPlayerStates
     Shield,
     Attack,
     Push
+
 }
 
 public class AltMovement : MonoBehaviour
@@ -25,9 +26,15 @@ public class AltMovement : MonoBehaviour
     Vector3 midPoint;
 
     float distance = 0.0f;
-    bool shoot = false;
+    bool shoot;
+    bool shootPower = true;
+    bool Shield = false;
+    bool shootTimerBool = false;
+
+    float shootTimer = 0;
 
     NewPlayerStates currentState = NewPlayerStates.Moving;
+    public GameObject shieldPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -42,20 +49,38 @@ public class AltMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !shootTimerBool)
             currentState = NewPlayerStates.Attack;
 
         if (Input.GetKey(KeyCode.Return))
-            shoot = false;
+            shootPower = false;
 
         if (Input.GetKeyUp(KeyCode.Return))
             shoot = true;
 
         if (Input.GetKeyDown(KeyCode.L))
+
+        {
             currentState = NewPlayerStates.Shield;
+            Shield = true;
+        }
+
+        if(shootTimerBool)
+        {
+            shootTimer += Time.deltaTime;
+
+            if(shootTimer > 8)
+            {
+                shootTimerBool = false;
+                shoot = false;
+                shootTimer = 0;
+            }
+        }
 
         yelloMove.Turn();
         pinkoMove.Turn();
+
+        
     }
 
     //M=(2x1​+x2​​,2y1​+y2​​)
@@ -93,16 +118,35 @@ public class AltMovement : MonoBehaviour
                 break;
             case NewPlayerStates.Shield:
                 yelloMove.Move();
+                yelloMove.Pull(distance, pinkoRigidbody);
+                if (Shield)
+                {
+                    StartCoroutine(DeployShield());
+                    
+                }
                 break;
             case NewPlayerStates.Attack:
                 pinkoMove.Move();
-                if (pinkoMove.Shoot(distance, yelloRigidbody, shoot))
+                if (pinkoMove.Shoot(distance, yelloRigidbody, shoot, shootPower))
+                {
+                    shootTimerBool = true;
+                    shootPower = true;
                     currentState = NewPlayerStates.Moving;
+                }
                 break;
             case NewPlayerStates.Push:
                 break;
             default:
                 break;
         }
+    }
+
+    IEnumerator DeployShield()
+    {
+        GameObject shield = Instantiate(shieldPrefab, yelloRigidbody.position, Quaternion.identity, yello.transform);
+        Shield = false;
+        yield return new WaitForSeconds(5);
+        Destroy(shield);
+        currentState = NewPlayerStates.Moving;
     }
 }

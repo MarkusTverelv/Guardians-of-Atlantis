@@ -54,4 +54,16 @@ public class NewYelloMovement : MonoBehaviour
     {
         yelloGFXTransform.Rotate(Vector3.forward, -turn * turnSpeed * Time.deltaTime);
     }
+
+    public void Pull(float dist, Rigidbody2D pinko)
+    {
+        if (dist >= 1.5f)
+            pinko.position = Vector2.MoveTowards(pinko.position,
+                rb.position, 50 * Time.deltaTime);
+
+        else if (dist < 1.5f)
+        {
+            pinko.position = rb.position;
+        }
+    }
 }
