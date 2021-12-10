@@ -17,8 +17,8 @@ public class BreakableWallScript : MonoBehaviour
             boxCollider2D.enabled = false;
         }
     }
-    IEnumerator FallDown ()
-    {
-
-    }
+    //IEnumerator FallDownTimer ()
+    //{
+    //    transform.parent.position = 
+    //}
 }
