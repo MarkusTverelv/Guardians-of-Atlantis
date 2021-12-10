@@ -9,7 +9,6 @@ public enum NewPlayerStates
     Shield,
     Attack,
     Dash
-
 }
 
 public class AltMovement : MonoBehaviour
@@ -36,6 +35,9 @@ public class AltMovement : MonoBehaviour
 
     public int dashCharges = 3;
 
+    float timeToFire;
+    public float fireWindow;
+
     NewPlayerStates currentState = NewPlayerStates.Moving;
     public GameObject shieldPrefab;
 
@@ -53,11 +55,14 @@ public class AltMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !shootTimerBool)
+        if (Input.GetKeyDown(KeyCode.RightShift) && !shootTimerBool)
             currentState = NewPlayerStates.Attack;
 
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKey(KeyCode.Return) && timeToFire <= fireWindow)
+        {
+            timeToFire = 0f;
             shootPower = false;
+        }
 
         if (Input.GetKeyUp(KeyCode.Return))
             shoot = true;
@@ -69,17 +74,17 @@ public class AltMovement : MonoBehaviour
             Shield = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.J) && dashCharges != 0)
+        if (Input.GetKeyDown(KeyCode.J) && dashCharges != 0)
         {
             currentState = NewPlayerStates.Dash;
             dashCharges -= 1;
         }
 
-        if(shootTimerBool)
+        if (shootTimerBool)
         {
             shootTimer += Time.deltaTime;
 
-            if(shootTimer > 8)
+            if (shootTimer > 8)
             {
                 shootTimerBool = false;
                 shoot = false;
@@ -87,10 +92,10 @@ public class AltMovement : MonoBehaviour
             }
         }
 
-        if(dashCharges < 3)
+        if (dashCharges < 3)
         {
             dashTimer += Time.deltaTime;
-            if(dashTimer > 4)
+            if (dashTimer > 4)
             {
                 dashCharges++;
                 dashTimer = 0;
@@ -100,7 +105,7 @@ public class AltMovement : MonoBehaviour
         yelloMove.Turn();
         pinkoMove.Turn();
 
-        
+
     }
 
     //M=(2x1​+x2​​,2y1​+y2​​)
@@ -142,17 +147,30 @@ public class AltMovement : MonoBehaviour
                 if (Shield)
                 {
                     StartCoroutine(DeployShield());
-                    
+
                 }
                 break;
             case NewPlayerStates.Attack:
                 pinkoMove.Move();
+                timeToFire += Time.fixedDeltaTime;
+                print(timeToFire);
+
                 if (pinkoMove.Shoot(distance, yelloRigidbody, shoot, shootPower))
                 {
                     shootTimerBool = true;
                     shootPower = true;
                     currentState = NewPlayerStates.Moving;
                 }
+
+                if (timeToFire > fireWindow)
+                {
+                    timeToFire = 0;
+                    currentState = NewPlayerStates.Moving;
+                }
+                else
+                    return;
+
+
                 break;
             case NewPlayerStates.Dash:
                 yelloMove.Dash(pinkoRigidbody);
