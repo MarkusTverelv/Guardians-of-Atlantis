@@ -7,11 +7,12 @@ public class CheckpointScript : MonoBehaviour
 {
     Light2D light2D;
     PlayerSharedScript playerShared;
+
     // Start is called before the first frame update
     void Start()
     {
         light2D = GetComponent<Light2D>();
-        playerShared = GameObject.Find("Players").GetComponent<PlayerSharedScript>();
+        playerShared = GameObject.Find("NewPlayers").GetComponent<PlayerSharedScript>();
         playerShared.onCheckpointSet.AddListener(SetLightColor);
 
         if (playerShared.checkPoint == gameObject)
@@ -23,7 +24,7 @@ public class CheckpointScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("crystal");
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
             playerShared.SetCheckPoint(gameObject);
             playerShared.onCheckpointSet.Invoke();

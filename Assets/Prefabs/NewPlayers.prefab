@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3326405267794597508}
   - component: {fileID: 3326405267794597509}
+  - component: {fileID: 1158431537}
   m_Layer: 0
   m_Name: NewPlayers
   m_TagString: Untagged
@@ -50,6 +51,26 @@ MonoBehaviour:
   yello: {fileID: 3326405268112458958}
   dashCharges: 3
   shieldPrefab: {fileID: 5118410775046236669, guid: 919e23a2ba8621046aae9b7d9bed4827, type: 3}
+--- !u!114 &1158431537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3326405267794597507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7af3a2165e06f9409d4c405b838d5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
+  checkPoint: {fileID: 0}
+  onCheckpointSet:
+    m_PersistentCalls:
+      m_Calls: []
+  playersPrefab: {fileID: 3326405267794597507}
+  moveSpeed: 0
+  turnSpeed: 0
 --- !u!1 &3326405267839583170
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +84,7 @@ GameObject:
   - component: {fileID: 3326405267839583173}
   m_Layer: 0
   m_Name: YelloGFX
-  m_TagString: Untagged
+  m_TagString: YelloHB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +143,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: c5a73f3456da5a54082eb4ddd5f9e36b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,7 +171,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.95886594, b: 0.4377358, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -189,7 +210,7 @@ GameObject:
   - component: {fileID: 3326405268112458944}
   m_Layer: 0
   m_Name: Yello
-  m_TagString: Untagged
+  m_TagString: Yello
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,7 +246,7 @@ Rigidbody2D:
   m_LinearDrag: 10
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 58de32556357f2240abca1c63e026375, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -259,10 +280,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldPrefab: {fileID: 5118410775046236669, guid: 919e23a2ba8621046aae9b7d9bed4827, type: 3}
-  moveSpeed: 50
+  moveSpeed: 20
   turnSpeed: 300
-  maxMoveSpeed: 2
+  maxMoveSpeed: 1.5
+  currentHealth: 0
+  maxHealth: 10
   deacceleration: 0.9
+  healthbar: {fileID: 0}
   yelloGFXTransform: {fileID: 3326405267839583171}
 --- !u!1 &3326405268706277138
 GameObject:
@@ -350,7 +374,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
@@ -562,7 +586,7 @@ GameObject:
   - component: {fileID: 3326405269148322622}
   m_Layer: 0
   m_Name: PinkoGFX
-  m_TagString: Untagged
+  m_TagString: PinkoHB
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -621,7 +645,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: b692704da845d5d479bfda0b5092f1a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -648,8 +672,8 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.9994658, g: 0.68301886, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 0.45660377, b: 1, a: 1}
+  m_Intensity: 0.6
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -688,7 +712,7 @@ GameObject:
   - component: {fileID: 3326405269341226301}
   m_Layer: 0
   m_Name: Pinko
-  m_TagString: Untagged
+  m_TagString: Pinko
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -725,7 +749,7 @@ Rigidbody2D:
   m_LinearDrag: 10
   m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 58de32556357f2240abca1c63e026375, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -759,10 +783,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deacceleration: 0.9
-  moveSpeed: 50
+  moveSpeed: 20
   turnSpeed: 300
-  maxMoveSpeed: 2
+  maxMoveSpeed: 1.5
   shootForce: 100
+  currentHealth: 0
+  maxHealth: 10
+  healthbar: {fileID: 0}
   pinkoGFXTransform: {fileID: 3326405269148322620}
 --- !u!1001 &3326405268943229086
 PrefabInstance:

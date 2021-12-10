@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class EntrenceScript : MonoBehaviour
 {
-    public string SceneName;  
+    public string SceneName;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
             SceneManager.LoadScene(SceneName);
 
     }

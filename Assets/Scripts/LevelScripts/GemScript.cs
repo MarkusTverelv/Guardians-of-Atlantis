@@ -26,11 +26,11 @@ public class GemScript : MonoBehaviour
     {
         bool b1 = collision.gameObject.name == "Yello" && gameObject.layer.Equals(7);
         bool b2 = collision.gameObject.name == "Pinko" && gameObject.layer.Equals(6);
+
         //Debug.Log(collision.gameObject.name);
         //Debug.Log(gameObject.layer);
         if (b1 || b2)
         {
-
             gemCounter.gemCount--;
             if (b1)
                 source.pitch = 1f;
