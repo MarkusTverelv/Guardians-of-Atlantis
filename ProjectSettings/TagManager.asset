@@ -17,6 +17,11 @@ TagManager:
   - YellowGem
   - Enemy
   - Projectile
+  - Tentacle
+  - Bomb
+  - Oil
+  - Pinko
+  - Yello
   layers:
   - Default
   - TransparentFX
@@ -28,8 +33,8 @@ TagManager:
   - YellowGem
   - Player
   - Fluids
-  - 
-  - 
+  - Effects
+  - DistortionEffect
   - 
   - 
   - 
@@ -53,4 +58,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: HighestLayerForDistorsionEffect
+    uniqueID: 2221032317
+    locked: 0
+  - name: Pinko
+    uniqueID: 1590281235
+    locked: 0
+  - name: Yello
+    uniqueID: 222184389
     locked: 0
