@@ -20,10 +20,11 @@ public class PlayerSharedScript : MonoBehaviour
     {
         if(GameObject.Find("SpawnPoint")==null)
         {
-            GameObject spawn = Instantiate(checkPoint);
+            GameObject spawn = Instantiate(spawnPoint);
             if (SceneManager.GetActiveScene().name == "Puzzle_1")
                 spawnPoint.transform.position = new Vector3(-45, -15, 0);
         }
+
     }
     private void Start()
     {
