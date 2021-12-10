@@ -33,9 +33,6 @@ public class Eel : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed/10);
 
             body.AddRelativeForce(new Vector2(0, -1) * speed);
-
-           
-
         }
         else
         {
@@ -51,9 +48,12 @@ public class Eel : MonoBehaviour
                 currentPoint++;
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-            collision.gameObject.GetComponent<PlayerScript>().hurt();
+        if (collision.gameObject.CompareTag("Pinko"))
+            collision.gameObject.GetComponent<NewPinkoMovement>().TakeDamage();
+
+        if (collision.gameObject.CompareTag("Yello"))
+            collision.gameObject.GetComponent<NewPinkoMovement>().TakeDamage();
     }
 }

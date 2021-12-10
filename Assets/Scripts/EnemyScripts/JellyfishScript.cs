@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JellyfishScript : MonoBehaviour
 {
-    int health = 3;
+    int health = 1;
     int currentHealth;
     Rigidbody2D body;
     bool aggro, turn, patrolling;

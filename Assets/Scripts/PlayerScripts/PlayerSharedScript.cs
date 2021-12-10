@@ -48,7 +48,7 @@ public class PlayerSharedScript : MonoBehaviour
         }
         catch 
         {
-            Debug.Log("NoSpawn");
+
         }
         
 

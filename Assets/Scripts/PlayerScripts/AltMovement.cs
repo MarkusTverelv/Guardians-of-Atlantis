@@ -97,9 +97,6 @@ public class AltMovement : MonoBehaviour
             }
         }
 
-        Debug.Log(dashCharges);
-        Debug.Log(dashTimer);
-
         yelloMove.Turn();
         pinkoMove.Turn();
 

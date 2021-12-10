@@ -23,7 +23,6 @@ public class CheckpointScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("crystal");
         if(collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
             playerShared.SetCheckPoint(gameObject);
