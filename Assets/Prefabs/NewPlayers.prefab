@@ -46,14 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94729eca30d7d1c4ebd68352a8434883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 0}
+  checkPoint: {fileID: 0}
   pinko: {fileID: 3326405269341226299}
   yello: {fileID: 3326405268112458958}
   hurtSound: {fileID: 0}
+  onCheckpointSet:
+    m_PersistentCalls:
+      m_Calls: []
   maxHealth: 3
   currentHealth: 0
-  moveSpeed: 10
+  moveSpeed: 1
   turnSpeed: 100
-  maxMoveSpeed: 10
+  maxMoveSpeed: 1.5
   invTime: 1
   dashCharges: 3
   shieldPrefab: {fileID: 5118410775046236669, guid: 919e23a2ba8621046aae9b7d9bed4827, type: 3}
@@ -252,6 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096a2c52177d95b4c98a1d2aa85c0f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 0
   deacceleration: 0.9
   playerTransform: {fileID: 0}
 --- !u!58 &3326405268112458946
@@ -894,6 +901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096a2c52177d95b4c98a1d2aa85c0f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 0
   deacceleration: 0.9
   playerTransform: {fileID: 0}
 --- !u!58 &3326405269341226303
