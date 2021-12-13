@@ -5,7 +5,7 @@ using UnityEngine;
 public class EyeScript : MonoBehaviour
 {
     public GameObject explosion;
-    private int health = 3;
+    public int health = 3;
     public bool invincible = false;
     private float invincibleTimer;
     // Start is called before the first frame update
@@ -17,8 +17,6 @@ public class EyeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(health);
-
         if(invincible)
         {
             invincibleTimer += Time.deltaTime;

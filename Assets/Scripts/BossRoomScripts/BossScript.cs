@@ -8,11 +8,21 @@ public class BossScript : MonoBehaviour
     public GameObject[] SpawnPoints;
     public GameObject bomb;
     public GameObject indicator;
+    public GameObject indicatorRune;
+    public GameObject[] runeSpots;
+    public GameObject[] activatedRuneSpots;
+    public GameObject[] slamTentacles;
+    public GameObject indicatorWarning, indicatorWarning2;
+    public GameObject eyeTentacle, eyeTentacle2;
+    public GameObject eye, eye2;
+
 
     public GameObject eyebrow, eyebrow2;
 
     public Transform disappearSpot;
     public Transform bossSpot;
+
+    private GameObject spawnedIndicator;
 
     private OilSpawner oilSpawner;
     float bombTimer = 0;
@@ -20,6 +30,7 @@ public class BossScript : MonoBehaviour
 
     public int amountOfTentaclesKilled = 0;
     public int totalTentaclesKilled = 0;
+    public int runesActivated = 0;
 
     public int eyeHealth;
 
@@ -30,6 +41,7 @@ public class BossScript : MonoBehaviour
     bool shouldBombSpawn = true;
     bool shouldTentacleSpawn = true;
     bool bossMove = false;
+    bool activateOnlyOnce = false;
 
     Vector2 bossPos;
 
@@ -120,6 +132,29 @@ public class BossScript : MonoBehaviour
         if (!bossMove)
         {
             transform.position = Vector2.MoveTowards(transform.position, bossSpot.position, 50 * Time.deltaTime);
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            StartCoroutine(activateRuneOrder());
+        }
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            StartCoroutine(activateTentacles());
+        }
+
+        if (runesActivated == 4)
+        {
+            Destroy(spawnedIndicator);
+        }
+
+        if(eye.GetComponent<EyeScript>().health < 1 || eye2.GetComponent<EyeScript>().health < 1 && !activateOnlyOnce)
+        {
+            eyeTentacle.GetComponent<EyeTentacles>().imActive = true;
+            eyeTentacle2.GetComponent<EyeTentacles>().imActive = true;
+            activateOnlyOnce = true;
+            StopAllCoroutines();
         }
     }
 
@@ -223,4 +258,108 @@ public class BossScript : MonoBehaviour
         StartCoroutine(oilSpawner.BigOilInRoom());
         yield return new WaitForSeconds(3);
     }
+
+
+    private IEnumerator activateRuneOrder()
+    {
+        for (int i = 0; i < runeSpots.Length; i++)
+        {
+            int rnd = Random.Range(0, runeSpots.Length);
+            GameObject tempGO = runeSpots[rnd];
+            runeSpots[rnd] = runeSpots[i];
+            runeSpots[i] = tempGO;
+
+            GameObject tempGO2 = activatedRuneSpots[rnd];
+            activatedRuneSpots[rnd] = activatedRuneSpots[i];
+            activatedRuneSpots[i] = tempGO2;
+        }
+
+
+
+        yield return new WaitForSeconds(2);
+        //Activate first rune
+        runeSpots[0].GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[0].GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[0].GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[0].GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(1);
+        //Activate second rune
+        runeSpots[1].GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[1].GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[1].GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[1].GetComponent<SpriteRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(1);
+        //Activate third rune
+        runeSpots[2].GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[2].GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[2].GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[2].GetComponent<SpriteRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(1);
+        //Activate fourth rune
+        runeSpots[3].GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[3].GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[3].GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        runeSpots[3].GetComponent<SpriteRenderer>().enabled = false;
+
+        foreach(GameObject rune in activatedRuneSpots)
+        {
+            rune.GetComponent<SpriteRenderer>().enabled = true;
+            rune.GetComponent<CircleCollider2D>().enabled = true;
+            rune.GetComponent<runeScript>().myNumber = runesActivated;
+            runesActivated++;
+        }
+
+        runesActivated = 0;
+
+        spawnedIndicator = Instantiate(indicatorRune, transform.position, Quaternion.identity);
+    }
+
+
+    private IEnumerator activateTentacles()
+    {
+        indicatorWarning.SetActive(true);
+        indicatorWarning2.SetActive(true);
+
+
+        for (int i = 0; i < slamTentacles.Length; i++)
+        {
+            int rnd = Random.Range(0, slamTentacles.Length);
+            GameObject tempGO = slamTentacles[rnd];
+            slamTentacles[rnd] = slamTentacles[i];
+            slamTentacles[i] = tempGO;
+        }
+
+        yield return new WaitForSeconds(2f);
+        indicatorWarning.SetActive(false);
+        indicatorWarning2.SetActive(false);
+        slamTentacles[0].GetComponent<SlammingTentacleScript>().imActive = true;
+        slamTentacles[1].GetComponent<SlammingTentacleScript>().imActive = true;
+        yield return new WaitForSeconds(2f);
+        slamTentacles[2].GetComponent<SlammingTentacleScript>().imActive = true;
+        slamTentacles[3].GetComponent<SlammingTentacleScript>().imActive = true;
+        yield return new WaitForSeconds(2f);
+        slamTentacles[4].GetComponent<SlammingTentacleScript>().imActive = true;
+        slamTentacles[5].GetComponent<SlammingTentacleScript>().imActive = true;
+    }
+
+    //private IEnumerator activateEyeTentacles()
+    //{
+    //    eye.GetComponent<EyeTentacles>().imActive = true;
+    //    eye2.GetComponent<EyeTentacles>().imActive = true;
+    //}
+
 }

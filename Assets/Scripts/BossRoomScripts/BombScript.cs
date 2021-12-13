@@ -56,6 +56,14 @@ public class BombScript : MonoBehaviour
             Destroy(explosion, 2);
         }
 
+        if(collision.gameObject.CompareTag("BigTentacle"))
+        {
+            Destroy(gameObject);
+            GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
+            collision.gameObject.GetComponent<EyeTentacles>().health--;
+            Destroy(explosion, 2);
+        }
+
         if (collision.gameObject.CompareTag("Oil"))
         {
             GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);

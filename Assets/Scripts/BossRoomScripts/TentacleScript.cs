@@ -47,8 +47,5 @@ public class TentacleScript : MonoBehaviour
             posY -= 0.1f;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
+    
 }
