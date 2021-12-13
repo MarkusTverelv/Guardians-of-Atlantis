@@ -11,7 +11,7 @@ public class NewPinkoMovement : MonoBehaviour
     public float deacceleration;
     public float moveSpeed, turnSpeed, maxMoveSpeed;
     public float shootForce;
-
+    bool inv;
     public int currentHealth, maxHealth;
 
     public Image healthbar;
@@ -98,6 +98,7 @@ public class NewPinkoMovement : MonoBehaviour
 
         return false;
     }
+    
     public void TakeDamage()
     {
         if (currentHealth > 1)

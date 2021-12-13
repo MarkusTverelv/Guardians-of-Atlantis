@@ -7,8 +7,7 @@ public class Healthbar : MonoBehaviour
 {
     public GameObject healthbar;
     GameObject pinko, yello, pinkoHealthbar, yelloHealthbar;
-    NewYelloMovement yelloPlayerScript;
-    NewPinkoMovement pinkoPlayerScript;
+    PlayerSpecificScript yelloPlayerScript, pinkoPlayerScript;
     Image pinkoHealthbarImage, yelloHealthbarImage;
 
     // Start is called before the first frame update
@@ -18,18 +17,20 @@ public class Healthbar : MonoBehaviour
         yello = GameObject.Find("Yello");
 
         pinkoHealthbar = Instantiate(healthbar, pinko.transform.position, Quaternion.identity);
+        pinkoHealthbar.name = "Pinko Healthbar";
         pinkoHealthbar.transform.parent = transform;
         pinkoHealthbarImage = pinkoHealthbar.GetComponent<Image>();
-        pinkoPlayerScript = pinko.GetComponent<NewPinkoMovement>();
+        pinkoPlayerScript = pinko.GetComponent<PlayerSpecificScript>();
         pinkoHealthbar.gameObject.tag = "PinkoHB";
-        pinkoPlayerScript.healthbar = pinkoHealthbar.GetComponent<Image>();
+        //pinkoPlayerScript.healthbar = pinkoHealthbar.GetComponent<Image>();
 
         yelloHealthbar = Instantiate(healthbar, yello.transform.position, Quaternion.identity);
+        yelloHealthbar.name = "Yello Healthbar";
         yelloHealthbar.transform.parent = transform;
         yelloHealthbarImage = yelloHealthbar.GetComponent<Image>();
-        yelloPlayerScript = yello.GetComponent<NewYelloMovement>();
+        yelloPlayerScript = yello.GetComponent<PlayerSpecificScript>();
         yelloHealthbar.gameObject.tag = "YelloHB";
-        yelloPlayerScript.healthbar = yelloHealthbar.GetComponent<Image>();
+        //yelloPlayerScript.healthbar = yelloHealthbar.GetComponent<Image>();
     }
 
     // Update is called once per frame
