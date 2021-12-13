@@ -8,23 +8,37 @@ public class BossScript : MonoBehaviour
     public GameObject[] SpawnPoints;
     public GameObject bomb;
     public GameObject indicator;
+
+    public GameObject eyebrow, eyebrow2;
+
+    public Transform disappearSpot;
+    public Transform bossSpot;
+
     private OilSpawner oilSpawner;
     float bombTimer = 0;
     float tentacleTimer = 0;
-    public int amountOfTentaclesKilled = 0;
 
+    public int amountOfTentaclesKilled = 0;
+    public int totalTentaclesKilled = 0;
+
+    public int eyeHealth;
 
     bool phaseTwoHasStarted = false;
     bool phaseOneHasStarted = true;
     bool phaseThreeHasStarted = false;
+    bool instantiatePhaseThree = false;
     bool shouldBombSpawn = true;
     bool shouldTentacleSpawn = true;
+    bool bossMove = false;
+
+    Vector2 bossPos;
 
     Coroutine lastRoutine = null;
     // Start is called before the first frame update
     void Start()
     {
         oilSpawner = GameObject.Find("OilSpawner").GetComponent<OilSpawner>();
+        bossPos = transform.position;
     }
 
     // Update is called once per frame
@@ -41,13 +55,13 @@ public class BossScript : MonoBehaviour
             bombTimer = 0;
         }
 
-        if(tentacleTimer > 12 && shouldTentacleSpawn)
+        if (tentacleTimer > 12 && shouldTentacleSpawn)
         {
             ActivateTentacles();
             tentacleTimer = 0;
         }
 
-        if(phaseOneHasStarted && !phaseTwoHasStarted)
+        if (phaseOneHasStarted && !phaseTwoHasStarted)
         {
             shouldBombSpawn = true;
             shouldTentacleSpawn = true;
@@ -59,25 +73,53 @@ public class BossScript : MonoBehaviour
         {
             StopCoroutine(lastRoutine);
             shouldBombSpawn = false;
-            StartCoroutine(BossPhaseTwo());
+            lastRoutine = StartCoroutine(BossPhaseTwo());
             phaseTwoHasStarted = false;
         }
 
-        if (phaseThreeHasStarted)
+        if (instantiatePhaseThree)
         {
-            
+            shouldBombSpawn = false;
+            shouldTentacleSpawn = false;
+            StopCoroutine(lastRoutine);
+            StartCoroutine(InstantiatePhaseThree());
+            instantiatePhaseThree = false;
         }
 
-        if(amountOfTentaclesKilled == 2)
+        if(phaseThreeHasStarted)
+        {
+            StartCoroutine(BossPhaseThree());
+            phaseThreeHasStarted = false;
+        }
+
+        if (amountOfTentaclesKilled == 3 && totalTentaclesKilled != 2)
         {
             shouldTentacleSpawn = false;
             phaseTwoHasStarted = true;
             amountOfTentaclesKilled = 0;
+            totalTentaclesKilled++;
         }
 
-        if(amountOfTentaclesKilled > 2)
+        if (amountOfTentaclesKilled > 3)
         {
-            amountOfTentaclesKilled = 2;
+            amountOfTentaclesKilled = 3;
+        }
+
+        if(totalTentaclesKilled == 2)
+        {
+            instantiatePhaseThree = true;
+            totalTentaclesKilled = 0;
+        }
+
+
+        if(bossMove)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, disappearSpot.position, 50 * Time.deltaTime);
+        }
+
+        if (!bossMove)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, bossSpot.position, 50 * Time.deltaTime);
         }
     }
 
@@ -86,9 +128,9 @@ public class BossScript : MonoBehaviour
         float rndNmb1 = Random.Range(0, Tentacles.Length);
         float rndNmb2 = Random.Range(0, Tentacles.Length);
 
-        if(rndNmb1 == rndNmb2)
+        if (rndNmb1 == rndNmb2)
         {
-            if(rndNmb1 >= 4)
+            if (rndNmb1 >= 4)
             {
                 rndNmb2 = Random.Range(0, 3);
             }
@@ -101,7 +143,7 @@ public class BossScript : MonoBehaviour
 
         for (int i = 0; i < Tentacles.Length; i++)
         {
-            if(i == rndNmb1 || i == rndNmb2)
+            if (i == rndNmb1 || i == rndNmb2)
             {
                 Tentacles[i].GetComponent<TentacleScript>().ImActive = true;
             }
@@ -116,7 +158,7 @@ public class BossScript : MonoBehaviour
 
         Instantiate(indicator, new Vector2(indicatorPos.x, indicatorPos.y - 15), Quaternion.identity);
 
-        
+
         Instantiate(bomb, SpawnPoints[rndNmb].transform.position, Quaternion.identity);
     }
 
@@ -151,5 +193,34 @@ public class BossScript : MonoBehaviour
         {
             phaseThreeHasStarted = true;
         }
+    }
+
+    private IEnumerator InstantiatePhaseThree()
+    {
+        
+        yield return new WaitForSeconds(4);
+        bossMove = true;
+        yield return new WaitForSeconds(4);
+        transform.localScale = new Vector3(40, 40, 0);
+        eyebrow.GetComponent<SpriteRenderer>().enabled = true;
+        eyebrow2.GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(4);
+        phaseThreeHasStarted = true;
+        bossMove = false;
+
+
+    }
+
+    private IEnumerator BossPhaseThree()
+    {
+        yield return new WaitForSeconds(4);
+        StartCoroutine(oilSpawner.oilTimer());
+        yield return new WaitForSeconds(5);
+        StartCoroutine(oilSpawner.OilInRoom());
+        yield return new WaitForSeconds(16);
+        StartCoroutine(oilSpawner.OilZigZag());
+        yield return new WaitForSeconds(6);
+        StartCoroutine(oilSpawner.BigOilInRoom());
+        yield return new WaitForSeconds(3);
     }
 }

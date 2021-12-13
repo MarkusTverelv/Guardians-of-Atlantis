@@ -90,7 +90,7 @@ public class NewPinkoMovement : MonoBehaviour
         if (shoot)
         {
             yello.tag = "Projectile";
-            yello.AddForce(pinkoGFXTransform.up * shootForce, ForceMode2D.Impulse);
+            yello.AddForce(transform.parent.GetChild(1).GetChild(0).up * shootForce, ForceMode2D.Impulse);
             shootForce = 100;
             Invoke("ChangeTag", 2);
             return true;
