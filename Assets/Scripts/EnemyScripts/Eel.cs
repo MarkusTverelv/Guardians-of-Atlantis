@@ -54,6 +54,6 @@ public class Eel : MonoBehaviour
             collision.gameObject.GetComponent<NewPinkoMovement>().TakeDamage();
 
         if (collision.gameObject.CompareTag("Yello"))
-            collision.gameObject.GetComponent<NewPinkoMovement>().TakeDamage();
+            collision.gameObject.GetComponent<NewYelloMovement>().TakeDamage();
     }
 }
