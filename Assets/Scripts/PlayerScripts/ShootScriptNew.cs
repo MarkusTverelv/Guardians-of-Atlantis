@@ -35,8 +35,16 @@ public class ShootScriptNew : MonoBehaviour
             shootForce = 100;
             Invoke("ChangeTag", 2);
             return true;
+        
         }
+
+
 
         return false;
     }
+    private void ChangeTag()
+    {
+        transform.parent.GetChild(1).tag = "Yello";
+    }
+
 }
