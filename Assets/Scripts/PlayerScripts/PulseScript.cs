@@ -52,6 +52,7 @@ public class PulseScript : MonoBehaviour
         if(collision.gameObject.CompareTag("Bomb"))
         {
             addForce(collision);
+            collision.GetComponent<BombFollowScript>().imActivated = true;
         }
     }
 

@@ -172,7 +172,9 @@ public class PlayerSharedScript : MonoBehaviour
     {
         GameObject shield = Instantiate(shieldPrefab, yelloRigidbody.position, Quaternion.identity, yello.transform);
         Shield = false;
+        yello.gameObject.tag = "Gem";
         yield return new WaitForSeconds(5);
+        yello.gameObject.tag = "Yello";
         Destroy(shield);
         currentState = NewPlayerStates.Moving;
     }

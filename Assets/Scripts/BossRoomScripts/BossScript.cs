@@ -6,6 +6,7 @@ public class BossScript : MonoBehaviour
 {
     public GameObject[] Tentacles;
     public GameObject[] SpawnPoints;
+    public GameObject[] movingBombSpawnPoints;
     public GameObject bomb;
     public GameObject indicator;
     public GameObject indicatorRune;
@@ -15,6 +16,7 @@ public class BossScript : MonoBehaviour
     public GameObject indicatorWarning, indicatorWarning2;
     public GameObject eyeTentacle, eyeTentacle2;
     public GameObject eye, eye2;
+    public GameObject movingBomb;
 
 
     public GameObject eyebrow, eyebrow2;
@@ -26,7 +28,8 @@ public class BossScript : MonoBehaviour
 
     private OilSpawner oilSpawner;
     float bombTimer = 0;
-    float tentacleTimer = 0;
+    float tentacleTimer = 10;
+    float movingBombTimer = 0;
 
     public int amountOfTentaclesKilled = 0;
     public int totalTentaclesKilled = 0;
@@ -35,13 +38,15 @@ public class BossScript : MonoBehaviour
     public int eyeHealth;
 
     bool phaseTwoHasStarted = false;
-    bool phaseOneHasStarted = true;
+    bool phaseOneHasStarted = false;
     bool phaseThreeHasStarted = false;
-    bool instantiatePhaseThree = false;
+    bool instantiatePhaseThree = true;
     bool shouldBombSpawn = true;
     bool shouldTentacleSpawn = true;
     bool bossMove = false;
-    bool activateOnlyOnce = false;
+    bool activateOnlyOnceTentacle = false;
+    bool activateOnlyOnceTentacle2 = false;
+    bool canSpawnMovingBombs;
 
     Vector2 bossPos;
 
@@ -93,7 +98,10 @@ public class BossScript : MonoBehaviour
         {
             shouldBombSpawn = false;
             shouldTentacleSpawn = false;
-            StopCoroutine(lastRoutine);
+            if (lastRoutine != null)
+            {
+                StopCoroutine(lastRoutine);
+            }
             StartCoroutine(InstantiatePhaseThree());
             instantiatePhaseThree = false;
         }
@@ -149,40 +157,78 @@ public class BossScript : MonoBehaviour
             Destroy(spawnedIndicator);
         }
 
-        if(eye.GetComponent<EyeScript>().health < 1 || eye2.GetComponent<EyeScript>().health < 1 && !activateOnlyOnce)
+        if(eye.GetComponent<EyeScript>().health < 3 && !activateOnlyOnceTentacle)
         {
             eyeTentacle.GetComponent<EyeTentacles>().imActive = true;
-            eyeTentacle2.GetComponent<EyeTentacles>().imActive = true;
-            activateOnlyOnce = true;
+            eye.GetComponent<CircleCollider2D>().enabled = false;
+            activateOnlyOnceTentacle = true;
             StopAllCoroutines();
+            canSpawnMovingBombs = true;
+            StartCoroutine(activateRuneOrder());
+        }
+
+        if(eye2.GetComponent<EyeScript>().health < 3 && !activateOnlyOnceTentacle2)
+        {
+            eyeTentacle2.GetComponent<EyeTentacles>().imActive = true;
+            eye2.GetComponent<CircleCollider2D>().enabled = false;
+            activateOnlyOnceTentacle2 = true;
+            StopAllCoroutines();
+            StartCoroutine(activateRuneOrder());
+        }
+
+        if(!eyeTentacle.GetComponent<EyeTentacles>().imActive)
+        {
+            eye.GetComponent<CircleCollider2D>().enabled = true;
+        }
+
+        if (!eyeTentacle2.GetComponent<EyeTentacles>().imActive)
+        {
+            eye2.GetComponent<CircleCollider2D>().enabled = true;
+        }
+
+
+        if (canSpawnMovingBombs)
+        {
+            movingBombTimer += Time.deltaTime;
+            if (movingBombTimer > 1.5F)
+            {
+                activateMovingBombs();
+                movingBombTimer = 0;
+            }
         }
     }
 
     void ActivateTentacles()
     {
-        float rndNmb1 = Random.Range(0, Tentacles.Length);
-        float rndNmb2 = Random.Range(0, Tentacles.Length);
+        //float rndNmb1 = Random.Range(0, Tentacles.Length);
+        //float rndNmb2 = Random.Range(0, Tentacles.Length);
 
-        if (rndNmb1 == rndNmb2)
-        {
-            if (rndNmb1 >= 4)
-            {
-                rndNmb2 = Random.Range(0, 3);
-            }
+        //if (rndNmb1 == rndNmb2)
+        //{
+        //    if (rndNmb1 >= 4)
+        //    {
+        //        rndNmb2 = Random.Range(0, 3);
+        //    }
 
-            else
-            {
-                rndNmb2 = Random.Range(5, Tentacles.Length - 1);
-            }
-        }
+        //    else
+        //    {
+        //        rndNmb2 = Random.Range(5, Tentacles.Length - 1);
+        //    }
+        //}
+
 
         for (int i = 0; i < Tentacles.Length; i++)
         {
-            if (i == rndNmb1 || i == rndNmb2)
-            {
-                Tentacles[i].GetComponent<TentacleScript>().ImActive = true;
-            }
+            int rnd = Random.Range(0, Tentacles.Length);
+            GameObject tempGO = Tentacles[rnd];
+            Tentacles[rnd] = Tentacles[i];
+            Tentacles[i] = tempGO;
         }
+
+        
+        Tentacles[0].GetComponent<TentacleScript>().ImActive = true;
+        Tentacles[1].GetComponent<TentacleScript>().ImActive = true;
+
     }
 
     private void SpawnBomb()
@@ -207,14 +253,15 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator BossPhaseTwo()
     {
-        yield return new WaitForSeconds(4);
+        StartCoroutine(oilSpawner.oilWall());
+        yield return new WaitForSeconds(10);
         StartCoroutine(oilSpawner.oilTimer());
         yield return new WaitForSeconds(5);
-        StartCoroutine(oilSpawner.OilInRoom());
-        yield return new WaitForSeconds(16);
-        StartCoroutine(oilSpawner.OilZigZag());
-        yield return new WaitForSeconds(6);
-        StartCoroutine(oilSpawner.BigOilInRoom());
+        StartCoroutine(oilSpawner.OilSquare());
+        yield return new WaitForSeconds(10);
+        StartCoroutine(oilSpawner.reverseOilWall());
+        yield return new WaitForSeconds(30);
+
         yield return new WaitForSeconds(3);
 
         if (amountOfTentaclesKilled < 8)
@@ -244,19 +291,29 @@ public class BossScript : MonoBehaviour
         bossMove = false;
 
 
+
     }
 
     private IEnumerator BossPhaseThree()
     {
+        canSpawnMovingBombs = true;
         yield return new WaitForSeconds(4);
-        StartCoroutine(oilSpawner.oilTimer());
-        yield return new WaitForSeconds(5);
-        StartCoroutine(oilSpawner.OilInRoom());
-        yield return new WaitForSeconds(16);
-        StartCoroutine(oilSpawner.OilZigZag());
+        StartCoroutine(oilSpawner.oilWall());
+        StartCoroutine(oilSpawner.reverseOilWall());
+        yield return new WaitForSeconds(8);
+        StartCoroutine(activateTentacles());
         yield return new WaitForSeconds(6);
-        StartCoroutine(oilSpawner.BigOilInRoom());
-        yield return new WaitForSeconds(3);
+        StartCoroutine(oilSpawner.oilWall());
+        yield return new WaitForSeconds(6);
+        StartCoroutine(oilSpawner.reverseOilWall());
+        yield return new WaitForSeconds(6);
+        StartCoroutine(activateRuneOrder());
+        yield return new WaitForSeconds(32);
+        StartCoroutine(activateTentacles());
+        yield return new WaitForSeconds(6);
+
+        yield return new WaitForSeconds(4);
+        phaseThreeHasStarted = true;
     }
 
 
@@ -361,5 +418,14 @@ public class BossScript : MonoBehaviour
     //    eye.GetComponent<EyeTentacles>().imActive = true;
     //    eye2.GetComponent<EyeTentacles>().imActive = true;
     //}
+
+    private void activateMovingBombs()
+    {
+        
+            int rndNmb = Random.Range(0, 22);
+            Instantiate(movingBomb, movingBombSpawnPoints[rndNmb].transform.position, Quaternion.identity);
+        
+        
+    }
 
 }
