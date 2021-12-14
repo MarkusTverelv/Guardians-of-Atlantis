@@ -38,9 +38,9 @@ public class BossScript : MonoBehaviour
     public int eyeHealth;
 
     bool phaseTwoHasStarted = false;
-    bool phaseOneHasStarted = true;
+    bool phaseOneHasStarted = false;
     bool phaseThreeHasStarted = false;
-    bool instantiatePhaseThree = false;
+    bool instantiatePhaseThree = true;
     bool shouldBombSpawn = true;
     bool shouldTentacleSpawn = true;
     bool bossMove = false;
@@ -173,7 +173,6 @@ public class BossScript : MonoBehaviour
             eye2.GetComponent<CircleCollider2D>().enabled = false;
             activateOnlyOnceTentacle2 = true;
             StopAllCoroutines();
-            canSpawnMovingBombs = true;
             StartCoroutine(activateRuneOrder());
         }
 
@@ -292,14 +291,29 @@ public class BossScript : MonoBehaviour
         bossMove = false;
 
 
+
     }
 
     private IEnumerator BossPhaseThree()
     {
+        canSpawnMovingBombs = true;
         yield return new WaitForSeconds(4);
-        StartCoroutine(oilSpawner.oilTimer());
-        yield return new WaitForSeconds(5);
-        yield return new WaitForSeconds(3);
+        StartCoroutine(oilSpawner.oilWall());
+        StartCoroutine(oilSpawner.reverseOilWall());
+        yield return new WaitForSeconds(8);
+        StartCoroutine(activateTentacles());
+        yield return new WaitForSeconds(6);
+        StartCoroutine(oilSpawner.oilWall());
+        yield return new WaitForSeconds(6);
+        StartCoroutine(oilSpawner.reverseOilWall());
+        yield return new WaitForSeconds(6);
+        StartCoroutine(activateRuneOrder());
+        yield return new WaitForSeconds(32);
+        StartCoroutine(activateTentacles());
+        yield return new WaitForSeconds(6);
+
+        yield return new WaitForSeconds(4);
+        phaseThreeHasStarted = true;
     }
 
 
