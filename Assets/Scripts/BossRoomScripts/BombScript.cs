@@ -71,6 +71,13 @@ public class BombScript : MonoBehaviour
             Destroy(explosion, 1);
         }
 
+        if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
+        {
+            GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            Destroy(explosion, 2);
+        }
+
     }
 
     void ChangeColor()

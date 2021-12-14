@@ -13,7 +13,7 @@ public class EyeTentacles : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 10;
+        health = 5;
         yello = GameObject.Find("Yello");
         pinko = GameObject.Find("Pinko");
 
@@ -37,10 +37,10 @@ public class EyeTentacles : MonoBehaviour
 
         this.transform.position = new Vector2(transform.position.x, posY);
 
-        if(health < 0)
+        if(health < 1)
         {
             imActive = false;
-            health = 10;
+            health = 5;
         }
     }
 
