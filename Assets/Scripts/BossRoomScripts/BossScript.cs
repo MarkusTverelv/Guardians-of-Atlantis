@@ -17,6 +17,7 @@ public class BossScript : MonoBehaviour
     public GameObject eyeTentacle, eyeTentacle2;
     public GameObject eye, eye2;
     public GameObject movingBomb;
+    public GameObject leftMovingOilWall, rightMovingOilWall;
 
 
     public GameObject eyebrow, eyebrow2;
@@ -38,9 +39,9 @@ public class BossScript : MonoBehaviour
     public int eyeHealth;
 
     bool phaseTwoHasStarted = false;
-    bool phaseOneHasStarted = false;
+    bool phaseOneHasStarted = true;
     bool phaseThreeHasStarted = false;
-    bool instantiatePhaseThree = true;
+    bool instantiatePhaseThree = false;
     bool shouldBombSpawn = true;
     bool shouldTentacleSpawn = true;
     bool bossMove = false;
@@ -63,8 +64,6 @@ public class BossScript : MonoBehaviour
     {
         bombTimer += Time.deltaTime;
         tentacleTimer += Time.deltaTime;
-
-        Debug.Log(phaseOneHasStarted);
         //Spawning bombs every 2 seconds when phase one is active.
         if (bombTimer > 2 && shouldBombSpawn)
         {
@@ -155,19 +154,19 @@ public class BossScript : MonoBehaviour
         if (runesActivated == 4)
         {
             Destroy(spawnedIndicator);
+            runesActivated = 0;
         }
 
-        if(eye.GetComponent<EyeScript>().health < 3 && !activateOnlyOnceTentacle)
+        if(eye.GetComponent<EyeScript>().health < 2 && !activateOnlyOnceTentacle)
         {
             eyeTentacle.GetComponent<EyeTentacles>().imActive = true;
             eye.GetComponent<CircleCollider2D>().enabled = false;
             activateOnlyOnceTentacle = true;
             StopAllCoroutines();
-            canSpawnMovingBombs = true;
             StartCoroutine(activateRuneOrder());
         }
 
-        if(eye2.GetComponent<EyeScript>().health < 3 && !activateOnlyOnceTentacle2)
+        if(eye2.GetComponent<EyeScript>().health < 2 && !activateOnlyOnceTentacle2)
         {
             eyeTentacle2.GetComponent<EyeTentacles>().imActive = true;
             eye2.GetComponent<CircleCollider2D>().enabled = false;
@@ -200,23 +199,6 @@ public class BossScript : MonoBehaviour
 
     void ActivateTentacles()
     {
-        //float rndNmb1 = Random.Range(0, Tentacles.Length);
-        //float rndNmb2 = Random.Range(0, Tentacles.Length);
-
-        //if (rndNmb1 == rndNmb2)
-        //{
-        //    if (rndNmb1 >= 4)
-        //    {
-        //        rndNmb2 = Random.Range(0, 3);
-        //    }
-
-        //    else
-        //    {
-        //        rndNmb2 = Random.Range(5, Tentacles.Length - 1);
-        //    }
-        //}
-
-
         for (int i = 0; i < Tentacles.Length; i++)
         {
             int rnd = Random.Range(0, Tentacles.Length);
@@ -225,10 +207,8 @@ public class BossScript : MonoBehaviour
             Tentacles[i] = tempGO;
         }
 
-        
         Tentacles[0].GetComponent<TentacleScript>().ImActive = true;
         Tentacles[1].GetComponent<TentacleScript>().ImActive = true;
-
     }
 
     private void SpawnBomb()
@@ -245,6 +225,8 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator BossPhaseOne()
     {
+        yield return new WaitForSeconds(10);
+        StartCoroutine(oilSpawner.oilTimer());
         yield return new WaitForSeconds(20);
         StartCoroutine(oilSpawner.fluidOil());
         yield return new WaitForSeconds(2);
@@ -253,15 +235,14 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator BossPhaseTwo()
     {
-        StartCoroutine(oilSpawner.oilWall());
         yield return new WaitForSeconds(10);
         StartCoroutine(oilSpawner.oilTimer());
         yield return new WaitForSeconds(5);
         StartCoroutine(oilSpawner.OilSquare());
-        yield return new WaitForSeconds(10);
-        StartCoroutine(oilSpawner.reverseOilWall());
-        yield return new WaitForSeconds(30);
-
+        yield return new WaitForSeconds(24);
+        StartCoroutine(oilSpawner.OilSquareHard());
+        yield return new WaitForSeconds(16);
+        StartCoroutine(oilSpawner.oilTimer());
         yield return new WaitForSeconds(3);
 
         if (amountOfTentaclesKilled < 8)
@@ -298,20 +279,25 @@ public class BossScript : MonoBehaviour
     {
         canSpawnMovingBombs = true;
         yield return new WaitForSeconds(4);
-        StartCoroutine(oilSpawner.oilWall());
-        StartCoroutine(oilSpawner.reverseOilWall());
-        yield return new WaitForSeconds(8);
+        leftMovingOilWall.GetComponent<moveLeftIndicatorScript>().canImoveLeft = true;
+        rightMovingOilWall.GetComponent<moveIndicatorScript>().canImoveRight = true;
+        yield return new WaitForSeconds(16);
         StartCoroutine(activateTentacles());
         yield return new WaitForSeconds(6);
-        StartCoroutine(oilSpawner.oilWall());
+        rightMovingOilWall.GetComponent<moveIndicatorScript>().startedMovingRight = true;
+        rightMovingOilWall.GetComponent<moveIndicatorScript>().canImoveRight = true;
         yield return new WaitForSeconds(6);
-        StartCoroutine(oilSpawner.reverseOilWall());
+        leftMovingOilWall.GetComponent<moveLeftIndicatorScript>().startedMovingLeft = true;
+        leftMovingOilWall.GetComponent<moveLeftIndicatorScript>().canImoveLeft = true;
         yield return new WaitForSeconds(6);
         StartCoroutine(activateRuneOrder());
         yield return new WaitForSeconds(32);
         StartCoroutine(activateTentacles());
         yield return new WaitForSeconds(6);
-
+        leftMovingOilWall.GetComponent<moveLeftIndicatorScript>().startedMovingLeft = true;
+        leftMovingOilWall.GetComponent<moveLeftIndicatorScript>().canImoveLeft = true;
+        rightMovingOilWall.GetComponent<moveIndicatorScript>().startedMovingRight = true;
+        rightMovingOilWall.GetComponent<moveIndicatorScript>().canImoveRight = true;
         yield return new WaitForSeconds(4);
         phaseThreeHasStarted = true;
     }
