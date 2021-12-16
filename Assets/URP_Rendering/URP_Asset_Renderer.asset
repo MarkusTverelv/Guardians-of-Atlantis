@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Active: 1
   settings:
     passTag: DistortionEffect
-    Event: 250
+    Event: 450
     filterSettings:
       RenderQueueType: 1
       LayerMask:
