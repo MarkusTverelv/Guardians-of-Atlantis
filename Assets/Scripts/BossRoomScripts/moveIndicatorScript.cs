@@ -43,7 +43,7 @@ public class moveIndicatorScript : MonoBehaviour
     {
         if (transform.position.x < 35)
         {
-            posX += 0.05f;
+            posX += 6f * Time.deltaTime;
         }
 
         else

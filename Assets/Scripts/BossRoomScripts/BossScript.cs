@@ -105,7 +105,7 @@ public class BossScript : MonoBehaviour
             instantiatePhaseThree = false;
         }
 
-        if(phaseThreeHasStarted)
+        if (phaseThreeHasStarted)
         {
             StartCoroutine(BossPhaseThree());
             phaseThreeHasStarted = false;
@@ -124,14 +124,14 @@ public class BossScript : MonoBehaviour
             amountOfTentaclesKilled = 3;
         }
 
-        if(totalTentaclesKilled == 2)
+        if (totalTentaclesKilled == 2)
         {
             instantiatePhaseThree = true;
             totalTentaclesKilled = 0;
         }
 
 
-        if(bossMove)
+        if (bossMove)
         {
             transform.position = Vector2.MoveTowards(transform.position, disappearSpot.position, 50 * Time.deltaTime);
         }
@@ -146,7 +146,7 @@ public class BossScript : MonoBehaviour
             StartCoroutine(activateRuneOrder());
         }
 
-        if(Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             StartCoroutine(activateTentacles());
         }
@@ -157,25 +157,31 @@ public class BossScript : MonoBehaviour
             runesActivated = 0;
         }
 
-        if(eye.GetComponent<EyeScript>().health < 2 && !activateOnlyOnceTentacle)
+        if (eye != null)
         {
-            eyeTentacle.GetComponent<EyeTentacles>().imActive = true;
-            eye.GetComponent<CircleCollider2D>().enabled = false;
-            activateOnlyOnceTentacle = true;
-            StopAllCoroutines();
-            StartCoroutine(activateRuneOrder());
+            if (eye.GetComponent<EyeScript>().health < 2 && !activateOnlyOnceTentacle)
+            {
+                eyeTentacle.GetComponent<EyeTentacles>().imActive = true;
+                eye.GetComponent<CircleCollider2D>().enabled = false;
+                activateOnlyOnceTentacle = true;
+                StopAllCoroutines();
+                StartCoroutine(activateRuneOrder());
+            }
         }
 
-        if(eye2.GetComponent<EyeScript>().health < 2 && !activateOnlyOnceTentacle2)
+        if (eye2 != null)
         {
-            eyeTentacle2.GetComponent<EyeTentacles>().imActive = true;
-            eye2.GetComponent<CircleCollider2D>().enabled = false;
-            activateOnlyOnceTentacle2 = true;
-            StopAllCoroutines();
-            StartCoroutine(activateRuneOrder());
+            if (eye2.GetComponent<EyeScript>().health < 2 && !activateOnlyOnceTentacle2)
+            {
+                eyeTentacle2.GetComponent<EyeTentacles>().imActive = true;
+                eye2.GetComponent<CircleCollider2D>().enabled = false;
+                activateOnlyOnceTentacle2 = true;
+                StopAllCoroutines();
+                StartCoroutine(activateRuneOrder());
+            }
         }
 
-        if(!eyeTentacle.GetComponent<EyeTentacles>().imActive)
+        if (!eyeTentacle.GetComponent<EyeTentacles>().imActive)
         {
             eye.GetComponent<CircleCollider2D>().enabled = true;
         }
@@ -260,7 +266,7 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator InstantiatePhaseThree()
     {
-        
+
         yield return new WaitForSeconds(4);
         bossMove = true;
         yield return new WaitForSeconds(4);
@@ -358,7 +364,7 @@ public class BossScript : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         runeSpots[3].GetComponent<SpriteRenderer>().enabled = false;
 
-        foreach(GameObject rune in activatedRuneSpots)
+        foreach (GameObject rune in activatedRuneSpots)
         {
             rune.GetComponent<SpriteRenderer>().enabled = true;
             rune.GetComponent<CircleCollider2D>().enabled = true;
@@ -407,11 +413,11 @@ public class BossScript : MonoBehaviour
 
     private void activateMovingBombs()
     {
-        
-            int rndNmb = Random.Range(0, 22);
-            Instantiate(movingBomb, movingBombSpawnPoints[rndNmb].transform.position, Quaternion.identity);
-        
-        
+
+        int rndNmb = Random.Range(0, 22);
+        Instantiate(movingBomb, movingBombSpawnPoints[rndNmb].transform.position, Quaternion.identity);
+
+
     }
 
 }

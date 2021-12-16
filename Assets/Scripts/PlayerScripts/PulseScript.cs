@@ -25,7 +25,7 @@ public class PulseScript : MonoBehaviour
             canGrow = true;
         }
 
-        if(canGrow)
+        if (canGrow)
         {
             float rangeSpeed = 8f;
             range += rangeSpeed * Time.deltaTime;
@@ -36,23 +36,30 @@ public class PulseScript : MonoBehaviour
                 canGrow = false;
             }
 
-            
+
         }
 
         pulseTransform.localScale = new Vector3(range, range);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            addForce(collision);
+            addForce(other);
         }
 
-        if(collision.gameObject.CompareTag("Bomb"))
+        if (other.gameObject.CompareTag("Bomb"))
         {
-            addForce(collision);
-            collision.GetComponent<BombFollowScript>().imActivated = true;
+            addForce(other);
+            other.GetComponent<BombFollowScript>().imActivated = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Bomb"))
+        {
+            Destroy(other.gameObject, 6);
         }
     }
 
@@ -60,9 +67,9 @@ public class PulseScript : MonoBehaviour
     {
         for (int i = 0; i < 10; i++)
         {
-                Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
-                Vector2 position = collision.transform.position - this.transform.position;
-                rb.AddForce(position, ForceMode2D.Impulse);
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            Vector2 position = collision.transform.position - this.transform.position;
+            rb.AddForce(position, ForceMode2D.Impulse);
         }
     }
 

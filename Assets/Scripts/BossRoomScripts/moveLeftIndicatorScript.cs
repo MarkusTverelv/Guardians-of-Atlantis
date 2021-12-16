@@ -56,7 +56,7 @@ public class moveLeftIndicatorScript : MonoBehaviour
     {
         if (transform.position.x > -75)
         {
-            posX -= 0.05f;
+            posX -= 6f * Time.deltaTime;
         }
 
         else

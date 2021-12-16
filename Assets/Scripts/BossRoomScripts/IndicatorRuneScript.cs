@@ -14,10 +14,9 @@ public class IndicatorRuneScript : MonoBehaviour
     void Update()
     {
         float scale = transform.localScale.x;
-        if(scale >= 100)
-        {
-            Debug.Log("kekW");
-        }
+        //if(scale >= 100)
+        //{
+        //}
 
     }
 
