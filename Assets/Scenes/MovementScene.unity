@@ -1117,18 +1117,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1224439665881453447, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.755
-      objectReference: {fileID: 0}
-    - target: {fileID: 1224439665881453447, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1224439665881453447, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 5.67
-      objectReference: {fileID: 0}
     - target: {fileID: 3326405267794597507, guid: b1be9db7d8143484e81667c720867057, type: 3}
       propertyPath: m_Name
       value: NewPlayers
@@ -1176,18 +1164,6 @@ PrefabInstance:
     - target: {fileID: 3326405267794597508, guid: b1be9db7d8143484e81667c720867057, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5155687699974702402, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_FalloffIntensity
-      value: 0.755
-      objectReference: {fileID: 0}
-    - target: {fileID: 5155687699974702402, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5155687699974702402, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 5.67
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1be9db7d8143484e81667c720867057, type: 3}
