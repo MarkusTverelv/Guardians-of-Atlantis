@@ -9,7 +9,7 @@ public class DashScriptNew : MonoBehaviour
     public float dashForce = 150;
     private void Start()
     {
-        playerTransform = transform;
+        playerTransform = transform.GetChild(0);
         rb = GetComponent<Rigidbody2D>();
     }
     public void Dash(Rigidbody2D pinko)
