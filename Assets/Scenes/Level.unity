@@ -6816,18 +6816,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1158431537, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: checkPoint
-      value: 
-      objectReference: {fileID: 1188554962}
-    - target: {fileID: 1158431537, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: spawnPoint
-      value: 
-      objectReference: {fileID: 2077658377}
-    - target: {fileID: 2306530745505586354, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3326405267794597507, guid: b1be9db7d8143484e81667c720867057, type: 3}
       propertyPath: m_Name
       value: NewPlayers
@@ -6877,57 +6865,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3326405267794597509, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: moveSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3326405267794597509, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: turnSpeed
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 3326405267794597509, guid: b1be9db7d8143484e81667c720867057, type: 3}
       propertyPath: checkPoint
       value: 
       objectReference: {fileID: 1188554962}
     - target: {fileID: 3326405267794597509, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: fireWindow
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3326405267794597509, guid: b1be9db7d8143484e81667c720867057, type: 3}
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 2077658377}
-    - target: {fileID: 3326405267794597509, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: maxMoveSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3326405268112458944, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3326405269148322619, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3326405269341226301, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: pinkoGFXTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3326405269341226303, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_Radius
-      value: 2.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 3331117008282381269, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4073109922040024998, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: deacceleration
-      value: 0.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 5854197909886983822, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: deacceleration
-      value: 0.87
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1be9db7d8143484e81667c720867057, type: 3}
 --- !u!1 &1339872987 stripped
