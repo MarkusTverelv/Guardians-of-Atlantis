@@ -32,7 +32,7 @@ public class WheelDoorScript : MonoBehaviour
 
         else
         {
-            if(posY > originalPos)
+            if(posY > originalPos && !leverScript.imActive)
             posY -= 1f * Time.deltaTime;
         }
 
