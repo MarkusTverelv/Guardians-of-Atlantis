@@ -70,8 +70,7 @@ public class PlayerSharedScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Return))
             shoot = true;
 
-        if (Input.GetKeyDown(KeyCode.L))
-
+        if (Input.GetKeyDown(KeyCode.E))
         {
             currentState = NewPlayerStates.Shield;
             Shield = true;

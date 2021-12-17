@@ -15,7 +15,7 @@ public class PlayerSpecificScript : MonoBehaviour
     public float deacceleration;
     bool inv;
     SpriteRenderer spriteRenderer;
-    [HideInInspector] public Transform playerTransform;
+    public Transform playerTransform;
     PlayerSharedScript altMovement;
 
     private void Start()
@@ -29,7 +29,6 @@ public class PlayerSpecificScript : MonoBehaviour
         turnSpeed = altMovement.turnSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        playerTransform = transform.GetChild(0).GetComponent<Transform>();
 
         if (gameObject.CompareTag("Yello"))
         {
@@ -55,7 +54,7 @@ public class PlayerSpecificScript : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.CompareTag("Yello"))
+        if (gameObject.CompareTag("Yello") || gameObject.CompareTag("Projectile"))
         {
             move = Input.GetAxisRaw("Vertical");
             turn = Input.GetAxisRaw("Horizontal");
@@ -68,7 +67,7 @@ public class PlayerSpecificScript : MonoBehaviour
     }
     private Vector2 NormalizedInput(float input)
     {
-        return (playerTransform.up * input).normalized;
+        return (playerTransform.right * -input).normalized;
     }
     public void Turn()
     {
@@ -102,7 +101,7 @@ public class PlayerSpecificScript : MonoBehaviour
     }
     public bool TakeDamage()
     {
-        if(!inv)
+        if (!inv)
         {
             if (currentHealth > 1)
             {
@@ -114,7 +113,7 @@ public class PlayerSpecificScript : MonoBehaviour
             else
             {
                 SceneManager.LoadScene("GameOver");
-            } 
+            }
         }
         return !inv;
     }

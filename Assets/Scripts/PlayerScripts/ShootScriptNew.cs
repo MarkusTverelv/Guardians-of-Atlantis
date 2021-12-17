@@ -31,7 +31,7 @@ public class ShootScriptNew : MonoBehaviour
         if (shoot)
         {
             yello.tag = "Projectile";
-            yello.AddForce(playerTransform.up * shootForce, ForceMode2D.Impulse);
+            yello.AddForce(-playerTransform.right * shootForce, ForceMode2D.Impulse);
             shootForce = 100;
             Invoke("ChangeTag", 2);
             return true;

@@ -9,6 +9,8 @@ public class PulseScript : MonoBehaviour
     private float range;
     private float rangeMax;
     private bool canGrow = false;
+    float pulseTimer;
+    public float pulseRate;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +22,12 @@ public class PulseScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        pulseTimer += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Q) && pulseTimer >= pulseRate)
         {
             canGrow = true;
+            pulseTimer = 0;
         }
 
         if (canGrow)
