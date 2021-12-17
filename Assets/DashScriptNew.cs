@@ -7,6 +7,7 @@ public class DashScriptNew : MonoBehaviour
     Rigidbody2D rb;
     public Transform playerTransform;
     public float dashForce = 150;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();

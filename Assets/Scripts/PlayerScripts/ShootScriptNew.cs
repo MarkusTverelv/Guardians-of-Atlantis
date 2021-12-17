@@ -6,11 +6,10 @@ public class ShootScriptNew : MonoBehaviour
 {
     public float shootForce;
     Rigidbody2D rb;
-    Transform playerTransform;
+    public Transform playerTransform;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerTransform = GetComponent<PlayerSpecificScript>().playerTransform;
     }
     public bool Shoot(float dist, Rigidbody2D yello, bool shoot, bool shootPower)
     {

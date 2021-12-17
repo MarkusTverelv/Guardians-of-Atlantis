@@ -6922,6 +6922,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4478875319391059793, guid: b1be9db7d8143484e81667c720867057, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1678917547}
     - target: {fileID: 5155687699974702402, guid: b1be9db7d8143484e81667c720867057, type: 3}
       propertyPath: m_Intensity
       value: 0.5
@@ -8389,6 +8393,11 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!4 &1678917547 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2628941329456019368, guid: b1be9db7d8143484e81667c720867057, type: 3}
+  m_PrefabInstance: {fileID: 1325215547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1686047443
 PrefabInstance:
   m_ObjectHideFlags: 0

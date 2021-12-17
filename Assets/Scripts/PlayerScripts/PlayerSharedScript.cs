@@ -61,7 +61,7 @@ public class PlayerSharedScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !shootTimerBool)
+        if (Input.GetKeyDown(KeyCode.Keypad2) && !shootTimerBool)
             currentState = NewPlayerStates.Attack;
 
         if (Input.GetKey(KeyCode.Return))
@@ -76,7 +76,7 @@ public class PlayerSharedScript : MonoBehaviour
             Shield = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.J) && dashCharges != 0)
+        if(Input.GetKeyDown(KeyCode.Keypad1) && dashCharges != 0)
         {
             currentState = NewPlayerStates.Dash;
             dashCharges -= 1;
