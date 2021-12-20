@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fluid.unity
     guid: d3b73c8dcbbf5f94e90b10f03d77add4
+  - enabled: 1
+    path: Assets/Scenes/Level.unity
+    guid: 538106d9ac9929a4bb5c4fe65df2b23c
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 07330fab4c52a1b4c96df94b463153f4
   m_configObjects: {}

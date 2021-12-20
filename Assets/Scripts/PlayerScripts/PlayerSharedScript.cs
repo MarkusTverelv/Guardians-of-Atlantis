@@ -41,7 +41,8 @@ public class PlayerSharedScript : MonoBehaviour
     float shootTimer = 0;
     float dashTimer = 0;
 
-    public int dashCharges = 3;
+    private static int dashCharges = 1;
+    public static int maxDashCharges = 1;
 
     NewPlayerStates currentState = NewPlayerStates.Moving;
     public GameObject shieldPrefab;
@@ -94,7 +95,7 @@ public class PlayerSharedScript : MonoBehaviour
             }
         }
 
-        if(dashCharges < 3)
+        if(dashCharges < maxDashCharges)
         {
             dashTimer += Time.deltaTime;
             if(dashTimer > 4)
@@ -183,5 +184,10 @@ public class PlayerSharedScript : MonoBehaviour
         onCheckpointSet.Invoke();
         checkPoint = gameObject;
         Debug.Log("checkpoint set: " + gameObject);
+    }
+
+    public void addDash()
+    {
+        maxDashCharges += 1;
     }
 }
