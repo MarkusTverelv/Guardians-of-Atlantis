@@ -28,7 +28,7 @@ public class AddDashScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        pss.addDash();
+        pss.AddDash();
         doIExist = false;
         dashText.GetComponent<TextScript>().textAnimate();
         Instantiate(yellowExplosion, transform.position, Quaternion.identity);

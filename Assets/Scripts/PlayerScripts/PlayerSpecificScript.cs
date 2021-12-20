@@ -9,6 +9,7 @@ public class PlayerSpecificScript : MonoBehaviour
     float move, turn;
     [HideInInspector] public int currentHealth;
     public int maxHealth;
+    public static int savedHealth;
     float moveSpeed, turnSpeed, maxMoveSpeed, invTime;
     private Rigidbody2D rb;
     [Range(0.0f, 1.0f)]
@@ -23,6 +24,7 @@ public class PlayerSpecificScript : MonoBehaviour
     {
         altMovement = transform.parent.GetComponent<PlayerSharedScript>();
         currentHealth = maxHealth;
+        maxHealth = savedHealth;
         moveSpeed = altMovement.moveSpeed;
         maxMoveSpeed = altMovement.maxMoveSpeed;
         invTime = altMovement.invTime;

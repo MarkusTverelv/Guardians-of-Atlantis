@@ -186,8 +186,16 @@ public class PlayerSharedScript : MonoBehaviour
         Debug.Log("checkpoint set: " + gameObject);
     }
 
-    public void addDash()
+    public void AddDash()
     {
         maxDashCharges += 1;
+    }
+    public void AddMaxHealth()
+    {
+        yelloMovement.maxHealth++;
+        yelloMovement.currentHealth = yelloMovement.maxHealth;
+
+        pinkoMovement.maxHealth++;
+        pinkoMovement.currentHealth = pinkoMovement.maxHealth;
     }
 }
