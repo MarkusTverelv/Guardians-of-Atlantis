@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Seweed 2_2 3
+  m_Name: Seweed 2_2 4
   m_Shader: {fileID: -6465566751694194690, guid: 8b5f9b05859124844bf54c7af1460748, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_c1e8559926ef4b2da40cec34655f3987:
-        m_Texture: {fileID: 2800000, guid: a36802a55543a5c4887294136c0306c7, type: 3}
+        m_Texture: {fileID: 2800000, guid: d132e82ccc99c3647ae6ada004f5f69d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _AlphaTex:
