@@ -8,26 +8,26 @@ public class PlayerSpecificScript : MonoBehaviour
     Vector2 velocity = Vector2.zero;
     float move, turn;
     [HideInInspector] public int currentHealth;
-    [HideInInspector] public int maxHealth;
+    public int maxHealth;
     float moveSpeed, turnSpeed, maxMoveSpeed, invTime;
     private Rigidbody2D rb;
     [Range(0.0f, 1.0f)]
     public float deacceleration;
     bool inv;
-    SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private SpriteRenderer spriteRenderer;
     public Transform playerTransform;
     PlayerSharedScript altMovement;
 
     private void Start()
     {
         altMovement = transform.parent.GetComponent<PlayerSharedScript>();
-        maxHealth = altMovement.maxHealth;
         currentHealth = maxHealth;
         moveSpeed = altMovement.moveSpeed;
         maxMoveSpeed = altMovement.maxMoveSpeed;
         invTime = altMovement.invTime;
         turnSpeed = altMovement.turnSpeed;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+
         rb = GetComponent<Rigidbody2D>();
 
         if (gameObject.CompareTag("Yello"))
@@ -115,6 +115,7 @@ public class PlayerSpecificScript : MonoBehaviour
                 SceneManager.LoadScene("GameOver");
             }
         }
+
         return !inv;
     }
 }

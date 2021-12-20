@@ -98,12 +98,12 @@ public class JellyfishScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Pinko"))
         {
-            collision.gameObject.GetComponent<NewPinkoMovement>().TakeDamage();
+            collision.gameObject.GetComponent<PlayerSpecificScript>().TakeDamage();
         }
 
         if (collision.gameObject.CompareTag("Yello"))
         {
-            collision.gameObject.GetComponent<NewYelloMovement>().TakeDamage();
+            collision.gameObject.GetComponent<PlayerSpecificScript>().TakeDamage();
         }
 
         if (collision.gameObject.CompareTag("Projectile") && !inv)
