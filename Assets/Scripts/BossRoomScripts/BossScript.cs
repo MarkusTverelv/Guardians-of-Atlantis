@@ -56,7 +56,7 @@ public class BossScript : MonoBehaviour
     void Start()
     {
         oilSpawner = GameObject.Find("OilSpawner").GetComponent<OilSpawner>();
-        bossPos = transform.position;
+        //bossPos = transform.position;
     }
 
     // Update is called once per frame
