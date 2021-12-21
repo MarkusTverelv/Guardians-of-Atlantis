@@ -23,6 +23,7 @@ public class BossScript : MonoBehaviour
 
     public Transform disappearSpot;
     public Transform bossSpot;
+    public Transform phaseThreeBossSpot;
 
     private GameObject spawnedIndicator;
 
@@ -37,10 +38,10 @@ public class BossScript : MonoBehaviour
 
     public int eyeHealth;
 
-    bool phaseOneHasStarted = false;
+    bool phaseOneHasStarted = true;
     bool phaseTwoHasStarted = false;
     bool phaseThreeHasStarted = false;
-    bool instantiatePhaseThree = true;
+    bool instantiatePhaseThree = false;
 
     bool shouldBombSpawn = true;
     bool shouldTentacleSpawn = true;
@@ -140,6 +141,11 @@ public class BossScript : MonoBehaviour
         }
 
         if (!bossMove)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, phaseThreeBossSpot.position, 50 * Time.deltaTime);
+        }
+
+        if(!bossMove && !phaseThreeHasStarted)
         {
             transform.position = Vector2.MoveTowards(transform.position, bossSpot.position, 50 * Time.deltaTime);
         }
@@ -273,7 +279,7 @@ public class BossScript : MonoBehaviour
         yield return new WaitForSeconds(4);
         bossMove = true;
         yield return new WaitForSeconds(4);
-        transform.localScale = new Vector3(40, 40, 0);
+        transform.localScale = new Vector3(6, 6, 0);
         yield return new WaitForSeconds(4);
         phaseThreeHasStarted = true;
         bossMove = false;

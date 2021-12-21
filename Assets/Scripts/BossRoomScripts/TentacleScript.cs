@@ -47,5 +47,12 @@ public class TentacleScript : MonoBehaviour
             posY -= 0.1f;
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Yello") || collision.gameObject.CompareTag("Pinko"))
+        {
+            collision.gameObject.transform.parent.GetComponent<PlayerSharedScript>().TakeDamage();
+        }
+    }
+
 }
