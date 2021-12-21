@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public enum NewPlayerStates
 {
@@ -19,9 +20,7 @@ public class PlayerSharedScript : MonoBehaviour
     public GameObject pinko, yello;
     public AudioClip hurtSound;
     public UnityEvent onCheckpointSet = new UnityEvent();
-    public int maxHealth;
-    [HideInInspector] public int currentHealth;
-    public float moveSpeed, turnSpeed, maxMoveSpeed, invTime;
+    public float moveSpeed, turnSpeed, maxMoveSpeed;
 
     DashScriptNew dashScriptNew;
     PlayerSpecificScript pinkoMovement, yelloMovement;
@@ -30,8 +29,13 @@ public class PlayerSharedScript : MonoBehaviour
     Rigidbody2D pinkoRigidbody;
     ShootScriptNew shootScriptNew;
 
+    public SpriteRenderer yelloSprite;
+    public SpriteRenderer pinkoSprite;
+
     Vector3 midPoint;
 
+    bool inv = false;
+    float invTime = 2.0f;
     float distance = 0.0f;
     bool shoot;
     bool shootPower = true;
@@ -43,6 +47,10 @@ public class PlayerSharedScript : MonoBehaviour
 
     private static int dashCharges = 1;
     public static int maxDashCharges = 1;
+
+    [HideInInspector] public int currentHealth;
+    public int maxHealth;
+    public static int savedHealth;
 
     NewPlayerStates currentState = NewPlayerStates.Moving;
     public GameObject shieldPrefab;
@@ -59,7 +67,10 @@ public class PlayerSharedScript : MonoBehaviour
 
         yelloRigidbody = yello.GetComponent<Rigidbody2D>();
         pinkoRigidbody = pinko.GetComponent<Rigidbody2D>();
+
+        currentHealth = maxHealth;
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad2) && !shootTimerBool)
@@ -192,10 +203,45 @@ public class PlayerSharedScript : MonoBehaviour
     }
     public void AddMaxHealth()
     {
-        yelloMovement.maxHealth++;
-        yelloMovement.currentHealth = yelloMovement.maxHealth;
+        maxHealth++;
+        currentHealth = maxHealth;
+    }
 
-        pinkoMovement.maxHealth++;
-        pinkoMovement.currentHealth = pinkoMovement.maxHealth;
+    IEnumerator InvTimer(float time)
+    {
+        inv = true;
+        yield return new WaitForSeconds(time);
+        inv = false;
+    }
+    IEnumerator DamageFlash(float time)
+    {
+        for (int i = 0; i < time * 10; i++)
+        {
+            pinkoSprite.enabled = !pinkoSprite.enabled;
+            yelloSprite.enabled = !yelloSprite.enabled;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        pinkoSprite.enabled = true;
+        yelloSprite.enabled = true;
+    }
+    public bool TakeDamage()
+    {
+        if (!inv)
+        {
+            if (currentHealth > 1)
+            {
+                StartCoroutine(InvTimer(invTime));
+                StartCoroutine(DamageFlash(invTime));
+                currentHealth--;
+            }
+
+            else
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+        }
+
+        return !inv;
     }
 }

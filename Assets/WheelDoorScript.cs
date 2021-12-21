@@ -43,8 +43,5 @@ public class WheelDoorScript : MonoBehaviour
         }
 
         wall.transform.position = new Vector2(wall.transform.position.x, posY);
-
-        Debug.Log(posY);
-        Debug.Log(originalPos);
     }
 }

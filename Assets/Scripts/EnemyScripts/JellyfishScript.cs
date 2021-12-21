@@ -96,14 +96,9 @@ public class JellyfishScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Pinko"))
+        if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
-            collision.gameObject.GetComponent<PlayerSpecificScript>().TakeDamage();
-        }
-
-        if (collision.gameObject.CompareTag("Yello"))
-        {
-            collision.gameObject.GetComponent<PlayerSpecificScript>().TakeDamage();
+            collision.gameObject.transform.parent.GetComponent<PlayerSharedScript>().TakeDamage();
         }
 
         if (collision.gameObject.CompareTag("Projectile") && !inv)
@@ -111,7 +106,6 @@ public class JellyfishScript : MonoBehaviour
             if (currentHealth > 1)
             {
                 StartCoroutine(flashRedTimer());
-                Debug.Log(currentHealth);
                 currentHealth--;
                 audioSource.pitch = 1;
                 audioSource.PlayOneShot(hurt);
