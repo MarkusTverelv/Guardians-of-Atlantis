@@ -38,10 +38,6 @@ public class Healthbar : MonoBehaviour
 
         pinkoHealthbar.transform.position = pinko.transform.position;
         pinkoHealthbarImage.fillAmount = playerShared.currentHealth / playerShared.maxHealth;
-
-        Debug.Log("Pinko" + pinkoHealthbarImage.fillAmount);
-        Debug.Log("Yello" + yelloHealthbarImage.fillAmount);
-
     }
 
 }

@@ -48,9 +48,12 @@ public class PlayerSharedScript : MonoBehaviour
     private static int dashCharges = 1;
     public static int maxDashCharges = 1;
 
-    [HideInInspector] public int currentHealth;
-    public int maxHealth;
-    public static int savedHealth;
+    [HideInInspector] 
+    public float currentHealth;
+
+    [HideInInspector]
+    public float maxHealth = 3;
+    public static float savedHealth = 3;
 
     NewPlayerStates currentState = NewPlayerStates.Moving;
     public GameObject shieldPrefab;
@@ -58,6 +61,7 @@ public class PlayerSharedScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = savedHealth;
         Physics2D.IgnoreCollision(yello.GetComponent<Collider2D>(), pinko.GetComponent<Collider2D>());
         yelloMovement = yello.GetComponent<PlayerSpecificScript>();
         pinkoMovement = pinko.GetComponent<PlayerSpecificScript>();
@@ -204,6 +208,7 @@ public class PlayerSharedScript : MonoBehaviour
     public void AddMaxHealth()
     {
         maxHealth++;
+        savedHealth++;
         currentHealth = maxHealth;
     }
 
