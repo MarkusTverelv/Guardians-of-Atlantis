@@ -19,8 +19,7 @@ public class BossScript : MonoBehaviour
     public GameObject movingBomb;
     public GameObject leftMovingOilWall, rightMovingOilWall;
 
-
-    public GameObject eyebrow, eyebrow2;
+    public Transform bigBombIndicatorSpot;
 
     public Transform disappearSpot;
     public Transform bossSpot;
@@ -38,15 +37,19 @@ public class BossScript : MonoBehaviour
 
     public int eyeHealth;
 
+    bool phaseOneHasStarted = false;
     bool phaseTwoHasStarted = false;
-    bool phaseOneHasStarted = true;
     bool phaseThreeHasStarted = false;
-    bool instantiatePhaseThree = false;
+    bool instantiatePhaseThree = true;
+
     bool shouldBombSpawn = true;
     bool shouldTentacleSpawn = true;
+
     bool bossMove = false;
+
     bool activateOnlyOnceTentacle = false;
     bool activateOnlyOnceTentacle2 = false;
+
     bool canSpawnMovingBombs;
 
     Vector2 bossPos;
@@ -271,8 +274,6 @@ public class BossScript : MonoBehaviour
         bossMove = true;
         yield return new WaitForSeconds(4);
         transform.localScale = new Vector3(40, 40, 0);
-        eyebrow.GetComponent<SpriteRenderer>().enabled = true;
-        eyebrow2.GetComponent<SpriteRenderer>().enabled = true;
         yield return new WaitForSeconds(4);
         phaseThreeHasStarted = true;
         bossMove = false;
@@ -374,7 +375,7 @@ public class BossScript : MonoBehaviour
 
         runesActivated = 0;
 
-        spawnedIndicator = Instantiate(indicatorRune, transform.position, Quaternion.identity);
+        spawnedIndicator = Instantiate(indicatorRune, bigBombIndicatorSpot.position, Quaternion.identity);
     }
 
 
