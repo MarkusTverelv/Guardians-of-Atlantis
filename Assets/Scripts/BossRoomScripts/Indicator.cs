@@ -10,5 +10,6 @@ public class Indicator : MonoBehaviour
         Destroy(gameObject, 2);
     }
 
- 
+    
+
 }

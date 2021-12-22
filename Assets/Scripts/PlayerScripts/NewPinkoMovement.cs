@@ -62,7 +62,7 @@ public class NewPinkoMovement : MonoBehaviour
 
     private Vector2 NormalizedInput(float input)
     {
-        return (pinkoGFXTransform.up * input).normalized;
+        return (pinkoGFXTransform.up * -input).normalized;
     }
 
     public void Turn()

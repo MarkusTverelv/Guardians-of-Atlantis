@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5118410775046236666}
   - component: {fileID: 5118410775046236665}
   - component: {fileID: 5118410775046236664}
+  - component: {fileID: 2034090977982117367}
+  - component: {fileID: 9162175188118565445}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Gem
@@ -102,3 +104,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &2034090977982117367
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5118410775046236669}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.56
+--- !u!114 &9162175188118565445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5118410775046236669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfaad479789a3794fab74ba82f2d27fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
