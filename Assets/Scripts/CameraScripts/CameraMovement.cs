@@ -9,6 +9,8 @@ public class CameraMovement : MonoBehaviour
 
     private Camera mainCamera;
 
+    int MIN_Y_POS = -60;
+
     private void Awake()
     {
         mainCamera = Camera.main;
