@@ -6,17 +6,67 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform jellowTransform;
     public Transform roseTransform;
-
+    [SerializeField] bool _lockYAxis, _lockXAxis, _lockZoom;
     private Camera mainCamera;
+    float lockedZoom, lockedXPos, lockedYPos;
 
+    public bool lockYAxis 
+    {
+        get 
+        { 
+            return _lockYAxis; 
+        }
+        set
+        {
+            _lockYAxis = value;
+            if (value)
+                lockedYPos = transform.position.y;
+        }
+    }
+    public bool lockXAxis
+    {
+        get
+        {
+            return _lockXAxis;
+        }
+        set
+        {
+            _lockXAxis = value;
+            if (value)
+                lockedXPos = transform.position.x;
+        }
+    }
+    public bool lockZoom
+    {
+        get
+        {
+            return _lockZoom;
+        }
+        set
+        {
+            _lockZoom = value;
+            if (value)
+                lockedZoom = mainCamera.orthographicSize;
+        }
+    }
     private void Awake()
     {
         mainCamera = Camera.main;
+        lockedZoom = mainCamera.orthographicSize;
+        lockedXPos = transform.position.x;
+        lockedYPos = transform.position.y;
     }
 
     private void LateUpdate()
     {
         CameraFollow(mainCamera, roseTransform, jellowTransform);
+        if (lockZoom)
+            mainCamera.orthographicSize = lockedZoom;
+        if (lockXAxis)
+            mainCamera.transform.position = new Vector2(lockedXPos, transform.position.y);
+        if (lockYAxis)
+            mainCamera.transform.position = new Vector2(transform.position.x, lockedYPos);
+
     }
 
     public void CameraFollow(Camera mainCam, Transform player1, Transform player2)
