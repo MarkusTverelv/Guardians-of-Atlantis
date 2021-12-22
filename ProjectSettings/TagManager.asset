@@ -68,3 +68,6 @@ TagManager:
   - name: Yello
     uniqueID: 222184389
     locked: 0
+  - name: New Layer
+    uniqueID: 3123756659
+    locked: 0

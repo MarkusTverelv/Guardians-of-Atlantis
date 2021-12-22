@@ -16,17 +16,17 @@ public class PlayerSpecificScript : MonoBehaviour
     bool inv;
     SpriteRenderer spriteRenderer;
     [HideInInspector] public Transform playerTransform;
-    PlayerSharedScript altMovement;
+    PlayerSharedScript playerSharedScript;
 
     private void Start()
     {
-        altMovement = transform.parent.GetComponent<PlayerSharedScript>();
-        maxHealth = altMovement.maxHealth;
+        playerSharedScript = transform.parent.GetComponent<PlayerSharedScript>();
+        maxHealth = playerSharedScript.maxHealth;
         currentHealth = maxHealth;
-        moveSpeed = altMovement.moveSpeed;
-        maxMoveSpeed = altMovement.maxMoveSpeed;
-        invTime = altMovement.invTime;
-        turnSpeed = altMovement.turnSpeed;
+        moveSpeed = playerSharedScript.moveSpeed;
+        maxMoveSpeed = playerSharedScript.maxMoveSpeed;
+        invTime = playerSharedScript.invTime;
+        turnSpeed = playerSharedScript.turnSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         playerTransform = transform.GetChild(0).GetComponent<Transform>();
@@ -55,7 +55,7 @@ public class PlayerSpecificScript : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.CompareTag("Yello"))
+        if (gameObject.name == "Yello")
         {
             move = Input.GetAxisRaw("Vertical");
             turn = Input.GetAxisRaw("Horizontal");

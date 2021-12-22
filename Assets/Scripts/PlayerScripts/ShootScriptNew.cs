@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShootScriptNew : MonoBehaviour
 {
     public float shootForce;
     Rigidbody2D rb;
     Transform playerTransform;
+    GameObject yello, yelloHB;
+    Image yelloHBImage;
+    SpriteRenderer yelloSpriteRenderer;
+    Sprite circle;
     private void Start()
     {
+        yelloHB = GameObject.Find("YelloHB");
+        yelloHBImage = yelloHB.GetComponent<Image>();
+        yello = GameObject.Find("Yello");
+        yelloSpriteRenderer = yello.GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         playerTransform = GetComponent<PlayerSpecificScript>().playerTransform;
     }
@@ -32,11 +41,17 @@ public class ShootScriptNew : MonoBehaviour
         {
             yello.tag = "Projectile";
             yello.AddForce(playerTransform.up * shootForce, ForceMode2D.Impulse);
+            yelloHBImage.enabled = false;
             shootForce = 100;
-            Invoke("ChangeTag", 2);
+            Invoke("ResetYello", 2);
             return true;
         }
 
         return false;
+    }
+    private void ResetYello()
+    {
+        yello.tag = "Yello";
+        
     }
 }

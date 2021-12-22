@@ -123,7 +123,7 @@ public class PlayerSharedScript : MonoBehaviour
 
     private void Attraction()
     {
-        if (distance > 2.0f)
+        if (distance > 4.0f)
         {
             yelloRigidbody.position = Vector3.Slerp(yelloRigidbody.position, midPoint, (distance / 10) * Time.deltaTime);
             pinkoRigidbody.position = Vector3.Slerp(pinkoRigidbody.position, midPoint, (distance / 10) * Time.deltaTime);

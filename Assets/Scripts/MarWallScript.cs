@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MarWallScript : MonoBehaviour
 {
@@ -31,11 +32,11 @@ public class MarWallScript : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Yello"))
         {
-            newYelloMovement.TakeDamage();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else if (collision.gameObject.CompareTag("Pinko"))
         {
-            newPinkoMovement.TakeDamage();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

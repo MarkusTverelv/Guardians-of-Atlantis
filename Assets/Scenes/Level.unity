@@ -6869,7 +6869,7 @@ PrefabInstance:
       objectReference: {fileID: 2077658377}
     - target: {fileID: 3326405267794597507, guid: b1be9db7d8143484e81667c720867057, type: 3}
       propertyPath: m_Name
-      value: NewPlayers
+      value: Players
       objectReference: {fileID: 0}
     - target: {fileID: 3326405267794597508, guid: b1be9db7d8143484e81667c720867057, type: 3}
       propertyPath: m_RootOrder
@@ -6915,6 +6915,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3326405267794597509, guid: b1be9db7d8143484e81667c720867057, type: 3}
+      propertyPath: hurtSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ca797018c456f242a2e45b327c79b0a, type: 3}
     - target: {fileID: 3326405267794597509, guid: b1be9db7d8143484e81667c720867057, type: 3}
       propertyPath: fireWindow
       value: 6

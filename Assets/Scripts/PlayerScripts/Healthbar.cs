@@ -36,10 +36,17 @@ public class Healthbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        yelloHealthbar.transform.position = yello.transform.position;
-        yelloHealthbarImage.fillAmount = (float)yelloPlayerScript.currentHealth / yelloPlayerScript.maxHealth;
-        pinkoHealthbar.transform.position = pinko.transform.position;
-        pinkoHealthbarImage.fillAmount = (float)pinkoPlayerScript.currentHealth / pinkoPlayerScript.maxHealth;
+        if (yelloHealthbarImage.isActiveAndEnabled)
+        {
+            yelloHealthbar.transform.position = yello.transform.position;
+            yelloHealthbarImage.fillAmount = (float)yelloPlayerScript.currentHealth / yelloPlayerScript.maxHealth;
+        }
+        if (pinkoHealthbarImage.isActiveAndEnabled)
+        {
+            pinkoHealthbar.transform.position = pinko.transform.position;
+            pinkoHealthbarImage.fillAmount = (float)pinkoPlayerScript.currentHealth / pinkoPlayerScript.maxHealth;
+        }
+        
 
     }
 
