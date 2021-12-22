@@ -27,4 +27,13 @@ public class LiquidParticleScript : MonoBehaviour
         GetComponent<CircleCollider2D>().enabled = false;
         Destroy(gameObject, 3);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Yello") || collision.gameObject.CompareTag("Pinko"))
+        {
+            collision.gameObject.transform.parent.GetComponent<PlayerSharedScript>().TakeDamage();
+        }
+    }
+
 }
