@@ -179,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -379,7 +379,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -532,9 +532,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 276864423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11742aa8932824646a87602d141ae1d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 75700d87702491c4fba58a7baa144609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jellowTransform: {fileID: 1775909427}
+  roseTransform: {fileID: 798826215}
+  _lockYAxis: 1
+  _lockXAxis: 0
+  _lockZoom: 1
 --- !u!1 &358820946
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +596,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -689,6 +694,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &798826215 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3326405269341226300, guid: b1be9db7d8143484e81667c720867057, type: 3}
+  m_PrefabInstance: {fileID: 1439414983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &881006314
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881006316}
   - component: {fileID: 881006315}
+  - component: {fileID: 881006317}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -745,7 +756,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 0.0184803, b: 1, a: 1}
   m_FlipX: 0
@@ -771,6 +782,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &881006317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881006314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75700d87702491c4fba58a7baa144609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jellowTransform: {fileID: 1775909427}
+  roseTransform: {fileID: 798826215}
+  _lockYAxis: 1
+  _lockXAxis: 0
+  _lockZoom: 1
 --- !u!1001 &1439414983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -826,8 +854,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3326405268706277140, guid: b1be9db7d8143484e81667c720867057, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1be9db7d8143484e81667c720867057, type: 3}
+--- !u!4 &1775909427 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3326405268112458959, guid: b1be9db7d8143484e81667c720867057, type: 3}
+  m_PrefabInstance: {fileID: 1439414983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1980686134
 GameObject:
   m_ObjectHideFlags: 0

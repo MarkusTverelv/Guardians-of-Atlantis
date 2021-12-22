@@ -56,16 +56,21 @@ public class CameraMovement : MonoBehaviour
         lockedXPos = transform.position.x;
         lockedYPos = transform.position.y;
     }
-
+    private void FixedUpdate()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+    }
     private void LateUpdate()
     {
         CameraFollow(mainCamera, roseTransform, jellowTransform);
         if (lockZoom)
             mainCamera.orthographicSize = lockedZoom;
         if (lockXAxis)
-            mainCamera.transform.position = new Vector3(lockedXPos, transform.position.y, transform.position.z);
+            mainCamera.transform.position = new Vector3(lockedXPos, transform.position.y);
         if (lockYAxis)
-            mainCamera.transform.position = new Vector3(transform.position.x, lockedYPos, transform.position.z);
+            mainCamera.transform.position = new Vector3(transform.position.x, lockedYPos);
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, -10);
 
     }
 
