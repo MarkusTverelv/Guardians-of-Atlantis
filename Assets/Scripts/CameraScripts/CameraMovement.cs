@@ -49,6 +49,8 @@ public class CameraMovement : MonoBehaviour
                 lockedZoom = mainCamera.orthographicSize;
         }
     }
+    int MIN_Y_POS = -60;
+
     private void Awake()
     {
         mainCamera = Camera.main;

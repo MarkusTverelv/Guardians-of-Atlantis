@@ -50,10 +50,7 @@ public class Eel : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Pinko"))
-            collision.gameObject.GetComponent<NewPinkoMovement>().TakeDamage();
-
-        if (collision.gameObject.CompareTag("Yello"))
-            collision.gameObject.GetComponent<NewYelloMovement>().TakeDamage();
+        if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
+            collision.gameObject.transform.parent.GetComponent<PlayerSharedScript>().TakeDamage();
     }
 }

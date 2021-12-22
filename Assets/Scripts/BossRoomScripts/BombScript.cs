@@ -74,6 +74,7 @@ public class BombScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
             GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
+            collision.gameObject.transform.parent.GetComponent<PlayerSharedScript>().TakeDamage();
             Destroy(gameObject);
             Destroy(explosion, 2);
         }

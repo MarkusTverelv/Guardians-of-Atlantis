@@ -69,5 +69,13 @@ public class SlammingTentacleScript : MonoBehaviour
         transform.position += -transform.right * 20 * Time.deltaTime;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Yello") || collision.gameObject.CompareTag("Pinko"))
+        {
+            collision.gameObject.transform.parent.GetComponent<PlayerSharedScript>().TakeDamage();
+        }
+    }
+
 
 }

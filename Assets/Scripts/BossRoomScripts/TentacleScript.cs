@@ -53,6 +53,18 @@ public class TentacleScript : MonoBehaviour
         {
             collision.gameObject.transform.parent.GetComponent<PlayerSharedScript>().TakeDamage();
         }
+        
+        if (collision.gameObject.CompareTag("Bomb"))
+        {
+            GetComponent<BoxCollider2D>().enabled = false;
+            MoveDown();
+            //GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
+            boss.amountOfTentaclesKilled++;
+            Debug.Log(boss.amountOfTentaclesKilled);
+            Destroy(collision.gameObject);
+            //Destroy(explosion, 2);
+        }
     }
+    
 
 }

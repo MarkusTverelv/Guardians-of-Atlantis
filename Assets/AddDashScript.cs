@@ -16,6 +16,7 @@ public class AddDashScript : MonoBehaviour
         {
             gameObject.active = false;
         }
+        GetComponent<SpriteRenderer>().enabled = false;
 
         pss = GameObject.Find("NewPlayers").GetComponent<PlayerSharedScript>();
     }
