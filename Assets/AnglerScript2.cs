@@ -89,7 +89,7 @@ public class AnglerScript2 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall") && currentState == state.idle)
         {
-            speed *= -1;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
