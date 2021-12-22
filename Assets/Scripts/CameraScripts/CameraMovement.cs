@@ -9,18 +9,17 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] bool _lockYAxis, _lockXAxis, _lockZoom;
     private Camera mainCamera;
     float lockedZoom, lockedXPos, lockedYPos;
-
-    public bool lockYAxis 
+    public bool lockZoom
     {
         get 
-        { 
-            return _lockYAxis; 
-        }
-        set
         {
-            _lockYAxis = value;
+            return _lockZoom;
+        }
+        set 
+        {
+            _lockZoom = value;
             if (value)
-                lockedYPos = transform.position.y;
+                lockedZoom = mainCamera.orthographicSize;
         }
     }
     public bool lockXAxis
@@ -33,23 +32,22 @@ public class CameraMovement : MonoBehaviour
         {
             _lockXAxis = value;
             if (value)
-                lockedXPos = transform.position.x;
+                lockedYPos = transform.position.x;
         }
     }
-    public bool lockZoom
+    public bool lockYAxis
     {
         get
         {
-            return _lockZoom;
+            return _lockYAxis;
         }
         set
         {
-            _lockZoom = value;
+            _lockYAxis = value;
             if (value)
-                lockedZoom = mainCamera.orthographicSize;
+                lockedYPos = transform.position.y;
         }
     }
-    int MIN_Y_POS = -60;
 
     private void Awake()
     {
@@ -65,9 +63,9 @@ public class CameraMovement : MonoBehaviour
         if (lockZoom)
             mainCamera.orthographicSize = lockedZoom;
         if (lockXAxis)
-            mainCamera.transform.position = new Vector2(lockedXPos, transform.position.y);
+            mainCamera.transform.position = new Vector3(lockedXPos, transform.position.y, transform.position.z);
         if (lockYAxis)
-            mainCamera.transform.position = new Vector2(transform.position.x, lockedYPos);
+            mainCamera.transform.position = new Vector3(transform.position.x, lockedYPos, transform.position.z);
 
     }
 
