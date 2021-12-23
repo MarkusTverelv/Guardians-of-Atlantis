@@ -4,40 +4,47 @@ using UnityEngine;
 
 public class JellyfishScript : MonoBehaviour
 {
+    public AudioClip electricity, hurt, death;
+    public float speed, agrroRange;
+
     int health = 1;
     int currentHealth;
-    Rigidbody2D body;
+
     bool aggro, turn, patrolling;
-    CircleCollider2D aggroCollider;
-    public float speed, agrroRange;
-    GameObject player;
-    public AudioClip electricity, hurt, death;
-    AudioSource audioSource;
-    SpriteRenderer spriteRenderer;
     bool inv;
 
     Vector3 startPos;
+
+    AudioSource audioSource;
+
+    GameObject player;
+    Rigidbody2D body;
+    CircleCollider2D aggroCollider;
+
+    SpriteRenderer spriteRenderer;
+
     enum state
     {
         aggro,
         returning,
         patrolling
     }
-    state currentState = state.patrolling;
 
+    state currentState = state.patrolling;
 
     // Start is called before the first frame update
     void Start()
     {
+        startPos = transform.position;
         currentHealth = health;
 
-        spriteRenderer = transform.GetChild(8).GetComponent<SpriteRenderer>();
-
-        audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
-        startPos = transform.position;
-        transform.GetChild(9).GetComponent<CircleCollider2D>().radius = agrroRange;
         body = GetComponent<Rigidbody2D>();
-        aggroCollider = transform.GetChild(9).GetComponentInChildren<CircleCollider2D>();
+        spriteRenderer = transform.Find("Shell").GetComponent<SpriteRenderer>();
+        audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+
+        transform.Find("Aggro").GetComponent<CircleCollider2D>().radius = agrroRange;
+        aggroCollider = transform.Find("Aggro").GetComponentInChildren<CircleCollider2D>();
+
         aggroCollider.radius = agrroRange;
     }
 
