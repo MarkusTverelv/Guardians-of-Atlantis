@@ -24,6 +24,7 @@ TagManager:
   - Yello
   - BigTentacle
   - Shield
+  - GM
   layers:
   - Default
   - TransparentFX

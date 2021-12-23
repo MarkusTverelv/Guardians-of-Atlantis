@@ -15,13 +15,12 @@ public enum NewPlayerStates
 
 public class PlayerSharedScript : MonoBehaviour
 {
-    GameObject spawn;
-    public GameObject spawnPoint, checkPoint;
     public GameObject pinko, yello;
     public AudioClip hurtSound;
     public UnityEvent onCheckpointSet = new UnityEvent();
     public float moveSpeed, turnSpeed, maxMoveSpeed;
 
+    GameMaster gm;
     DashScriptNew dashScriptNew;
     PlayerSpecificScript pinkoMovement, yelloMovement;
 
@@ -52,8 +51,8 @@ public class PlayerSharedScript : MonoBehaviour
     public float currentHealth;
 
     [HideInInspector]
-    public float maxHealth = 100;
-    public static float savedHealth = 100;
+    public float maxHealth = 3;
+    public static float savedHealth = 3;
 
     NewPlayerStates currentState = NewPlayerStates.Moving;
     public GameObject shieldPrefab;
@@ -61,7 +60,11 @@ public class PlayerSharedScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        transform.position = gm.lastCheckPointPos;
+
         maxHealth = savedHealth;
+
         Physics2D.IgnoreCollision(yello.GetComponent<Collider2D>(), pinko.GetComponent<Collider2D>());
         yelloMovement = yello.GetComponent<PlayerSpecificScript>();
         pinkoMovement = pinko.GetComponent<PlayerSpecificScript>();
@@ -192,13 +195,6 @@ public class PlayerSharedScript : MonoBehaviour
         yello.gameObject.tag = "Yello";
         Destroy(shield);
         currentState = NewPlayerStates.Moving;
-    }
-    public void SetCheckPoint(GameObject gameObject)
-    {
-        spawn.transform.position = gameObject.transform.position;
-        onCheckpointSet.Invoke();
-        checkPoint = gameObject;
-        Debug.Log("checkpoint set: " + gameObject);
     }
 
     public void AddDash()
