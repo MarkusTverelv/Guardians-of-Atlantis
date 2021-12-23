@@ -7,6 +7,7 @@ public class BombFollowScript : MonoBehaviour
     GameObject pinko;
     GameObject yello;
     GameObject[] tentacles;
+    GameObject wall;
     SpriteRenderer bombSpriteRenderer;
     float pinkoPos;
     float yelloPos;
@@ -26,7 +27,7 @@ public class BombFollowScript : MonoBehaviour
         pinko = GameObject.Find("Pinko");
         yello = GameObject.Find("Yello");
         bombSpriteRenderer = GetComponent<SpriteRenderer>();
-
+        Physics2D.IgnoreCollision(wall.GetComponent<BoxCollider2D>(), gameObject.GetComponent<CircleCollider2D>());
     }
 
     // Update is called once per frame

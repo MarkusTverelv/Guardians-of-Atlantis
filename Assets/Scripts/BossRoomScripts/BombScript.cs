@@ -5,6 +5,7 @@ using UnityEngine;
 public class BombScript : MonoBehaviour
 {
     public GameObject[] explosionPrefab;
+    public GameObject wall;
     SpriteRenderer bombSpriteRenderer;
     Color colorShifter;
     bool changeBool = true;
@@ -13,8 +14,15 @@ public class BombScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         bombSpriteRenderer = GetComponent<SpriteRenderer>();
         boss = GameObject.Find("Boss").GetComponent<BossScript>();
+        Physics2D.IgnoreCollision(wall.GetComponent<BoxCollider2D>(), gameObject.GetComponent<CircleCollider2D>());
+    }
+
+    private void Awake()
+    {
+        wall = GameObject.Find("BombIgnoreCollider");
     }
 
     // Update is called once per frame

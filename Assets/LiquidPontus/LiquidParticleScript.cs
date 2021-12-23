@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class LiquidParticleScript : MonoBehaviour
 {
+    GameObject wall;
     // Start is called before the first frame update
     void Start()
     {
         GameObject[] Tentacle = GameObject.FindGameObjectsWithTag("Tentacle");
-
-        foreach(GameObject t in Tentacle)
+        Physics2D.IgnoreCollision(wall.GetComponent<BoxCollider2D>(), gameObject.GetComponent<CircleCollider2D>());
+        foreach (GameObject t in Tentacle)
         {
             Physics2D.IgnoreCollision(t.GetComponent<BoxCollider2D>(), GetComponent<CircleCollider2D>());
         }
         
     }
-
+    private void Awake()
+    {
+        wall = GameObject.Find("BombIgnoreCollider");
+    }
     // Update is called once per frame
     void Update()
     {

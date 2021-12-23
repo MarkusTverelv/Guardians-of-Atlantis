@@ -7,6 +7,7 @@ public class TentacleScript : MonoBehaviour
     float posY;
     public bool ImActive = false;
     public BossScript boss;
+    public GameObject explosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,11 +59,11 @@ public class TentacleScript : MonoBehaviour
         {
             GetComponent<BoxCollider2D>().enabled = false;
             MoveDown();
-            //GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
+            GameObject explosion1 = Instantiate(explosion, transform.position, Quaternion.identity);
             boss.amountOfTentaclesKilled++;
             Debug.Log(boss.amountOfTentaclesKilled);
             Destroy(collision.gameObject);
-            //Destroy(explosion, 2);
+            Destroy(explosion1, 2);
         }
     }
     
