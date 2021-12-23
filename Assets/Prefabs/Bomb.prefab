@@ -139,3 +139,4 @@ MonoBehaviour:
   - {fileID: 8542547422714269624, guid: 44f533f537146fe499efe129f33693b3, type: 3}
   - {fileID: 1578222752094504985, guid: 53155ec052923c841a0aa34956a8bc31, type: 3}
   - {fileID: 5111169352066464851, guid: cfddba9ddba31de4abac5e8bdd33758d, type: 3}
+  wall: {fileID: 7104406352710163070, guid: da265a72add627c4d86753907c487ff9, type: 3}
