@@ -7,10 +7,7 @@ public class ScreenShake : MonoBehaviour
     private Camera mainCam;
 
     public float strength;
-    public float length;
-
-    float timer = 0.0f;
-    bool applyShake = false;
+    public float frequency;
 
     private void Awake()
     {
@@ -28,34 +25,32 @@ public class ScreenShake : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            applyShake = true;    
-        }
-
-        if (applyShake)
-        {
-            timer += Time.deltaTime;
-            ShakeScreen(strength, length);
+            StartCoroutine(Shake(frequency));
         }
     }
 
-    public bool ShakeScreen(float shakeAmount, float timeToShake)
+    IEnumerator Shake(float time)
     {
-        if (timer < timeToShake)
-        {
-            Vector3 newShakeValue = new Vector3(
-                Mathf.PerlinNoise(-shakeAmount, shakeAmount),
-                Mathf.PerlinNoise(-shakeAmount, shakeAmount), 0) * 10;
+        ShakeScreen();
+        yield return new WaitForSeconds(time);
+        ShakeScreen();
+        yield return new WaitForSeconds(time);
+        ShakeScreen();
+        yield return new WaitForSeconds(time);
+        ShakeScreen();
+        yield return new WaitForSeconds(time);
+        ShakeScreen();
+        yield return new WaitForSeconds(time);
+        ShakeScreen();
+        yield return new WaitForSeconds(time);
+        ShakeScreen();
+    }
+    private void ShakeScreen()
+    {
+        Vector3 newShakeValue = new Vector3(
+            Mathf.PerlinNoise(-strength, strength),
+            Mathf.PerlinNoise(-strength, strength), -15) * 2;
 
-            mainCam.transform.localPosition += newShakeValue;
-
-            return true;
-        }
-        else if (timer >= timeToShake)
-        {
-            timer = 0.0f;
-            applyShake = false;
-        }
-
-        return false;
+        mainCam.transform.localPosition += newShakeValue;
     }
 }
