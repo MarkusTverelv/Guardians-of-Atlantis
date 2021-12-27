@@ -6,8 +6,8 @@ public class BombFollowScript : MonoBehaviour
 {
     GameObject pinko;
     GameObject yello;
+    GameObject boss;
     GameObject[] tentacles;
-    GameObject wall;
     SpriteRenderer bombSpriteRenderer;
     float pinkoPos;
     float yelloPos;
@@ -19,6 +19,7 @@ public class BombFollowScript : MonoBehaviour
     bool changeBool;
     Color colorShifter;
     public GameObject[] explosionPrefab;
+    public AudioSource audioBombSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +27,8 @@ public class BombFollowScript : MonoBehaviour
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
         pinko = GameObject.Find("Pinko");
         yello = GameObject.Find("Yello");
+        boss = GameObject.Find("Boss");
         bombSpriteRenderer = GetComponent<SpriteRenderer>();
-        Physics2D.IgnoreCollision(wall.GetComponent<BoxCollider2D>(), gameObject.GetComponent<CircleCollider2D>());
     }
 
     // Update is called once per frame
@@ -85,6 +86,7 @@ public class BombFollowScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
+            boss.GetComponent<BossScript>().playBombSound();
             GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
             collision.gameObject.transform.parent.GetComponent<PlayerSharedScript>().TakeDamage();
             Destroy(gameObject);
@@ -93,6 +95,7 @@ public class BombFollowScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("BigTentacle"))
         {
+            boss.GetComponent<BossScript>().playBombSound();
             Destroy(gameObject);
             GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
             collision.gameObject.GetComponent<EyeTentacles>().health--;
@@ -101,6 +104,7 @@ public class BombFollowScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Wall"))
         {
+            boss.GetComponent<BossScript>().playBombSound();
             GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
             Destroy(gameObject);
             Destroy(explosion, 2);
@@ -108,27 +112,12 @@ public class BombFollowScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Bomb"))
         {
+            boss.GetComponent<BossScript>().playBombSound();
             GameObject explosion = Instantiate(explosionPrefab[rndNmb], transform.position, Quaternion.identity);
             Destroy(gameObject);
             Destroy(explosion, 2);
         }
     }
 
-    void ChangeColor()
-    {
-        switch (changeBool)
-        {
-            case true:
-                colorShifter = new Color(255, 0, 0);
-                changeBool = false;
-                break;
-            case false:
-                colorShifter = new Color(255, 255, 255);
-                changeBool = true;
-                break;
-            default:
-                break;
-        }
-        bombSpriteRenderer.color = colorShifter;
-    }
+    
 }

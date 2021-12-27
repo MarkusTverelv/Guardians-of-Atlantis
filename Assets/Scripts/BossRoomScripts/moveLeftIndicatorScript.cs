@@ -73,7 +73,7 @@ public class moveLeftIndicatorScript : MonoBehaviour
         for (int i = 0; i < spawnOilSpots.Length; i++)
         {
             GameObject oilRef = Instantiate(oilExplosion, spawnOilSpots[i].transform.position, Quaternion.identity);
-            Destroy(oilRef, 1);
+            Destroy(oilRef, 2);
         }
 
     }

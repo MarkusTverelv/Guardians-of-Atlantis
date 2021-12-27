@@ -51,8 +51,8 @@ public class PlayerSharedScript : MonoBehaviour
     public float currentHealth;
 
     [HideInInspector]
-    public float maxHealth = 3;
-    public static float savedHealth = 3;
+    public float maxHealth = 100;
+    public static float savedHealth = 100;
 
     NewPlayerStates currentState = NewPlayerStates.Moving;
     public GameObject shieldPrefab;

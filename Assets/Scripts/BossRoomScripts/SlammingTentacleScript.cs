@@ -8,6 +8,8 @@ public class SlammingTentacleScript : MonoBehaviour
     Vector3 lookDirection;
     public bool imActive = false;
     bool moving = false;
+    public AudioSource audioSource;
+    bool playSound;
 
     float tentacleTimer;
     // Start is called before the first frame update
@@ -24,6 +26,7 @@ public class SlammingTentacleScript : MonoBehaviour
         {
             Look();
         }
+        
 
         if(imActive)
         {
@@ -51,6 +54,10 @@ public class SlammingTentacleScript : MonoBehaviour
         
     }
 
+    public void playSoundSlam()
+    {
+        audioSource.Play();
+    }
     public void Look()
     {
         lookDirection = player.transform.position - transform.position;

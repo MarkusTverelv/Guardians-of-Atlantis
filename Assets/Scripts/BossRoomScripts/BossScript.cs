@@ -19,6 +19,11 @@ public class BossScript : MonoBehaviour
     public GameObject movingBomb;
     public GameObject leftMovingOilWall, rightMovingOilWall;
 
+    public AudioSource audioSourceRune;
+    public AudioSource audioBombExplosion;
+    public AudioSource audioBossTalk;
+    public AudioSource audioBossTalk2;
+
     public Transform bigBombIndicatorSpot;
 
     public Transform disappearSpot;
@@ -38,10 +43,10 @@ public class BossScript : MonoBehaviour
 
     public int eyeHealth;
 
-    bool phaseOneHasStarted = true;
+    bool phaseOneHasStarted = false;
     bool phaseTwoHasStarted = false;
     bool phaseThreeHasStarted = false;
-    bool instantiatePhaseThree = false;
+    bool instantiatePhaseThree = true;
 
     bool shouldBombSpawn = true;
     bool shouldTentacleSpawn = true;
@@ -292,6 +297,7 @@ public class BossScript : MonoBehaviour
     {
         canSpawnMovingBombs = true;
         yield return new WaitForSeconds(4);
+        audioBossTalk2.Play();
         leftMovingOilWall.GetComponent<moveLeftIndicatorScript>().canImoveLeft = true;
         rightMovingOilWall.GetComponent<moveIndicatorScript>().canImoveRight = true;
         yield return new WaitForSeconds(16);
@@ -318,6 +324,7 @@ public class BossScript : MonoBehaviour
 
     private IEnumerator activateRuneOrder()
     {
+        audioSourceRune.Play();
         for (int i = 0; i < runeSpots.Length; i++)
         {
             int rnd = Random.Range(0, runeSpots.Length);
@@ -390,6 +397,7 @@ public class BossScript : MonoBehaviour
         indicatorWarning.SetActive(true);
         indicatorWarning2.SetActive(true);
 
+        audioBossTalk.Play();
 
         for (int i = 0; i < slamTentacles.Length; i++)
         {
@@ -404,12 +412,18 @@ public class BossScript : MonoBehaviour
         indicatorWarning2.SetActive(false);
         slamTentacles[0].GetComponent<SlammingTentacleScript>().imActive = true;
         slamTentacles[1].GetComponent<SlammingTentacleScript>().imActive = true;
+        yield return new WaitForSeconds(0.2f);
+        slamTentacles[0].GetComponent<SlammingTentacleScript>().playSoundSlam();
         yield return new WaitForSeconds(2f);
         slamTentacles[2].GetComponent<SlammingTentacleScript>().imActive = true;
         slamTentacles[3].GetComponent<SlammingTentacleScript>().imActive = true;
+        yield return new WaitForSeconds(0.2f);
+        slamTentacles[0].GetComponent<SlammingTentacleScript>().playSoundSlam();
         yield return new WaitForSeconds(2f);
         slamTentacles[4].GetComponent<SlammingTentacleScript>().imActive = true;
         slamTentacles[5].GetComponent<SlammingTentacleScript>().imActive = true;
+        yield return new WaitForSeconds(0.2f);
+        slamTentacles[0].GetComponent<SlammingTentacleScript>().playSoundSlam();
     }
 
     //private IEnumerator activateEyeTentacles()
@@ -425,6 +439,11 @@ public class BossScript : MonoBehaviour
         Instantiate(movingBomb, movingBombSpawnPoints[rndNmb].transform.position, Quaternion.identity);
 
 
+    }
+
+    public void playBombSound()
+    {
+        audioBombExplosion.Play();
     }
 
 }

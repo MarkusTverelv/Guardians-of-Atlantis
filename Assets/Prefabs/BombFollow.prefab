@@ -1682,6 +1682,7 @@ MonoBehaviour:
   - {fileID: 8789141937027626963, guid: d66dc1239b90dac4db4a22a0f599c1b5, type: 3}
   - {fileID: 1578222752094504985, guid: 53155ec052923c841a0aa34956a8bc31, type: 3}
   - {fileID: 8542547422714269624, guid: 44f533f537146fe499efe129f33693b3, type: 3}
+  audioBombSource: {fileID: 0}
 --- !u!58 &4741551376707326324
 CircleCollider2D:
   m_ObjectHideFlags: 0

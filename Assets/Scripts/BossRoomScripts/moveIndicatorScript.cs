@@ -10,6 +10,7 @@ public class moveIndicatorScript : MonoBehaviour
     public GameObject[] spawnOilSpots;
     public GameObject oilExplosion;
     float posX;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,12 +70,11 @@ public class moveIndicatorScript : MonoBehaviour
 
     private void SpawnOil()
     {
-
+        audioSource.Play();
         for (int i = 0; i < spawnOilSpots.Length; i++)
         {
-
             GameObject oilRef = Instantiate(oilExplosion, spawnOilSpots[i].transform.position, Quaternion.identity);
-            Destroy(oilRef, 1);
+            Destroy(oilRef, 2);
         }
     }
 }
