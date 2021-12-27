@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AddDashScript : MonoBehaviour
 {
+    AudioScript audioScript;
     PlayerSharedScript pss;
     public static bool doIExist = true;
     public GameObject yellowExplosion;
@@ -12,6 +13,8 @@ public class AddDashScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("GM").GetComponent<AudioScript>();
+
         if (!doIExist)
         {
             gameObject.active = false;
@@ -29,6 +32,7 @@ public class AddDashScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        audioScript.playDashSound();
         pss.AddDash();
         doIExist = false;
         dashText.GetComponent<TextScript>().textAnimate();

@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LifeGem : MonoBehaviour
+
 {
+    AudioScript audioScript;
     public GameObject explosion;
     public Text healthText;
     private static bool imAlive = true;
 
     private void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("GM").GetComponent<AudioScript>();
         if (!imAlive)
             gameObject.SetActive(false);
     }
@@ -19,6 +22,7 @@ public class LifeGem : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pinko") || other.gameObject.CompareTag("Yello"))
         {
+            audioScript.playLifeSound();
             Instantiate(explosion, transform.position, Quaternion.identity);
             other.gameObject.transform.parent.GetComponent<PlayerSharedScript>().AddMaxHealth();
             healthText.GetComponent<TextScript>().textAnimate();

@@ -11,6 +11,8 @@ public class PulseScript : MonoBehaviour
     private bool canGrow = false;
     float pulseTimer;
     public float pulseRate;
+    public AudioSource pulseSound;
+    public AudioSource pulseTalkSound;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,8 @@ public class PulseScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && pulseTimer >= pulseRate)
         {
+            pulseTalkSound.Play();
+            pulseSound.Play();
             canGrow = true;
             pulseTimer = 0;
         }

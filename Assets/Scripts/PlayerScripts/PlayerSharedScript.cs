@@ -17,6 +17,12 @@ public class PlayerSharedScript : MonoBehaviour
 {
     public GameObject pinko, yello;
     public AudioClip hurtSound;
+    public AudioSource dashSound;
+    public AudioSource shieldSound;
+    public AudioSource talkSource;
+    public AudioSource talkSource2;
+    public AudioSource damageSource;
+    public AudioSource shootSource;
     public UnityEvent onCheckpointSet = new UnityEvent();
     public float moveSpeed, turnSpeed, maxMoveSpeed;
 
@@ -91,6 +97,8 @@ public class PlayerSharedScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            talkSource2.Play();
+            shieldSound.Play();
             currentState = NewPlayerStates.Shield;
             Shield = true;
         }
@@ -172,12 +180,15 @@ public class PlayerSharedScript : MonoBehaviour
                 pinkoMovement.Move();
                 if (shootScriptNew.Shoot(distance, yelloRigidbody, shoot, shootPower))
                 {
+                    shootSource.Play();
                     shootTimerBool = true;
                     shootPower = true;
                     currentState = NewPlayerStates.Moving;
                 }
                 break;
             case NewPlayerStates.Dash:
+                dashSound.Play();
+                talkSource.Play();
                 dashScriptNew.Dash(pinkoRigidbody);
                 currentState = NewPlayerStates.Moving;
                 break;
@@ -230,6 +241,7 @@ public class PlayerSharedScript : MonoBehaviour
     {
         if (!inv)
         {
+            damageSource.Play();
             if (currentHealth > 1)
             {
                 StartCoroutine(InvTimer(invTime));

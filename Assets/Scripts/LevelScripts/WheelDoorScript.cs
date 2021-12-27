@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WheelDoorScript : MonoBehaviour
 {
+    AudioScript audioScript;
     public GameObject wall;
     public GameObject wheel, wheel2;
     public GameObject lever;
@@ -11,9 +12,11 @@ public class WheelDoorScript : MonoBehaviour
     WheelScript wheelScript, wheel2Script;
     float posY;
     float originalPos;
+    bool startedPlaying = false;
     // Start is called before the first frame update
     void Start()
     {
+        audioScript = GameObject.FindGameObjectWithTag("GM").GetComponent<AudioScript>();
         originalPos = wall.transform.position.y;
         posY = wall.transform.position.y;
         leverScript = lever.GetComponent<leverScript>();
@@ -26,14 +29,28 @@ public class WheelDoorScript : MonoBehaviour
     {
         if (wheelScript.rotz1 > 150 && wheel2Script.rotz2 > 150 || wheel2Script.rotz1 > 150 && wheelScript.rotz2 > 150)
         {
-            if(posY < originalPos + 7)
+            if (posY < originalPos + 7)
                 posY += 5 * Time.deltaTime;
+            if (startedPlaying == false)
+                {
+                    audioScript.stoneSound();
+                    startedPlaying = true;
+                }
+            
+                
         }
 
         else
         {
-            if(posY > originalPos && !leverScript.imActive)
+            if (posY > originalPos && !leverScript.imActive)
             posY -= 1f * Time.deltaTime;
+
+            if(startedPlaying == true)
+            {
+                audioScript.stopStoneSound();
+                audioScript.stoneSound();
+                startedPlaying = false;
+            }
         }
 
         if(leverScript.imActive)
@@ -41,6 +58,8 @@ public class WheelDoorScript : MonoBehaviour
             if (posY < originalPos + 7)
                 posY += 5 * Time.deltaTime;
         }
+
+        
 
         wall.transform.position = new Vector2(wall.transform.position.x, posY);
     }
