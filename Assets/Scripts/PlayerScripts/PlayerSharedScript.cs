@@ -47,13 +47,16 @@ public class PlayerSharedScript : MonoBehaviour
     bool Shield = false;
     bool shootTimerBool = false;
 
+    float stayTimer = 0.0f;
     float shootTimer = 0;
     float dashTimer = 0;
+    public float timerShield = 0.0f;
+    public float cooldownShield = 0.0f;
 
     private static int dashCharges = 1;
     public static int maxDashCharges = 1;
 
-    [HideInInspector] 
+    [HideInInspector]
     public float currentHealth;
 
     [HideInInspector]
@@ -66,6 +69,8 @@ public class PlayerSharedScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timerShield = cooldownShield;
+
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         transform.position = gm.lastCheckPointPos;
 
@@ -95,25 +100,35 @@ public class PlayerSharedScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Return))
             shoot = true;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        timerShield += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.E) && currentState != NewPlayerStates.Shield)
         {
             talkSource2.Play();
             shieldSound.Play();
-            currentState = NewPlayerStates.Shield;
-            Shield = true;
+
+            if (timerShield >= cooldownShield)
+            {
+                Shield = true;
+            }
         }
 
-        if(Input.GetKeyDown(KeyCode.Keypad1) && dashCharges != 0)
+        if (Shield)
+        {
+            currentState = NewPlayerStates.Shield;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Keypad1) && dashCharges != 0)
         {
             currentState = NewPlayerStates.Dash;
             dashCharges -= 1;
         }
 
-        if(shootTimerBool)
+        if (shootTimerBool)
         {
             shootTimer += Time.deltaTime;
 
-            if(shootTimer > 8)
+            if (shootTimer > 8)
             {
                 shootTimerBool = false;
                 shoot = false;
@@ -121,10 +136,10 @@ public class PlayerSharedScript : MonoBehaviour
             }
         }
 
-        if(dashCharges < maxDashCharges)
+        if (dashCharges < maxDashCharges)
         {
             dashTimer += Time.deltaTime;
-            if(dashTimer > 4)
+            if (dashTimer > 4)
             {
                 dashCharges++;
                 dashTimer = 0;
@@ -134,7 +149,7 @@ public class PlayerSharedScript : MonoBehaviour
         yelloMovement.Turn();
         pinkoMovement.Turn();
 
-        
+
     }
 
     //M=(2x1​+x2​​,2y1​+y2​​)
@@ -171,13 +186,24 @@ public class PlayerSharedScript : MonoBehaviour
                 pinkoMovement.Move();
                 break;
             case NewPlayerStates.Shield:
-                yelloMovement.Move();
+                pinkoMovement.Move();
                 yelloMovement.Pull(distance, pinkoRigidbody);
-                if (Shield)
+                if (Shield)     //Have to exit for the coroutine to run once
+                {
                     StartCoroutine(DeployShield());
+                }
                 break;
             case NewPlayerStates.Attack:
-                pinkoMovement.Move();
+                stayTimer += Time.fixedDeltaTime;
+
+                if (stayTimer >= 5)
+                {
+                    currentState = NewPlayerStates.Moving;
+                    stayTimer = 0.0f;
+                }
+
+                yelloMovement.Move();
+
                 if (shootScriptNew.Shoot(distance, yelloRigidbody, shoot, shootPower))
                 {
                     shootSource.Play();
@@ -200,11 +226,15 @@ public class PlayerSharedScript : MonoBehaviour
     IEnumerator DeployShield()
     {
         GameObject shield = Instantiate(shieldPrefab, yelloRigidbody.position, Quaternion.identity, yello.transform);
+        timerShield = 0.0f;
         Shield = false;
+
         yello.gameObject.tag = "Gem";
         yield return new WaitForSeconds(5);
         yello.gameObject.tag = "Yello";
+
         Destroy(shield);
+
         currentState = NewPlayerStates.Moving;
     }
 
