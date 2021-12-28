@@ -57,6 +57,7 @@ public class TentacleScript : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Bomb"))
         {
+            boss.playTentacleDamageSound();
             GetComponent<BoxCollider2D>().enabled = false;
             MoveDown();
             GameObject explosion1 = Instantiate(explosion, transform.position, Quaternion.identity);

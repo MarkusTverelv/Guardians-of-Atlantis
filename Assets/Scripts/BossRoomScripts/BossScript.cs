@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.Experimental.Rendering.Universal;
 public class BossScript : MonoBehaviour
 {
     public GameObject[] Tentacles;
@@ -23,6 +24,9 @@ public class BossScript : MonoBehaviour
     public AudioSource audioBombExplosion;
     public AudioSource audioBossTalk;
     public AudioSource audioBossTalk2;
+    public AudioSource tentacleGroundSource;
+    public AudioSource tentacleTakeDamageSource;
+    public AudioSource oilWaterfall;
 
     public Transform bigBombIndicatorSpot;
 
@@ -57,6 +61,9 @@ public class BossScript : MonoBehaviour
     bool activateOnlyOnceTentacle2 = false;
 
     bool canSpawnMovingBombs;
+
+    bool wonGame;
+    public GameObject lcs;
 
     Vector2 bossPos;
 
@@ -173,7 +180,7 @@ public class BossScript : MonoBehaviour
 
         if (eye != null)
         {
-            if (eye.GetComponent<EyeScript>().health < 2 && !activateOnlyOnceTentacle)
+            if (eye.GetComponent<EyeScript>().health < 1 && !activateOnlyOnceTentacle)
             {
                 eyeTentacle.GetComponent<EyeTentacles>().imActive = true;
                 eye.GetComponent<CircleCollider2D>().enabled = false;
@@ -185,7 +192,7 @@ public class BossScript : MonoBehaviour
 
         if (eye2 != null)
         {
-            if (eye2.GetComponent<EyeScript>().health < 2 && !activateOnlyOnceTentacle2)
+            if (eye2.GetComponent<EyeScript>().health < 1 && !activateOnlyOnceTentacle2)
             {
                 eyeTentacle2.GetComponent<EyeTentacles>().imActive = true;
                 eye2.GetComponent<CircleCollider2D>().enabled = false;
@@ -215,6 +222,16 @@ public class BossScript : MonoBehaviour
                 movingBombTimer = 0;
             }
         }
+
+        if(eye.GetComponent<EyeScript>().health == 0 && eye2.GetComponent<EyeScript>().health == 0)
+        {
+            wonGame = true;
+            if (wonGame)
+            {
+                bossMove = true;
+                lcs.GetComponent<LevelChangerScript>().fadeToLevel("GameOver");
+            }
+        }
     }
 
     void ActivateTentacles()
@@ -227,6 +244,7 @@ public class BossScript : MonoBehaviour
             Tentacles[i] = tempGO;
         }
 
+        tentacleGroundSource.Play();
         Tentacles[0].GetComponent<TentacleScript>().ImActive = true;
         Tentacles[1].GetComponent<TentacleScript>().ImActive = true;
     }
@@ -248,9 +266,12 @@ public class BossScript : MonoBehaviour
         yield return new WaitForSeconds(10);
         StartCoroutine(oilSpawner.oilTimer());
         yield return new WaitForSeconds(20);
+        oilWaterfall.Play();
         StartCoroutine(oilSpawner.fluidOil());
         yield return new WaitForSeconds(2);
         phaseOneHasStarted = true;
+        yield return new WaitForSeconds(4);
+        oilWaterfall.Stop();
     }
 
     private IEnumerator BossPhaseTwo()
@@ -285,6 +306,8 @@ public class BossScript : MonoBehaviour
         bossMove = true;
         yield return new WaitForSeconds(4);
         transform.localScale = new Vector3(6, 6, 0);
+        eye.GetComponent<Light2D>().enabled = true;
+        eye2.GetComponent<Light2D>().enabled = true;
         yield return new WaitForSeconds(4);
         phaseThreeHasStarted = true;
         bossMove = false;
@@ -445,5 +468,12 @@ public class BossScript : MonoBehaviour
     {
         audioBombExplosion.Play();
     }
+
+    public void playTentacleDamageSound()
+    {
+        tentacleTakeDamageSource.Play();
+    }
+
+    
 
 }

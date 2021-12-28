@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class IndicatorRuneScript : MonoBehaviour
 {
+    private GameObject lc;
     // Start is called before the first frame update
     void Start()
     {
+        lc = GameObject.Find("LevelChanger");
         InvokeRepeating("ScaleIndicator", 0, 0.05f);
     }
 
@@ -14,9 +16,11 @@ public class IndicatorRuneScript : MonoBehaviour
     void Update()
     {
         float scale = transform.localScale.x;
-        //if(scale >= 100)
-        //{
-        //}
+        if(scale >= 100)
+        {
+            lc.GetComponent<LevelChangerScript>().fadeToLevel("GameOver");
+        }
+        Debug.Log(scale);
 
     }
 

@@ -18,7 +18,7 @@ public class PulseScript : MonoBehaviour
     void Start()
     {
         enemyList = new List<GameObject>();
-        rangeMax = 4f;
+        rangeMax = 6f;
     }
 
     // Update is called once per frame

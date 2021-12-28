@@ -8,10 +8,11 @@ public class EyeScript : MonoBehaviour
     public int health = 3;
     public bool invincible = false;
     private float invincibleTimer;
+    BossScript boss;
     // Start is called before the first frame update
     void Start()
     {
-        
+        boss = GameObject.Find("Boss").GetComponent<BossScript>();
     }
 
     // Update is called once per frame
@@ -34,6 +35,7 @@ public class EyeScript : MonoBehaviour
         {
             if (!invincible)
             {
+                boss.playTentacleDamageSound();
                 GameObject explosionRef = Instantiate(explosion, transform.position, Quaternion.identity);
                 Destroy(explosionRef, 1);
                 if (health >= 1)

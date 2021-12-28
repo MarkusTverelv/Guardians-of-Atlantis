@@ -63,7 +63,6 @@ public class BombFollowScript : MonoBehaviour
 
         if(imActivated)
         {
-            InvokeRepeating("ChangeColor", 0, 0.2f);
             pushActivateTimer += Time.deltaTime;
             if (pushActivateTimer > 0.2f)
             {

@@ -17,6 +17,8 @@ public class OilSpawner : MonoBehaviour
     public GameObject[] squareOilSpots;
     public GameObject indicatorWarning;
 
+    public AudioSource bombSource;
+
     public List<Vector2> randomPos;
     
     // Start is called before the first frame update
@@ -44,10 +46,11 @@ public class OilSpawner : MonoBehaviour
 
         for (int i = 0; i < randomPos.Count; i++)
         {
+            
             var oilCopy = Instantiate(oil, randomPos[i], Quaternion.identity);
             Destroy(oilCopy, 0.5f);
         }
-
+        bombSource.Play();
         randomPos.Clear();
 
 
@@ -118,10 +121,12 @@ public class OilSpawner : MonoBehaviour
         Instantiate(bigOil, squareOilSpots[0].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[1].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[2].transform.position, Quaternion.identity);
+        bombSource.Play();
         yield return new WaitForSeconds(4f);
         Instantiate(bigOil, squareOilSpots[3].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[4].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[5].transform.position, Quaternion.identity);
+        bombSource.Play();
         Instantiate(squareIndicator, squareIndicatorList[2].transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2f);
         Instantiate(squareIndicator, squareIndicatorList[0].transform.position, Quaternion.identity);
@@ -129,15 +134,18 @@ public class OilSpawner : MonoBehaviour
         Instantiate(bigOil, squareOilSpots[6].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[7].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[8].transform.position, Quaternion.identity);
+        bombSource.Play();
         Instantiate(squareIndicator, squareIndicatorList[1].transform.position, Quaternion.identity);
         yield return new WaitForSeconds(2f);
         Instantiate(bigOil, squareOilSpots[0].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[1].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[2].transform.position, Quaternion.identity);
+        bombSource.Play();
         yield return new WaitForSeconds(4f);
         Instantiate(bigOil, squareOilSpots[3].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[4].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[5].transform.position, Quaternion.identity);
+        bombSource.Play();
 
     }
 
@@ -152,14 +160,17 @@ public class OilSpawner : MonoBehaviour
         Instantiate(bigOil, squareOilSpots[0].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[1].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[2].transform.position, Quaternion.identity);
+        bombSource.Play();
         yield return new WaitForSeconds(2f);
         Instantiate(bigOil, squareOilSpots[3].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[4].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[5].transform.position, Quaternion.identity);
+        bombSource.Play();
         yield return new WaitForSeconds(2f);
         Instantiate(bigOil, squareOilSpots[6].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[7].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[8].transform.position, Quaternion.identity);
+        bombSource.Play();
         yield return new WaitForSeconds(2f);
         Instantiate(squareIndicator, squareIndicatorList[0].transform.position, Quaternion.identity);
         Instantiate(squareIndicator, squareIndicatorList[1].transform.position, Quaternion.identity);
@@ -174,6 +185,7 @@ public class OilSpawner : MonoBehaviour
         Instantiate(bigOil, squareOilSpots[6].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[7].transform.position, Quaternion.identity);
         Instantiate(bigOil, squareOilSpots[8].transform.position, Quaternion.identity);
+        bombSource.Play();
     }
 
 
