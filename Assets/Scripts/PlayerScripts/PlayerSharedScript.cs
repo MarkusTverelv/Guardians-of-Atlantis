@@ -188,10 +188,9 @@ public class PlayerSharedScript : MonoBehaviour
             case NewPlayerStates.Shield:
                 pinkoMovement.Move();
                 yelloMovement.Pull(distance, pinkoRigidbody);
-                if (Shield)     //Have to exit for the coroutine to run once
-                {
+                
+                if (Shield)     //Have to exist for the coroutine to run once not every frame
                     StartCoroutine(DeployShield());
-                }
                 break;
             case NewPlayerStates.Attack:
                 stayTimer += Time.fixedDeltaTime;
