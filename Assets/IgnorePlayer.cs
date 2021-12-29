@@ -13,12 +13,7 @@ public class IgnorePlayer : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
 
-        if (player == "Yello")
-            sr.color = Color.yellow;
-        else if (player == "Pinko")
-            sr.color = Color.magenta;
-        else
-            return;
+        
 
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find(player).GetComponent<Collider2D>());
     }

@@ -6,10 +6,12 @@ public class leverScript : MonoBehaviour
 {
     public bool imActive;
     float leverTimer;
+    public AudioSource leverSource;
+    private GameObject gm;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gm = GameObject.Find("GameMaster");
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class leverScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.F))
         {
+            gm.GetComponent<AudioScript>().playLeverSound();
             imActive = true;
         }
     }

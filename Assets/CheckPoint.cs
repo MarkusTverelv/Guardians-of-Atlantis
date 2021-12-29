@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     private GameMaster gm;
-
+    bool imActive;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,13 @@ public class CheckPoint : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Pinko"))
         {
-            gm.lastCheckPointPos = transform.position;
+            if (!imActive)
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+                gm.GetComponent<AudioScript>().playCheckPointSound();
+                gm.lastCheckPointPos = transform.position;
+                imActive = true;
+            }
         }
     }
 }

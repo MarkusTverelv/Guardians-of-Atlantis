@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class StoneOfDestinyScript : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class StoneOfDestinyScript : MonoBehaviour
     public GameObject stone1;
     public GameObject stone2;
     public Text stoneText;
+    private GameObject gm;
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameMaster");
         if(imFound)
         {
+            GetComponent<Light2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<CircleCollider2D>().enabled = false;
         }
     }
 
@@ -32,6 +37,7 @@ public class StoneOfDestinyScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
             {
+                gm.GetComponent<AudioScript>().playDestinySound();
                 imFound = true;
                 stoneText.GetComponent<TextScript>().textAnimate();
                 stone.GetComponent<StoneOfDestinyWallScript>().stopExisting();
@@ -43,6 +49,7 @@ public class StoneOfDestinyScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
             {
+                gm.GetComponent<AudioScript>().playDestinySound();
                 imFound = true;
                 stoneText.GetComponent<TextScript>().textAnimate();
                 stone1.GetComponent<stoneOfDestinyWall2>().stopExisting();
@@ -54,6 +61,7 @@ public class StoneOfDestinyScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
             {
+                gm.GetComponent<AudioScript>().playDestinySound();
                 imFound = true;
                 stoneText.GetComponent<TextScript>().textAnimate();
                 stone2.GetComponent<StoneOfDestinyWall3>().stopExisting();
