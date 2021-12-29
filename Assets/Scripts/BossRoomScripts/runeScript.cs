@@ -28,7 +28,6 @@ public class runeScript : MonoBehaviour
                 boss.runesActivated++;
                 GetComponent<SpriteRenderer>().enabled = false;
                 GetComponent<CircleCollider2D>().enabled = false;
-                Debug.Log(boss.runesActivated);
             }
 
             else

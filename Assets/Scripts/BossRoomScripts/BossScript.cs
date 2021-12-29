@@ -238,7 +238,7 @@ public class BossScript : MonoBehaviour
             if (wonGame)
             {
                 bossMove = true;
-                lcs.GetComponent<LevelChangerScript>().fadeToLevel("GameOver");
+                lcs.GetComponent<LevelChangerScript>().fadeToLevel("Victory");
             }
         }
     }

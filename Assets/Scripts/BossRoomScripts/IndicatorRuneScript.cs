@@ -18,10 +18,8 @@ public class IndicatorRuneScript : MonoBehaviour
         float scale = transform.localScale.x;
         if(scale >= 100)
         {
-            lc.GetComponent<LevelChangerScript>().fadeToLevel("GameOver");
+            lc.GetComponent<LevelChangerScript>().fadeToLevel("GameOverBoss");
         }
-        Debug.Log(scale);
-
     }
 
     void ScaleIndicator()

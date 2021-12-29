@@ -295,7 +295,7 @@ public class PlayerSharedScript : MonoBehaviour
                 }
                 else if (sceneName == "Fluid")
                 {
-                    lcs.fadeToLevel("Level");
+                    lcs.fadeToLevel("GameOverBoss");
                 }
                 
             }

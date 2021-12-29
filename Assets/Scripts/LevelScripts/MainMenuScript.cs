@@ -37,4 +37,9 @@ public class MainMenuScript : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void goBoss()
+    {
+        SceneManager.LoadScene("Fluid");
+    }
 }

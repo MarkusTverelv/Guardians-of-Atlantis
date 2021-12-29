@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fluid.unity
     guid: d3b73c8dcbbf5f94e90b10f03d77add4
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: c89fedf5c0da39c4ab1feaa3739bcdb7
+  - enabled: 1
+    path: Assets/Scenes/GameOverBoss.unity
+    guid: e0452a34b4e45b541954394970b3f277
   m_configObjects: {}

@@ -7,11 +7,13 @@ public class GoToBossRoom : MonoBehaviour
 {
     GameMaster gm;
     GameObject music;
+    LevelChangerScript lcs;
     // Start is called before the first frame update
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         music = GameObject.Find("Music");
+        lcs = GameObject.Find("LevelChanger").GetComponent<LevelChangerScript>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,8 @@ public class GoToBossRoom : MonoBehaviour
         {
             music.SetActive(false);
             gm.lastCheckPointPos = new Vector2(-20, -4);
-            SceneManager.LoadScene("Fluid");
+            lcs.fadeToLevel("Fluid");
         }
     }
+
 }
