@@ -1438,6 +1438,7 @@ MonoBehaviour:
   lever3: {fileID: 771277145}
   leverfinish: {fileID: 294898523}
   moveSpot: {fileID: 4740446674905293803}
+  stoneText: {fileID: 0}
 --- !u!1 &8465557216262567101
 GameObject:
   m_ObjectHideFlags: 0

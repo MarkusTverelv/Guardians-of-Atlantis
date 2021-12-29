@@ -27,6 +27,7 @@ public class BossScript : MonoBehaviour
     public AudioSource tentacleGroundSource;
     public AudioSource tentacleTakeDamageSource;
     public AudioSource oilWaterfall;
+    private GameObject mainCamera;
 
     public Transform bigBombIndicatorSpot;
 
@@ -47,13 +48,14 @@ public class BossScript : MonoBehaviour
 
     public int eyeHealth;
 
-    bool phaseOneHasStarted = true;
+    bool instantiatePhaseOne = true;
+    bool phaseOneHasStarted = false;
     bool phaseTwoHasStarted = false;
     bool phaseThreeHasStarted = false;
     bool instantiatePhaseThree = false;
 
-    bool shouldBombSpawn = true;
-    bool shouldTentacleSpawn = true;
+    bool shouldBombSpawn = false;
+    bool shouldTentacleSpawn = false;
 
     bool bossMove = false;
 
@@ -71,6 +73,7 @@ public class BossScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = GameObject.Find("Main Camera");
         oilSpawner = GameObject.Find("OilSpawner").GetComponent<OilSpawner>();
         //bossPos = transform.position;
     }
@@ -99,6 +102,12 @@ public class BossScript : MonoBehaviour
             shouldTentacleSpawn = true;
             lastRoutine = StartCoroutine(BossPhaseOne());
             phaseOneHasStarted = false;
+        }
+
+        if(instantiatePhaseOne)
+        {
+            StartCoroutine(InstantiatePhaseOne());
+            instantiatePhaseOne = false;
         }
 
         if (phaseTwoHasStarted)
@@ -159,7 +168,7 @@ public class BossScript : MonoBehaviour
 
         if(!bossMove && !phaseThreeHasStarted)
         {
-            transform.position = Vector2.MoveTowards(transform.position, bossSpot.position, 50 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, bossSpot.position, 100 * Time.deltaTime);
         }
 
         if (Input.GetKeyDown(KeyCode.H))
@@ -474,6 +483,13 @@ public class BossScript : MonoBehaviour
         tentacleTakeDamageSource.Play();
     }
 
-    
+    private IEnumerator InstantiatePhaseOne()
+    {
+        yield return new WaitForSeconds(4f);
+        mainCamera.GetComponent<AudioSource>().enabled = true;
+        yield return new WaitForSeconds(2f);
+        phaseOneHasStarted = true;
+
+    }
 
 }
