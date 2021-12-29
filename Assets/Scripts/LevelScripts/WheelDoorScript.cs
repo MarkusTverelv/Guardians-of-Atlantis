@@ -8,6 +8,9 @@ public class WheelDoorScript : MonoBehaviour
     public GameObject wall;
     public GameObject wheel, wheel2;
     public GameObject lever;
+    public ParticleSystem pe;
+    public ParticleSystem pe1;
+    public ParticleSystem pe2;
     leverScript leverScript;
     WheelScript wheelScript, wheel2Script;
     float posY;
@@ -30,7 +33,12 @@ public class WheelDoorScript : MonoBehaviour
         if (wheelScript.rotz1 > 150 && wheel2Script.rotz2 > 150 || wheel2Script.rotz1 > 150 && wheelScript.rotz2 > 150)
         {
             if (posY < originalPos + 7)
+            {
                 posY += 5 * Time.deltaTime;
+                pe.Play();
+                pe1.Play();
+                pe2.Play();
+            }
             if (startedPlaying == false)
                 {
                     audioScript.stoneSound();
@@ -43,8 +51,12 @@ public class WheelDoorScript : MonoBehaviour
         else
         {
             if (posY > originalPos && !leverScript.imActive)
-            posY -= 1f * Time.deltaTime;
-
+            {
+                posY -= 1f * Time.deltaTime;
+                pe.Stop();
+                pe1.Stop();
+                pe2.Stop();
+            }
             if(startedPlaying == true)
             {
                 audioScript.stopStoneSound();
