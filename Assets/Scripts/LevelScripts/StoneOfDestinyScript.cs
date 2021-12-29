@@ -16,6 +16,12 @@ public class StoneOfDestinyScript : MonoBehaviour
     public GameObject destinyStone;
     public GameObject destinyStone1;
     public GameObject destinyStone2;
+    public GameObject destinyStoneFound;
+    public GameObject destinyStoneFound2;
+    public GameObject destinyStoneFound3;
+    public GameObject statue;
+    public GameObject statue2;
+    public GameObject statue3;
     public Text stoneText;
     private GameObject gm;
     private LevelChangerScript lcs;
@@ -36,13 +42,17 @@ public class StoneOfDestinyScript : MonoBehaviour
             destinyStone.GetComponent<Light2D>().enabled = false;
             destinyStone.GetComponent<SpriteRenderer>().enabled = false;
             destinyStone.GetComponent<CircleCollider2D>().enabled = false;
-        }
+            destinyStoneFound.GetComponent<SpriteRenderer>().enabled = true;
+            statue.GetComponent<Animator>().enabled = true;
+}
 
         if (imFound2)
         {
             destinyStone1.GetComponent<Light2D>().enabled = false;
             destinyStone1.GetComponent<SpriteRenderer>().enabled = false;
             destinyStone1.GetComponent<CircleCollider2D>().enabled = false;
+            destinyStoneFound2.GetComponent<SpriteRenderer>().enabled = true;
+            statue2.GetComponent<Animator>().enabled = true;
         }
         if (imFound3)
         {
@@ -50,6 +60,8 @@ public class StoneOfDestinyScript : MonoBehaviour
             destinyStone2.GetComponent<Light2D>().enabled = false;
             destinyStone2.GetComponent<SpriteRenderer>().enabled = false;
             destinyStone2.GetComponent<CircleCollider2D>().enabled = false;
+            destinyStoneFound3.GetComponent<SpriteRenderer>().enabled = true;
+            statue3.GetComponent<Animator>().enabled = true;
         }
     }
 
