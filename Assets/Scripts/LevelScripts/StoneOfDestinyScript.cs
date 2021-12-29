@@ -23,6 +23,7 @@ public class StoneOfDestinyScript : MonoBehaviour
     GameObject music;
     float changeLevelTimer;
     bool goToBeginning;
+    public GameObject lightBoss;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +46,7 @@ public class StoneOfDestinyScript : MonoBehaviour
         }
         if (imFound3)
         {
+            lightBoss.GetComponent<Light2D>().enabled = true;
             destinyStone2.GetComponent<Light2D>().enabled = false;
             destinyStone2.GetComponent<SpriteRenderer>().enabled = false;
             destinyStone2.GetComponent<CircleCollider2D>().enabled = false;
