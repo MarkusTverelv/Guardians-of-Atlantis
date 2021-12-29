@@ -7,6 +7,7 @@ public class leverScript : MonoBehaviour
     public bool imActive;
     float leverTimer;
     private GameObject gm;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,25 +15,18 @@ public class leverScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-        if(imActive)
-        {
-            if (leverTimer < 0.5f)
-            {
-                leverTimer += Time.deltaTime;
-                transform.Rotate(0, 0, -1);
-            }
-        }
-    }
+    
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.F))
+        if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
-            gm.GetComponent<AudioScript>().playLeverSound();
-            imActive = true;
+            if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.F))
+            {
+                gm.GetComponent<AudioScript>().playLeverSound();
+                imActive = true;
+                animator.SetTrigger("LeverMove");
+            }
         }
     }
 }
