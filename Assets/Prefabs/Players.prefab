@@ -142,6 +142,8 @@ MonoBehaviour:
   maxMoveSpeed: 1.5
   yelloSprite: {fileID: 3304757412359480304}
   pinkoSprite: {fileID: 7421419446480926663}
+  timerShield: 0
+  cooldownShield: 0
   currentHealth: 0
   maxHealth: 3
   shieldPrefab: {fileID: 5118410775046236669, guid: 919e23a2ba8621046aae9b7d9bed4827, type: 3}
@@ -636,7 +638,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b191fec237e4f074fb0a009a04a38d50, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -732,7 +734,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9d9ef4c30ce04e843b39865856bc63c2, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -6,7 +6,6 @@ public class leverScript : MonoBehaviour
 {
     public bool imActive;
     float leverTimer;
-    public AudioSource leverSource;
     private GameObject gm;
     // Start is called before the first frame update
     void Start()
