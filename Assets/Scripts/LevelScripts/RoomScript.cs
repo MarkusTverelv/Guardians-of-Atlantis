@@ -28,7 +28,6 @@ public class RoomScript : MonoBehaviour
             pinkoHasLeft = false;
             if (dashCharge != null)
             {
-
                 dashCharge.GetComponent<SpriteRenderer>().enabled = true;
             }
         }

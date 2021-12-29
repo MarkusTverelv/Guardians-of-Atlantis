@@ -21,22 +21,7 @@ public class AddDashScript : MonoBehaviour
     {
         audioScript = GameObject.FindGameObjectWithTag("GM").GetComponent<AudioScript>();
 
-        if (!doIExist)
-        {
-            dashGem.GetComponent<SpriteRenderer>().enabled = false;
-            dashGem.GetComponent<CircleCollider2D>().enabled = false;
-        }
-        if (!doIExist2)
-        {
-            dashGem2.GetComponent<SpriteRenderer>().enabled = false;
-            dashGem2.GetComponent<CircleCollider2D>().enabled = false;
-        }
-        if (!doIExist3)
-        {
-            dashGem3.GetComponent<SpriteRenderer>().enabled = false;
-            dashGem3.GetComponent<CircleCollider2D>().enabled = false;
-        }
-
+        this.GetComponent<SpriteRenderer>().enabled = false;
 
         pss = GameObject.Find("NewPlayers").GetComponent<PlayerSharedScript>();
     }
@@ -44,7 +29,21 @@ public class AddDashScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!doIExist && dashGem != null)
+        {
+            dashGem.GetComponent<SpriteRenderer>().enabled = false;
+            dashGem.GetComponent<CircleCollider2D>().enabled = false;
+        }
+        if (!doIExist2 && dashGem2 != null)
+        {
+            dashGem2.GetComponent<SpriteRenderer>().enabled = false;
+            dashGem2.GetComponent<CircleCollider2D>().enabled = false;
+        }
+        if (!doIExist3 && dashGem3 != null)
+        {
+            dashGem3.GetComponent<SpriteRenderer>().enabled = false;
+            dashGem3.GetComponent<CircleCollider2D>().enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
