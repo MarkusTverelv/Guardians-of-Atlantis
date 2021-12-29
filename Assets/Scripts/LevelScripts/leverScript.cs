@@ -19,7 +19,7 @@ public class leverScript : MonoBehaviour
 
         if(imActive)
         {
-            if (transform.rotation.z > -50 && leverTimer < 0.5f)
+            if (leverTimer < 0.5f)
             {
                 leverTimer += Time.deltaTime;
                 transform.Rotate(0, 0, -1);
