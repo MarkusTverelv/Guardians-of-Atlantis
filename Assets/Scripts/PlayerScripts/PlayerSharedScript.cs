@@ -66,6 +66,10 @@ public class PlayerSharedScript : MonoBehaviour
     NewPlayerStates currentState = NewPlayerStates.Moving;
     public GameObject shieldPrefab;
 
+    string sceneName;
+    Scene currentScene;
+    LevelChangerScript lcs;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +91,10 @@ public class PlayerSharedScript : MonoBehaviour
         pinkoRigidbody = pinko.GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
+        currentScene = SceneManager.GetActiveScene();
+        lcs = GameObject.Find("LevelChanger").GetComponent<LevelChangerScript>();
+        // Retrieve the name of this scene.
+        sceneName = currentScene.name;
     }
 
     private void Update()
@@ -280,7 +288,16 @@ public class PlayerSharedScript : MonoBehaviour
 
             else
             {
-                SceneManager.LoadScene("GameOver");
+                if (sceneName == "Level")
+                {
+                    lcs.fadeToLevel("GameOver");
+                    
+                }
+                else if (sceneName == "Fluid")
+                {
+                    lcs.fadeToLevel("Level");
+                }
+                
             }
         }
 
