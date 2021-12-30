@@ -9,9 +9,13 @@ public class BombLevelScript : MonoBehaviour
     bool changeBool = true;
     public GameObject bomb;
     public GameObject explosion;
+    private GameObject gm;
+    bool notActivated;
+    public GameObject[] hinges;
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameMaster");
         bombSpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -26,20 +30,32 @@ public class BombLevelScript : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
             {
-                InvokeRepeating("ChangeColor", 0, 0.2f);
-                Invoke("DestroyMe", 3);
+                if (!notActivated)
+                {
+                    InvokeRepeating("ChangeColor", 0, 0.2f);
+                    StartCoroutine(DestroyMe());
+                    notActivated = true;
+                }
             }
 
             if(collision.gameObject.CompareTag("Enemy"))
             {
-                InvokeRepeating("ChangeColor", 0, 0.2f);
-                Invoke("DestroyMe", 3);
+                if (!notActivated)
+                {
+                    InvokeRepeating("ChangeColor", 0, 0.2f);
+                    StartCoroutine(DestroyMe());
+                    notActivated = true;
+                }
             }
 
             if (collision.gameObject.CompareTag("Bomb"))
             {
-                InvokeRepeating("ChangeColor", 0, 0.2f);
-                Invoke("DestroyMe", 3);
+                if (!notActivated)
+                {
+                    InvokeRepeating("ChangeColor", 0, 0.2f);
+                    StartCoroutine(DestroyMe());
+                    notActivated = true;
+                }
             }
 
         }
@@ -64,11 +80,19 @@ public class BombLevelScript : MonoBehaviour
         bombSpriteRenderer.color = colorShifter;
     }
 
-    void DestroyMe()
+
+    public IEnumerator DestroyMe()
     {
-        int rndNmb = Random.Range(0, 3);
+        gm.GetComponent<AudioScript>().playExplodeSound();
+        yield return new WaitForSeconds(2f);
         GameObject explosion2 = Instantiate(explosion, transform.position, Quaternion.identity);
-        Destroy(bomb);
+        foreach(GameObject hinge in hinges)
+        {
+            hinge.GetComponent<Rigidbody2D>().gravityScale = 1;
+            Destroy(hinge, 3);
+        }
         Destroy(explosion2, 2);
+        Destroy(gameObject);
     }
+
 }

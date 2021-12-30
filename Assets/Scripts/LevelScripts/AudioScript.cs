@@ -10,6 +10,7 @@ public class AudioScript : MonoBehaviour
     public AudioSource destinySource;
     public AudioSource leverSource;
     public AudioSource checkPointSource;
+    public AudioSource explodeSource;
     private float talkTimer;
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,11 @@ public class AudioScript : MonoBehaviour
     public void playCheckPointSound()
     {
         checkPointSource.Play();
+    }
+
+    public void playExplodeSound()
+    {
+        explodeSource.Play();
     }
 
 }
