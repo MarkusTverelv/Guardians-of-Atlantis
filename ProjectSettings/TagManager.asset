@@ -25,6 +25,7 @@ TagManager:
   - BigTentacle
   - Shield
   - GM
+  - Explosion
   layers:
   - Default
   - TransparentFX

@@ -126,5 +126,24 @@ public class JellyfishScript : MonoBehaviour
 
             }
         }
+
+        if(collision.gameObject.CompareTag("Explosion"))
+        {
+            if (currentHealth > 1)
+            {
+                StartCoroutine(flashRedTimer());
+                currentHealth--;
+                audioSource.pitch = 1;
+                audioSource.PlayOneShot(hurt);
+            }
+            else
+            {
+                audioSource.pitch = 1;
+                audioSource.PlayOneShot(death);
+                Destroy(gameObject);
+                audioSource.pitch = 1;
+
+            }
+        }
     }
 }
