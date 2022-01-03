@@ -336,4 +336,9 @@ public class PlayerSharedScript : MonoBehaviour
 
         return !inv;
     }
+
+    public int returnDash()
+    {
+        return dashCharges;
+    }
 }

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WheelScript : MonoBehaviour
 {
     public float rotz2;
     public float rotz1;
     bool goBack, goBack2;
+    public GameObject interactPinkoText;
+    public GameObject interactYelloText;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +40,10 @@ public class WheelScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        
         if (collision.gameObject.CompareTag("Pinko"))
         {
+            interactPinkoText.SetActive(true);
             if (Input.GetKey(KeyCode.F))
             {
                 goBack = false;
@@ -58,7 +63,8 @@ public class WheelScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Yello"))
         {
-            if (Input.GetKey(KeyCode.K))
+            interactYelloText.SetActive(true);
+            if (Input.GetKey(KeyCode.Keypad4))
             {
                 goBack2 = true;
                 if (rotz1 < 360)
@@ -80,12 +86,12 @@ public class WheelScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Pinko"))
         {
-                goBack = true;
+            interactPinkoText.SetActive(false);
         }
 
         if (collision.gameObject.CompareTag("Yello"))
         {
-                goBack2 = true;
+            interactYelloText.SetActive(false);
         }
     }
 }
