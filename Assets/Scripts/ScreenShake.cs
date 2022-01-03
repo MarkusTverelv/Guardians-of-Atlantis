@@ -7,11 +7,15 @@ public class ScreenShake : MonoBehaviour
     private Camera mainCam;
 
     public float strength;
-    public float frequency;
+    public float length;
 
     private void Awake()
     {
         mainCam = Camera.main;
+    }
+
+    private void Start()
+    {
     }
 
     // Update is called once per frame
@@ -19,32 +23,28 @@ public class ScreenShake : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            StartCoroutine(Shake(frequency));
+            StartCoroutine(Shake(length, strength));
         }
     }
 
-    IEnumerator Shake(float time)
+    IEnumerator Shake(float duration, float strength)
     {
-        ShakeScreen();
-        yield return new WaitForSeconds(time);
-        ShakeScreen();
-        yield return new WaitForSeconds(time);
-        ShakeScreen();
-        yield return new WaitForSeconds(time);
-        ShakeScreen();
-        yield return new WaitForSeconds(time);
-        ShakeScreen();
-        yield return new WaitForSeconds(time);
-        ShakeScreen();
-        yield return new WaitForSeconds(time);
-        ShakeScreen();
-    }
-    private void ShakeScreen()
-    {
-        Vector3 newShakeValue = new Vector3(
-            Mathf.PerlinNoise(-strength, strength),
-            Mathf.PerlinNoise(-strength, strength), -15) * 2;
+        Vector3 origin = mainCam.transform.localPosition;
 
-        mainCam.transform.localPosition += newShakeValue;
+        float elapsedTime = 0.0f;
+
+        while (elapsedTime < duration)
+        {
+            float x = Mathf.PerlinNoise(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * Random.Range(-strength, strength);
+            float y = Mathf.PerlinNoise(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * Random.Range(-strength, strength);
+
+            mainCam.transform.localPosition += new Vector3(x, y, origin.z);
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        mainCam.transform.localPosition = origin;
     }
 }
