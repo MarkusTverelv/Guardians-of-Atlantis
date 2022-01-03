@@ -6,6 +6,7 @@ public class PulseScript : MonoBehaviour
 {
     List<GameObject> enemyList;
     public Transform pulseTransform;
+    public GameObject pulseParticle;
 
     private float range;
     private float rangeMax;
@@ -35,7 +36,10 @@ public class PulseScript : MonoBehaviour
         {
             pulseTalkSound.Play();
             pulseSound.Play();
+
             canGrow = true;
+            GameObject pulseEffect = Instantiate(pulseParticle, transform.position, Quaternion.identity);
+            Destroy(pulseEffect, 2);
             pulseTimer = 0;
         }
 
@@ -46,7 +50,7 @@ public class PulseScript : MonoBehaviour
             if (range > rangeMax)
             {
                 range = rangeMax;
-                Invoke("pulseEffect", 0.1f);
+                //Invoke("PulseEffect", 0.1f);
                 canGrow = false;
             }
         }
@@ -85,7 +89,7 @@ public class PulseScript : MonoBehaviour
         }
     }
 
-    private void pulseEffect()
+    private void PulseEffect()
     {
         range = 0;
     }
