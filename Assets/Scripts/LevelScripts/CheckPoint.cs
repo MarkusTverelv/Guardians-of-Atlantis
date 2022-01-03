@@ -23,7 +23,7 @@ public class CheckPoint : MonoBehaviour
         {
             if (!imActive)
             {
-                gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+                gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
                 gm.GetComponent<AudioScript>().playCheckPointSound();
                 gm.lastCheckPointPos = transform.position;
                 imActive = true;
