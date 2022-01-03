@@ -33,9 +33,15 @@ public class GemScript : MonoBehaviour
         {
             gemCounter.gemCount--;
             if (b1)
+            {
                 source.pitch = 1f;
+                source.volume = 0.2f;
+            }
             else
+            {
                 source.pitch = 0.9f;
+                source.volume = 0.2f;
+            }
             source.PlayOneShot(pickUpClip);
             Destroy(gameObject);
         }

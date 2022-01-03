@@ -12,10 +12,12 @@ public class LifeGem : MonoBehaviour
     private static bool imAlive = true;
     private static bool imAlive2 = true;
     private static bool imAlive3 = true;
+    private static bool imAlive4 = true;
     public int lifeNmbr;
     public GameObject lifeGem;
     public GameObject lifeGem2;
     public GameObject lifeGem3;
+    public GameObject lifeGem4;
 
     private void Start()
     {
@@ -34,6 +36,11 @@ public class LifeGem : MonoBehaviour
         {
             lifeGem3.GetComponent<SpriteRenderer>().enabled = false;
             lifeGem3.GetComponent<CircleCollider2D>().enabled = false;
+        }
+        if (!imAlive4)
+        {
+            lifeGem4.GetComponent<SpriteRenderer>().enabled = false;
+            lifeGem4.GetComponent<CircleCollider2D>().enabled = false;
         }
     }
 
@@ -70,6 +77,16 @@ public class LifeGem : MonoBehaviour
                 healthText.GetComponent<TextScript>().textAnimate();
 
                 imAlive3 = false;
+                Destroy(gameObject);
+            }
+            if (lifeNmbr == 4)
+            {
+                audioScript.playLifeSound();
+                Instantiate(explosion, transform.position, Quaternion.identity);
+                other.gameObject.transform.parent.GetComponent<PlayerSharedScript>().AddMaxHealth();
+                healthText.GetComponent<TextScript>().textAnimate();
+
+                imAlive4 = false;
                 Destroy(gameObject);
             }
         }
