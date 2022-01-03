@@ -19,8 +19,6 @@ public class EntrenceScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
-            collision.transform.parent.GetComponent<PlayerSharedScript>().AddDash();
-            collision.transform.parent.GetComponent<PlayerSharedScript>().AddMaxHealth();
             gm.lastCheckPointPos = new Vector2(20, -48);
             lcs.fadeToLevel("Level");
         }
