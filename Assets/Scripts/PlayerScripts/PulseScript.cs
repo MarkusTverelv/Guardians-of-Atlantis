@@ -6,17 +6,22 @@ public class PulseScript : MonoBehaviour
 {
     List<GameObject> enemyList;
     public Transform pulseTransform;
+
     private float range;
     private float rangeMax;
     private bool canGrow = false;
     float pulseTimer;
     public float pulseRate;
+
     public AudioSource pulseSound;
     public AudioSource pulseTalkSound;
+
+    PlayerSharedScript playerShared;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerShared = transform.parent.GetComponentInParent<PlayerSharedScript>();
         enemyList = new List<GameObject>();
         rangeMax = 6f;
     }
@@ -26,7 +31,7 @@ public class PulseScript : MonoBehaviour
     {
         pulseTimer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Q) && pulseTimer >= pulseRate)
+        if (Input.GetKeyDown(KeyCode.Q) && pulseTimer >= pulseRate && playerShared.CheckCurrentState(NewPlayerStates.Moving))
         {
             pulseTalkSound.Play();
             pulseSound.Play();
@@ -44,8 +49,6 @@ public class PulseScript : MonoBehaviour
                 Invoke("pulseEffect", 0.1f);
                 canGrow = false;
             }
-
-
         }
 
         pulseTransform.localScale = new Vector3(range, range);
@@ -86,6 +89,4 @@ public class PulseScript : MonoBehaviour
     {
         range = 0;
     }
-
-
 }

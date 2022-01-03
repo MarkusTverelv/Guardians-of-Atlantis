@@ -7,6 +7,7 @@ public class ShootScriptNew : MonoBehaviour
     public float shootForce;
     Rigidbody2D rb;
     public Transform playerTransform;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();

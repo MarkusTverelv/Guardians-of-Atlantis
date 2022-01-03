@@ -99,37 +99,18 @@ public class PlayerSharedScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad2) && !shootTimerBool)
+        #region Shoot
+
+        if (Input.GetKeyDown(KeyCode.Keypad2) && !shootTimerBool && CheckCurrentState(NewPlayerStates.Moving))
             currentState = NewPlayerStates.Attack;
 
-        if (Input.GetKey(KeyCode.Return))
-            shootPower = false;
-
-        if (Input.GetKeyUp(KeyCode.Return))
-            shoot = true;
-
-        timerShield += Time.deltaTime;
-
-        if (Input.GetKeyDown(KeyCode.E) && currentState != NewPlayerStates.Shield)
+        if (CheckCurrentState(NewPlayerStates.Attack))
         {
-            talkSource2.Play();
-            shieldSound.Play();
+            if (Input.GetKey(KeyCode.Return))
+                shootPower = false;
 
-            if (timerShield >= cooldownShield)
-            {
-                Shield = true;
-            }
-        }
-
-        if (Shield)
-        {
-            currentState = NewPlayerStates.Shield;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Keypad1) && dashCharges != 0)
-        {
-            currentState = NewPlayerStates.Dash;
-            dashCharges -= 1;
+            if (Input.GetKeyUp(KeyCode.Return))
+                shoot = true;
         }
 
         if (shootTimerBool)
@@ -143,10 +124,45 @@ public class PlayerSharedScript : MonoBehaviour
                 shootTimer = 0;
             }
         }
+        #endregion
+
+        #region Shield
+
+        timerShield += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!CheckCurrentState(NewPlayerStates.Shield) && CheckCurrentState(NewPlayerStates.Moving))
+            {
+                if (timerShield >= cooldownShield)
+                {
+                    talkSource2.Play();
+                    shieldSound.Play();
+
+                    Shield = true;
+                }
+            }
+        }
+
+        if (Shield)
+        {
+            currentState = NewPlayerStates.Shield;
+        }
+
+        #endregion
+
+        #region Dash
+
+        if (Input.GetKeyDown(KeyCode.Keypad1) && dashCharges != 0 && CheckCurrentState(NewPlayerStates.Moving))
+        {
+            currentState = NewPlayerStates.Dash;
+            dashCharges -= 1;
+        }
 
         if (dashCharges < maxDashCharges)
         {
             dashTimer += Time.deltaTime;
+
             if (dashTimer > 4)
             {
                 dashCharges++;
@@ -154,13 +170,20 @@ public class PlayerSharedScript : MonoBehaviour
             }
         }
 
+        #endregion
+
         yelloMovement.Turn();
         pinkoMovement.Turn();
 
-
     }
 
-    //M=(2x1​+x2​​,2y1​+y2​​)
+    public bool CheckCurrentState(NewPlayerStates stateToBeIn)
+    {
+        if (currentState == stateToBeIn)
+            return true;
+
+        return false;
+    }
 
     private void FixedUpdate()
     {
@@ -189,18 +212,24 @@ public class PlayerSharedScript : MonoBehaviour
                 Attraction();
                 break;
             case NewPlayerStates.Moving:
+
                 Attraction();
                 yelloMovement.Move();
                 pinkoMovement.Move();
+
                 break;
             case NewPlayerStates.Shield:
-                pinkoMovement.Move();
+
                 yelloMovement.Pull(distance, pinkoRigidbody);
-                
+                yelloMovement.Move();
+
                 if (Shield)     //Have to exist for the coroutine to run once not every frame
                     StartCoroutine(DeployShield());
+
                 break;
             case NewPlayerStates.Attack:
+
+                pinkoMovement.Move();
                 stayTimer += Time.fixedDeltaTime;
 
                 if (stayTimer >= 5)
@@ -209,7 +238,6 @@ public class PlayerSharedScript : MonoBehaviour
                     stayTimer = 0.0f;
                 }
 
-                yelloMovement.Move();
 
                 if (shootScriptNew.Shoot(distance, yelloRigidbody, shoot, shootPower))
                 {
@@ -218,11 +246,15 @@ public class PlayerSharedScript : MonoBehaviour
                     shootPower = true;
                     currentState = NewPlayerStates.Moving;
                 }
+
                 break;
             case NewPlayerStates.Dash:
+
                 dashSound.Play();
                 talkSource.Play();
+
                 dashScriptNew.Dash(pinkoRigidbody);
+
                 currentState = NewPlayerStates.Moving;
                 break;
             default:
@@ -236,9 +268,9 @@ public class PlayerSharedScript : MonoBehaviour
         timerShield = 0.0f;
         Shield = false;
 
-        yello.gameObject.tag = "Gem";
+        pinko.gameObject.tag = "Gem";
         yield return new WaitForSeconds(5);
-        yello.gameObject.tag = "Yello";
+        pinko.gameObject.tag = "Pinko";
 
         Destroy(shield);
 
@@ -273,6 +305,7 @@ public class PlayerSharedScript : MonoBehaviour
 
         pinkoSprite.enabled = true;
         yelloSprite.enabled = true;
+
     }
     public bool TakeDamage()
     {
@@ -291,13 +324,13 @@ public class PlayerSharedScript : MonoBehaviour
                 if (sceneName == "Level")
                 {
                     lcs.fadeToLevel("GameOver");
-                    
+
                 }
                 else if (sceneName == "Fluid")
                 {
                     lcs.fadeToLevel("GameOverBoss");
                 }
-                
+
             }
         }
 

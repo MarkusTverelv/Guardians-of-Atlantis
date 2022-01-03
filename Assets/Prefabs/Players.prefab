@@ -143,7 +143,7 @@ MonoBehaviour:
   yelloSprite: {fileID: 3304757412359480304}
   pinkoSprite: {fileID: 7421419446480926663}
   timerShield: 0
-  cooldownShield: 0
+  cooldownShield: 10
   currentHealth: 0
   maxHealth: 3
   shieldPrefab: {fileID: 5118410775046236669, guid: 919e23a2ba8621046aae9b7d9bed4827, type: 3}
