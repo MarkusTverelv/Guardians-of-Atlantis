@@ -168,7 +168,7 @@ public class BossScript : MonoBehaviour
 
         if(!bossMove && !phaseThreeHasStarted)
         {
-            transform.position = Vector2.MoveTowards(transform.position, bossSpot.position, 100 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, bossSpot.position, 50 * Time.deltaTime);
         }
 
         if (Input.GetKeyDown(KeyCode.H))

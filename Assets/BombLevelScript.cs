@@ -91,7 +91,6 @@ public class BombLevelScript : MonoBehaviour
             hinge.GetComponent<Rigidbody2D>().gravityScale = 1;
             Destroy(hinge, 3);
         }
-        Destroy(explosion2, 2);
         Destroy(gameObject);
     }
 
