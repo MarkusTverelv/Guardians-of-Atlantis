@@ -106,10 +106,10 @@ public class PlayerSharedScript : MonoBehaviour
 
         if (CheckCurrentState(NewPlayerStates.Attack))
         {
-            if (Input.GetKey(KeyCode.Return))
+            if (Input.GetKey(KeyCode.Keypad3))
                 shootPower = false;
 
-            if (Input.GetKeyUp(KeyCode.Return))
+            if (Input.GetKeyUp(KeyCode.Keypad3))
                 shoot = true;
         }
 
@@ -174,7 +174,6 @@ public class PlayerSharedScript : MonoBehaviour
 
         yelloMovement.Turn();
         pinkoMovement.Turn();
-
     }
 
     public bool CheckCurrentState(NewPlayerStates stateToBeIn)
@@ -265,6 +264,7 @@ public class PlayerSharedScript : MonoBehaviour
     IEnumerator DeployShield()
     {
         GameObject shield = Instantiate(shieldPrefab, yelloRigidbody.position, Quaternion.identity, yello.transform);
+        inv = true;
         timerShield = 0.0f;
         Shield = false;
 
@@ -273,7 +273,7 @@ public class PlayerSharedScript : MonoBehaviour
         pinko.gameObject.tag = "Pinko";
 
         Destroy(shield);
-
+        inv = false;
         currentState = NewPlayerStates.Moving;
     }
 
