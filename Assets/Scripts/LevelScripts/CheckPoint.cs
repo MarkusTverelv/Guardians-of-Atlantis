@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CheckPoint : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class CheckPoint : MonoBehaviour
     bool imActive;
     public GameObject checkPointLight;
     public ParticleSystem ps;
+    public Text checkPointText;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class CheckPoint : MonoBehaviour
         {
             if (!imActive)
             {
+                checkPointText.GetComponent<TextScript>().textAnimate();
                 ps.Play();
                 checkPointLight.GetComponent<SpriteRenderer>().color = Color.cyan;
                 gm.GetComponent<AudioScript>().playCheckPointSound();
