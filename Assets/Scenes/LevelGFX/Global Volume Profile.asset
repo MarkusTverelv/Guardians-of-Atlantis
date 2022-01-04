@@ -21,7 +21,7 @@ MonoBehaviour:
     max: 100
   tint:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 11
     min: -100
     max: 100
 --- !u!114 &-8574770374075675220
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   redOutRedIn:
     m_OverrideState: 1
-    m_Value: 94
+    m_Value: 134
     min: -200
     max: 200
   redOutGreenIn:
@@ -140,7 +140,7 @@ MonoBehaviour:
     max: 200
   greenOutRedIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -29
     min: -200
     max: 200
   greenOutGreenIn:
@@ -155,7 +155,7 @@ MonoBehaviour:
     max: 200
   blueOutRedIn:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -11
     min: -200
     max: 200
   blueOutGreenIn:
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.07
+    m_Value: 0.1
     min: 0
     max: 1
 --- !u!114 &5919620082879434757
@@ -315,7 +315,7 @@ MonoBehaviour:
     min: 0.1
   aperture:
     m_OverrideState: 1
-    m_Value: 5.6
+    m_Value: 8.2
     min: 1
     max: 32
   focalLength:
@@ -354,11 +354,11 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 0.48
+    m_Value: 0.64
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.24
+    m_Value: 0.62
     min: 0
   scatter:
     m_OverrideState: 1
