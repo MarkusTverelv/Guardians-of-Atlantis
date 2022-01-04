@@ -6,6 +6,8 @@ public class CheckPoint : MonoBehaviour
 {
     private GameMaster gm;
     bool imActive;
+    public GameObject checkPointLight;
+    public ParticleSystem ps;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,8 @@ public class CheckPoint : MonoBehaviour
         {
             if (!imActive)
             {
-                gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+                ps.Play();
+                checkPointLight.GetComponent<SpriteRenderer>().color = Color.cyan;
                 gm.GetComponent<AudioScript>().playCheckPointSound();
                 gm.lastCheckPointPos = transform.position;
                 imActive = true;

@@ -27,7 +27,7 @@ ScriptedImporter:
     vTOnly: 0
     nPOTScale: 1
     sRGBTexture: 1
-    spriteMode: 1
+    spriteMode: 2
     spriteExtrude: 1
     spriteMeshType: 1
     alignment: 0
@@ -213,8 +213,8 @@ ScriptedImporter:
   keepDupilcateSpriteName: 0
   spriteCategoryList:
     categories: []
-  textureActualWidth: 464
-  textureActualHeight: 481
+  textureActualWidth: 512
+  textureActualHeight: 512
   spritePackingTag: 
   resliceFromLayer: 0
   characterMode: 1
