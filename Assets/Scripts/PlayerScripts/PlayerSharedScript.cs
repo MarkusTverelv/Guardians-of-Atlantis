@@ -15,41 +15,50 @@ public enum NewPlayerStates
 
 public class PlayerSharedScript : MonoBehaviour
 {
+    public float moveSpeed, turnSpeed, maxMoveSpeed;
+
+    public UnityEvent onCheckpointSet = new UnityEvent();
+
     public GameObject pinko, yello;
+    public ParticleSystem swooschEffect;
+
     public AudioClip hurtSound;
+
     public AudioSource dashSound;
     public AudioSource shieldSound;
     public AudioSource talkSource;
     public AudioSource talkSource2;
     public AudioSource damageSource;
     public AudioSource shootSource;
-    public UnityEvent onCheckpointSet = new UnityEvent();
-    public float moveSpeed, turnSpeed, maxMoveSpeed;
-
-    GameMaster gm;
-    DashScriptNew dashScriptNew;
-    PlayerSpecificScript pinkoMovement, yelloMovement;
-
-    Rigidbody2D yelloRigidbody;
-    Rigidbody2D pinkoRigidbody;
-    ShootScriptNew shootScriptNew;
 
     public SpriteRenderer yelloSprite;
     public SpriteRenderer pinkoSprite;
 
+    GameMaster gm;
+    DashScriptNew dashScriptNew;
+    PlayerSpecificScript pinkoMovement, yelloMovement;
+    ShootScriptNew shootScriptNew;
+
+    Rigidbody2D yelloRigidbody;
+    Rigidbody2D pinkoRigidbody;
+
     Vector3 midPoint;
 
-    bool inv = false;
     float invTime = 2.0f;
     float distance = 0.0f;
-    bool shoot;
-    bool shootPower = true;
-    bool Shield = false;
-    bool shootTimerBool = false;
 
     float stayTimer = 0.0f;
+    float stayTime = 10.0f;
     float shootTimer = 0;
     float dashTimer = 0;
+
+    bool inv = false;
+    bool Shield = false;
+
+    bool shoot;
+    bool shootPower = true;
+    bool shootTimerBool = false;
+
     public float timerShield = 0.0f;
     public float cooldownShield = 0.0f;
 
@@ -73,6 +82,8 @@ public class PlayerSharedScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        swooschEffect.Stop();
+
         timerShield = cooldownShield;
 
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -110,7 +121,9 @@ public class PlayerSharedScript : MonoBehaviour
                 shootPower = false;
 
             if (Input.GetKeyUp(KeyCode.Keypad3))
+            {
                 shoot = true;
+            }
         }
 
         if (shootTimerBool)
@@ -213,6 +226,7 @@ public class PlayerSharedScript : MonoBehaviour
             case NewPlayerStates.Moving:
 
                 Attraction();
+
                 yelloMovement.Move();
                 pinkoMovement.Move();
 
@@ -231,15 +245,15 @@ public class PlayerSharedScript : MonoBehaviour
                 pinkoMovement.Move();
                 stayTimer += Time.fixedDeltaTime;
 
-                if (stayTimer >= 5)
+                if (stayTimer >= stayTime)
                 {
                     currentState = NewPlayerStates.Moving;
                     stayTimer = 0.0f;
                 }
 
-
                 if (shootScriptNew.Shoot(distance, yelloRigidbody, shoot, shootPower))
                 {
+                    StartCoroutine(PlaySwooschEffect(1.5f));
                     shootSource.Play();
                     shootTimerBool = true;
                     shootPower = true;
@@ -248,6 +262,7 @@ public class PlayerSharedScript : MonoBehaviour
 
                 break;
             case NewPlayerStates.Dash:
+                StartCoroutine(PlaySwooschEffect(.5f));
 
                 dashSound.Play();
                 talkSource.Play();
@@ -337,8 +352,24 @@ public class PlayerSharedScript : MonoBehaviour
         return !inv;
     }
 
-    public int returnDash()
+    public int ReturnDash()
     {
         return dashCharges;
+    }
+
+    IEnumerator PlaySwooschEffect(float playTime)
+    {
+        float timeElapsed = 0.0f;
+
+        while (timeElapsed < playTime)
+        {
+            swooschEffect.Play();
+
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        swooschEffect.Stop();
     }
 }

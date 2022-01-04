@@ -31,7 +31,7 @@ public class DashCooldown : MonoBehaviour
     void Update()
     {
 
-        dashCharges = ps.returnDash();
+        dashCharges = ps.ReturnDash();
         textCooldown.text = dashCharges.ToString();
         if (isCooldown)
         {
