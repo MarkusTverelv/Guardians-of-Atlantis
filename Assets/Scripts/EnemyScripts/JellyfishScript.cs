@@ -7,7 +7,7 @@ public class JellyfishScript : MonoBehaviour
     public AudioClip electricity, hurt, death;
     public float speed, agrroRange;
 
-    int health = 1;
+    int health = 2;
     int currentHealth;
 
     bool aggro, turn, patrolling;
