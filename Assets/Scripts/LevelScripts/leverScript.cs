@@ -6,31 +6,56 @@ public class leverScript : MonoBehaviour
 {
     public bool imActive;
     float leverTimer;
+    private GameObject gm;
+    public Animator animator;
+    public GameObject interactPinkoText;
+    public GameObject interactYelloText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gm = GameObject.Find("GameMaster");
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    
 
-        if(imActive)
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pinko"))
         {
-            if (transform.rotation.z > -50 && leverTimer < 0.5f)
+            interactPinkoText.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                leverTimer += Time.deltaTime;
-                transform.Rotate(0, 0, -1);
+                gm.GetComponent<AudioScript>().playLeverSound();
+                imActive = true;
+                animator.SetTrigger("LeverMove");
+            }
+        }
+
+        if(collision.gameObject.CompareTag("Yello"))
+        {
+            interactYelloText.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Keypad4))
+            {
+                gm.GetComponent<AudioScript>().playLeverSound();
+                imActive = true;
+                animator.SetTrigger("LeverMove");
             }
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if(Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.F))
+        if (collision.gameObject.CompareTag("Pinko"))
         {
-            imActive = true;
+            interactPinkoText.SetActive(false);
+            
+        }
+
+        if (collision.gameObject.CompareTag("Yello"))
+        {
+            interactYelloText.SetActive(false);
+            
         }
     }
 }

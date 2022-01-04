@@ -11,8 +11,10 @@ public class MarWallScript : MonoBehaviour
     public AudioSource musicplayer;
     NewPinkoMovement newPinkoMovement;
     NewYelloMovement newYelloMovement;
+    public LevelChangerScript lcs;
     void Start()
     {
+        lcs = GameObject.Find("LevelChanger").GetComponent<LevelChangerScript>();
         StartCoroutine(Chase());
         newPinkoMovement = GameObject.Find("Pinko").GetComponent<NewPinkoMovement>();
         newYelloMovement = GameObject.Find("Yello").GetComponent<NewYelloMovement>();
@@ -32,11 +34,11 @@ public class MarWallScript : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Yello"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            lcs.fadeToLevel("Puzzle_1");
         }
         else if (collision.gameObject.CompareTag("Pinko"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            lcs.fadeToLevel("Puzzle_1");
         }
     }
 }

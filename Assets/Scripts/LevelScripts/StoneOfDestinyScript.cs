@@ -2,28 +2,82 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class StoneOfDestinyScript : MonoBehaviour
 {
     static bool imFound = false;
+    static bool imFound2 = false;
+    static bool imFound3 = false;
     public int wallNmbr;
     public GameObject stone;
     public GameObject stone1;
     public GameObject stone2;
+    public GameObject destinyStone;
+    public GameObject destinyStone1;
+    public GameObject destinyStone2;
+    public GameObject destinyStoneFound;
+    public GameObject destinyStoneFound2;
+    public GameObject destinyStoneFound3;
+    public GameObject statue;
+    public GameObject statue2;
+    public GameObject statue3;
     public Text stoneText;
+    private GameObject gm;
+    private LevelChangerScript lcs;
+    public Transform beginning;
+    GameObject music;
+    float changeLevelTimer;
+    bool goToBeginning;
+    public GameObject lightBoss;
     // Start is called before the first frame update
     void Start()
     {
+        
+        music = GameObject.Find("Music");
+        lcs = GameObject.Find("LevelChanger").GetComponent<LevelChangerScript>();
+        gm = GameObject.Find("GameMaster");
         if(imFound)
         {
-            GetComponent<SpriteRenderer>().enabled = false;
+            destinyStone.GetComponent<Light2D>().enabled = false;
+            destinyStone.GetComponent<SpriteRenderer>().enabled = false;
+            destinyStone.GetComponent<CircleCollider2D>().enabled = false;
+            destinyStoneFound.GetComponent<SpriteRenderer>().enabled = true;
+            statue.GetComponent<Animator>().enabled = true;
+}
+
+        if (imFound2)
+        {
+            destinyStone1.GetComponent<Light2D>().enabled = false;
+            destinyStone1.GetComponent<SpriteRenderer>().enabled = false;
+            destinyStone1.GetComponent<CircleCollider2D>().enabled = false;
+            destinyStoneFound2.GetComponent<SpriteRenderer>().enabled = true;
+            statue2.GetComponent<Animator>().enabled = true;
+        }
+        if (imFound3)
+        {
+            lightBoss.GetComponent<Light2D>().enabled = true;
+            destinyStone2.GetComponent<Light2D>().enabled = false;
+            destinyStone2.GetComponent<SpriteRenderer>().enabled = false;
+            destinyStone2.GetComponent<CircleCollider2D>().enabled = false;
+            destinyStoneFound3.GetComponent<SpriteRenderer>().enabled = true;
+            statue3.GetComponent<Animator>().enabled = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (goToBeginning)
+        {
+            changeLevelTimer += Time.deltaTime;
+            if (changeLevelTimer > 5)
+            {
+                gm.GetComponent<GameMaster>().lastCheckPointPos = beginning.position;
+                music.SetActive(false);
+                lcs.fadeToLevel("Level");
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,10 +86,14 @@ public class StoneOfDestinyScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
             {
+                goToBeginning = true;
+                gm.GetComponent<AudioScript>().playDestinySound();
                 imFound = true;
                 stoneText.GetComponent<TextScript>().textAnimate();
                 stone.GetComponent<StoneOfDestinyWallScript>().stopExisting();
-                Destroy(gameObject);
+                destinyStone.GetComponent<Light2D>().enabled = false;
+                destinyStone.GetComponent<SpriteRenderer>().enabled = false;
+                destinyStone.GetComponent<CircleCollider2D>().enabled = false;
             }
         }
 
@@ -43,10 +101,14 @@ public class StoneOfDestinyScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
             {
-                imFound = true;
+                goToBeginning = true;
+                gm.GetComponent<AudioScript>().playDestinySound();
+                imFound2 = true;
                 stoneText.GetComponent<TextScript>().textAnimate();
                 stone1.GetComponent<stoneOfDestinyWall2>().stopExisting();
-                Destroy(gameObject);
+                destinyStone1.GetComponent<Light2D>().enabled = false;
+                destinyStone1.GetComponent<SpriteRenderer>().enabled = false;
+                destinyStone1.GetComponent<CircleCollider2D>().enabled = false;
             }
         }
 
@@ -54,10 +116,14 @@ public class StoneOfDestinyScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
             {
-                imFound = true;
+                goToBeginning = true;
+                gm.GetComponent<AudioScript>().playDestinySound();
+                imFound3 = true;
                 stoneText.GetComponent<TextScript>().textAnimate();
                 stone2.GetComponent<StoneOfDestinyWall3>().stopExisting();
-                Destroy(gameObject);
+                destinyStone2.GetComponent<Light2D>().enabled = false;
+                destinyStone2.GetComponent<SpriteRenderer>().enabled = false;
+                destinyStone2.GetComponent<CircleCollider2D>().enabled = false;
             }
         }
     }

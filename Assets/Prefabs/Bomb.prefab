@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 616044219872192210}
   - component: {fileID: 616044219872192211}
   - component: {fileID: 6002015292136330869}
+  - component: {fileID: 491909204}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bomb
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 616044219872192208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2233, y: 0.2115, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 5127b134d4710ab4f8cf87bf163192ff, type: 3}
+  m_Sprite: {fileID: 3110413914096381761, guid: e72414783e8354a4eb6742b1c6a7d558, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,9 +120,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.28622615, y: -0.9065948}
+  m_Offset: {x: 0, y: -0.07630412}
   serializedVersion: 2
-  m_Radius: 3.9891903
+  m_Radius: 1.3517412
 --- !u!114 &6002015292136330869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,3 +141,44 @@ MonoBehaviour:
   - {fileID: 1578222752094504985, guid: 53155ec052923c841a0aa34956a8bc31, type: 3}
   - {fileID: 5111169352066464851, guid: cfddba9ddba31de4abac5e8bdd33758d, type: 3}
   wall: {fileID: 7104406352710163070, guid: da265a72add627c4d86753907c487ff9, type: 3}
+--- !u!114 &491909204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616044219872192208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 2
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 3110413914096381761, guid: e72414783e8354a4eb6742b1c6a7d558, type: 3}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}

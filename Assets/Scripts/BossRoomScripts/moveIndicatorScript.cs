@@ -74,7 +74,6 @@ public class moveIndicatorScript : MonoBehaviour
         for (int i = 0; i < spawnOilSpots.Length; i++)
         {
             GameObject oilRef = Instantiate(oilExplosion, spawnOilSpots[i].transform.position, Quaternion.identity);
-            Destroy(oilRef, 2);
         }
     }
 }

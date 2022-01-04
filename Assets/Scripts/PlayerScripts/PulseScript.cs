@@ -5,20 +5,27 @@ using UnityEngine;
 public class PulseScript : MonoBehaviour
 {
     List<GameObject> enemyList;
-    public Transform pulseTransform;
+    public GameObject pulseParticle;
+
     private float range;
     private float rangeMax;
     private bool canGrow = false;
     float pulseTimer;
     public float pulseRate;
+
     public AudioSource pulseSound;
     public AudioSource pulseTalkSound;
+
+    PlayerSharedScript playerShared;
+    GameObject tmpPulse;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        playerShared = transform.parent.GetComponentInParent<PlayerSharedScript>();
         enemyList = new List<GameObject>();
-        rangeMax = 6f;
+        rangeMax = 300f;
     }
 
     // Update is called once per frame
@@ -26,66 +33,50 @@ public class PulseScript : MonoBehaviour
     {
         pulseTimer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Q) && pulseTimer >= pulseRate)
+        if (Input.GetKeyDown(KeyCode.Q) && pulseTimer >= pulseRate && !playerShared.CheckCurrentState(NewPlayerStates.Attack) && !playerShared.CheckCurrentState(NewPlayerStates.Attack))
         {
             pulseTalkSound.Play();
             pulseSound.Play();
+
+            tmpPulse = Instantiate(pulseParticle, transform.position, Quaternion.identity, this.transform);
+
             canGrow = true;
             pulseTimer = 0;
         }
 
         if (canGrow)
         {
-            float rangeSpeed = 8f;
+            float rangeSpeed = 240f;
             range += rangeSpeed * Time.deltaTime;
+
             if (range > rangeMax)
             {
                 range = rangeMax;
-                Invoke("pulseEffect", 0.1f);
+                Invoke("PulseEffect", 0.1f);
                 canGrow = false;
             }
 
-
+            tmpPulse.transform.GetChild(0).localScale = new Vector3(range, range);
         }
-
-        pulseTransform.localScale = new Vector3(range, range);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
+        else
         {
-            addForce(other);
-        }
-
-        if (other.gameObject.CompareTag("Bomb"))
-        {
-            addForce(other);
-            other.GetComponent<BombFollowScript>().imActivated = true;
+            Destroy(tmpPulse);
         }
     }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Bomb"))
-        {
-            Destroy(other.gameObject, 6);
-        }
-    }
-
-    private void addForce(Collider2D collision)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
-            Vector2 position = collision.transform.position - this.transform.position;
-            rb.AddForce(position, ForceMode2D.Impulse);
-        }
-    }
-
-    private void pulseEffect()
+    private void PulseEffect()
     {
         range = 0;
     }
 
+    public void AddForce(Collider2D collision)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+            Vector2 direction = collision.transform.position - this.transform.position;
+            direction.Normalize();
+            rb.AddForce(direction * 10, ForceMode2D.Force);
+        }
+    }
 
 }

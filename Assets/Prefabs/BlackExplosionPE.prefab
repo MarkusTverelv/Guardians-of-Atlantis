@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6134934635539003458}
   - component: {fileID: 6134934635539003459}
   - component: {fileID: 6134934635539003516}
-  - component: {fileID: 4843889781446329537}
   - component: {fileID: -1213840512506954283}
+  - component: {fileID: 4901369998371455274}
   m_Layer: 0
   m_Name: BlackExplosionPE
   m_TagString: Untagged
@@ -4838,7 +4838,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 50
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -4864,18 +4864,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &4843889781446329537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6134934635539003517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29cde53990caa7c48858f15491058f27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &-1213840512506954283
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4891,4 +4879,16 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1.5004818
+--- !u!114 &4901369998371455274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6134934635539003517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4072855733e9d48880efd32b4e2fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
