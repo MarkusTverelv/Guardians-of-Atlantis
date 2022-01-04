@@ -48,11 +48,11 @@ public class BossScript : MonoBehaviour
 
     public int eyeHealth;
 
-    bool instantiatePhaseOne = true;
+    bool instantiatePhaseOne = false;
     bool phaseOneHasStarted = false;
     bool phaseTwoHasStarted = false;
     bool phaseThreeHasStarted = false;
-    bool instantiatePhaseThree = false;
+    bool instantiatePhaseThree = true;
 
     bool shouldBombSpawn = false;
     bool shouldTentacleSpawn = false;

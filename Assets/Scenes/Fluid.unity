@@ -16076,7 +16076,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -16855,6 +16855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604a0422d908c574580ce496c93321fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkPointLight: {fileID: 0}
+  ps: {fileID: 0}
+  checkPointText: {fileID: 0}
 --- !u!4 &1373057374
 Transform:
   m_ObjectHideFlags: 0

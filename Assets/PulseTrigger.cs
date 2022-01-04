@@ -27,7 +27,6 @@ public class PulseTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Bomb"))
         {
             ps.AddForce(other);
-            other.GetComponent<BombFollowScript>().imActivated = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
