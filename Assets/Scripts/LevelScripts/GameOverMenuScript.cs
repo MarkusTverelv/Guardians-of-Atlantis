@@ -7,9 +7,7 @@ public class GameOverMenuScript : MonoBehaviour
 
     public void Restart()
     {
-        GameObject.Find("ScoreCounter").GetComponent<ScoreCounterScript>().Score = 0;
         Destroy(GameObject.Find("Music"));
-        SceneManager.LoadScene("Level");
-        
+        SceneManager.LoadScene("Level");  
     }
 }
