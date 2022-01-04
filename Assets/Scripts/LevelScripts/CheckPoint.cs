@@ -19,17 +19,19 @@ public class CheckPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(imActive)
+        {
+            checkPointLight.GetComponent<SpriteRenderer>().color = Color.cyan;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Pinko"))
+        if (collision.gameObject.CompareTag("Pinko") || collision.gameObject.CompareTag("Yello"))
         {
             if (!imActive)
             {
                 checkPointText.GetComponent<TextScript>().textAnimate();
                 ps.Play();
-                checkPointLight.GetComponent<SpriteRenderer>().color = Color.cyan;
                 gm.GetComponent<AudioScript>().playCheckPointSound();
                 gm.lastCheckPointPos = transform.position;
                 imActive = true;
