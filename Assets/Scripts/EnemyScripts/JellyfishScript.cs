@@ -6,7 +6,7 @@ public class JellyfishScript : MonoBehaviour
 {
     public AudioClip electricity, hurt, death;
     public float speed, agrroRange;
-
+    public bool chaser = false;
     int health = 1;
     int currentHealth;
 
@@ -51,9 +51,10 @@ public class JellyfishScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
         if (currentState == state.aggro)
             body.AddForce((player.transform.position - transform.position).normalized * speed);
-        else
+        else if (chaser)
         {
             if (Vector3.Distance(startPos, transform.position) > 1 && currentState == state.returning)
                 body.AddForce((startPos - transform.position).normalized * speed);
@@ -75,6 +76,8 @@ public class JellyfishScript : MonoBehaviour
             }
 
         }
+        
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

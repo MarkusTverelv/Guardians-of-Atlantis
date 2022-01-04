@@ -11,6 +11,7 @@ public class SetLine : MonoBehaviour
     void Start()
     {
         lr = GetComponent<LineRenderer>();
+        
     }
 
     private void Update()
