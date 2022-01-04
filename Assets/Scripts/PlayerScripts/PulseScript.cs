@@ -24,7 +24,7 @@ public class PulseScript : MonoBehaviour
     {
         playerShared = transform.parent.GetComponentInParent<PlayerSharedScript>();
         enemyList = new List<GameObject>();
-        rangeMax = 6f;
+        rangeMax = 8f;
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class PulseScript : MonoBehaviour
             if (range > rangeMax)
             {
                 range = rangeMax;
-                //Invoke("PulseEffect", 0.1f);
+                Invoke("PulseEffect", 0.1f);
                 canGrow = false;
             }
         }

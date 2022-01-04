@@ -296,16 +296,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3326405268873475595, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: pulseParticle
-      value: 
-      objectReference: {fileID: 2533676237544967619, guid: 81bbbe27e81348746845f041a2c8c018, type: 3}
-    - target: {fileID: 3326405268873475597, guid: b1be9db7d8143484e81667c720867057, type: 3}
-      propertyPath: m_SortingOrder
-      value: 50
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3326405268873475597, guid: b1be9db7d8143484e81667c720867057, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1be9db7d8143484e81667c720867057, type: 3}
 --- !u!1 &1467383599
 GameObject:
