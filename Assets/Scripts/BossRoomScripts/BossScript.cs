@@ -171,16 +171,6 @@ public class BossScript : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, bossSpot.position, 50 * Time.deltaTime);
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            StartCoroutine(activateRuneOrder());
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            StartCoroutine(activateTentacles());
-        }
-
         if (runesActivated == 4)
         {
             Destroy(spawnedIndicator);
