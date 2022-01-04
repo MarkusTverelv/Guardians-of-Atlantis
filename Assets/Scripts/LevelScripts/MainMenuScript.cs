@@ -20,7 +20,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void openLevel()
     {
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("CutsceneBeginning");
     }
 
     public void openOptions()
