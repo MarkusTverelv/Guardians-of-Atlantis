@@ -33,9 +33,10 @@ public class MenuScript : MonoBehaviour
     }
     private void Start()
     {
+        AudioListener.volume = 0.5f;
         audioSource = GetComponent<AudioSource>();
         foreach (Transform t in transform)
-            selectedScripts.Add(t.gameObject.GetComponent<SelectedScript>());
+            selectedScripts.Add(t.GetChild(0).gameObject.GetComponent<SelectedScript>());
     }
     private void OnEnable()
     {

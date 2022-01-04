@@ -5,8 +5,7 @@ using TMPro;
 
 public class OptionsMenuScript : MonoBehaviour
 {
-    
-    public List<AudioSource> audioSources = new List<AudioSource>();
+
     [SerializeField] GameObject fullscreenOption, volumeOption, resolutionOption, pauseMenu;
     TMP_Text volumeText, fullscreenText, resolutionText;
     Vector2Int[] resolutions = new Vector2Int[] 
@@ -81,10 +80,14 @@ public class OptionsMenuScript : MonoBehaviour
         }
         set
         {
-            _volume = value;
-            for (int i = 0; i < audioSources.Count; i++)
-                audioSources[i].volume = baseAudioLevels[i] * value / 10;
-            volumeText.text = string.Format("Volume: {0}", volume);
+            Debug.Log(value);
+            if (value >= 0 && value <= 10)
+            {
+                _volume = value;
+                AudioListener.volume = value / 10f;
+                volumeText.text = string.Format("Volume: {0}", volume);
+            }
+            
              
 
         }
@@ -97,8 +100,6 @@ public class OptionsMenuScript : MonoBehaviour
         fullscreenText = fullscreenOption.GetComponent<TMP_Text>();
         resolutionText = resolutionOption.GetComponent<TMP_Text>();
         menuScript = GetComponent<MenuScript>();
-        foreach (AudioSource audioSource in audioSources)
-            baseAudioLevels.Add(audioSource.volume);
         Debug.Log(menuScript.selectedScripts);
         Debug.Log("test");
         
@@ -111,9 +112,9 @@ public class OptionsMenuScript : MonoBehaviour
         if (selection == volumeOption)
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
-                volume++;
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
                 volume--;
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+                volume++;
         }
         else if(selection == fullscreenOption)
         {
