@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum JellyFishType
+{
+    Blue,
+    Red,
+    Green
+}
+
 public class JellyfishScript : MonoBehaviour
 {
     public AudioClip electricity, hurt, death;
     public float speed, agrroRange;
+    public ParticleSystem blueExplosion, redExplosion, greenExplosion;
 
     int health = 2;
     int currentHealth;
@@ -31,6 +39,7 @@ public class JellyfishScript : MonoBehaviour
     }
 
     state currentState = state.patrolling;
+    public JellyFishType myType;
 
     // Start is called before the first frame update
     void Start()
@@ -121,13 +130,23 @@ public class JellyfishScript : MonoBehaviour
             {
                 audioSource.pitch = 1;
                 audioSource.PlayOneShot(death);
-                Destroy(gameObject);
+                
+                if (myType == JellyFishType.Blue)
+                    DetonateExplosion(blueExplosion);
+
+                else if (myType == JellyFishType.Red)
+                    DetonateExplosion(redExplosion);
+
+                else if (myType == JellyFishType.Green)
+                    DetonateExplosion(greenExplosion);
+
+                Destroy(gameObject, .125f);
                 audioSource.pitch = 1;
 
             }
         }
 
-        if(collision.gameObject.CompareTag("Explosion"))
+        if (collision.gameObject.CompareTag("Explosion"))
         {
             if (currentHealth > 1)
             {
@@ -145,5 +164,10 @@ public class JellyfishScript : MonoBehaviour
 
             }
         }
+    }
+
+    private void DetonateExplosion(ParticleSystem explosion)
+    {
+        Instantiate(explosion, spriteRenderer.transform.position, Quaternion.identity);
     }
 }
