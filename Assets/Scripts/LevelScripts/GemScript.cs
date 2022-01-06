@@ -9,7 +9,6 @@ public class GemScript : MonoBehaviour
     public GemColors gemColor;
     public AudioClip pickUpClip;
     AudioSource source;
-    scoreScript scoreBoard;
     private void Start()
     {
         gemCounter = GameObject.Find("GemCounter").GetComponent<GemCounterScript>();
