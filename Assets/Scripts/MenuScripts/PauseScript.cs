@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class PauseScript : MonoBehaviour
 {
-    
+    LevelChangerScript lcs;
+
     //static public UnityEvent OnPause = new UnityEvent();
     //static public UnityEvent OnUnPause = new UnityEvent();
     static bool _isPaused;
@@ -18,7 +21,7 @@ public class PauseScript : MonoBehaviour
     private void Start()
     {
         pauseMenu.SetActive(false);
-
+        lcs = GameObject.Find("LevelChanger").GetComponent<LevelChangerScript>();
     }
     public bool isPaused
     {
@@ -35,7 +38,6 @@ public class PauseScript : MonoBehaviour
             pauseMenu.SetActive(value);
             if (value)
             {
-                
                 music.volume = 0.5f;
                 Time.timeScale = 0;
             }
@@ -66,7 +68,7 @@ public class PauseScript : MonoBehaviour
     }
     public void MenuButton()
     {
-        Debug.Log("Menu Button");
+        lcs.fadeToLevel("MainMenu");
     }
 
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuSceneLoader : MonoBehaviour
 {
     LevelChangerScript lcs;
+    public AudioSource music;
 
     private void Start()
     {
@@ -14,6 +15,8 @@ public class MainMenuSceneLoader : MonoBehaviour
 
     public void BackToMenu()
     {
+        music.Stop();
+        Time.timeScale = 1;
         lcs.fadeToLevel("MainMenu");
     }
     public void StartGame()
@@ -22,6 +25,7 @@ public class MainMenuSceneLoader : MonoBehaviour
     }
     public void QuitGame()
     {
+        Time.timeScale = 1;
         Application.Quit();
     }
 }
