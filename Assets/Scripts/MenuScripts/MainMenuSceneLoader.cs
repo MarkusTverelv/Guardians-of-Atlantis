@@ -19,10 +19,17 @@ public class MainMenuSceneLoader : MonoBehaviour
         Time.timeScale = 1;
         lcs.fadeToLevel("MainMenu");
     }
+
     public void StartGame()
     {
         lcs.fadeToLevel("CutSceneBeginning");
     }
+
+    public void StartBossFight()
+    {
+        lcs.fadeToLevel("Fluid");
+    }
+
     public void QuitGame()
     {
         Time.timeScale = 1;

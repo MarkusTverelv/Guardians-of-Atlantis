@@ -10,11 +10,15 @@ public class PlayerSpecificScript : MonoBehaviour
     
     float moveSpeed, turnSpeed, maxMoveSpeed;
     private Rigidbody2D rb;
+    
     [Range(0.0f, 1.0f)]
     public float deacceleration;
+
     bool inv;
+    
     [SerializeField]
     public Transform playerTransform;
+
     PlayerSharedScript altMovement;
 
     private void Start()
