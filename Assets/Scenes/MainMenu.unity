@@ -5315,7 +5315,7 @@ GameObject:
   - component: {fileID: 974060155}
   - component: {fileID: 974060154}
   m_Layer: 0
-  m_Name: Untitled_Artwork
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
